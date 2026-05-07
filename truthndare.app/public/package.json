@@ -1,0 +1,16 @@
+{
+  "name": "truth-or-chaos",
+  "version": "1.0.0",
+  "description": "Anonymous Truth or Chaos app",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "mongoose": "^8.0.0",
+    "cors": "^2.8.5"
+  }
+}

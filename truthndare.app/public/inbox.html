@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Inbox</title>
+
+  <link rel="stylesheet" href="/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- HOME -->
+<a href="index.html" class="home-btn">⌂ HOME</a>
+
+<!-- BACKGROUND EFFECT -->
+<div class="scanlines"></div>
+
+<!-- MAIN CONTAINER -->
+<div class="container large">
+
+  <!-- HEADER -->
+  <h1 class="glow-text">INBOX SYSTEM</h1>
+  <p class="subtitle">ANONYMOUS MESSAGE VAULT</p>
+
+  <!-- =========================
+       LINK MODULE
+  ========================== -->
+  <div class="composer">
+
+    <h2>YOUR SIGNAL LINK</h2>
+
+    <input id="userLink" class="input" readonly placeholder="GENERATING NODE LINK...">
+
+    <div style="display:flex; gap:10px;">
+      <button onclick="copyLink()">COPY</button>
+      <button class="secondary" onclick="shareWhatsApp()">SHARE</button>
+    </div>
+
+  </div>
+
+  <!-- =========================
+       STATUS BAR
+  ========================== -->
+  <div class="inbox-status">
+    ⚡ LIVE INBOX ACTIVE • WAITING FOR SIGNALS
+  </div>
+
+  <!-- =========================
+       MESSAGES VAULT (CARD SYSTEM)
+  ========================== -->
+  <div id="messages" class="card-container inbox-vault"></div>
+
+</div>
+
+<script src="/app.js"></script>
+
+</body>
+</html>

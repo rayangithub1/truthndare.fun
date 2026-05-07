@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Truth or Chaos</title>
+
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- =========================
+     WORLD ATMOSPHERE LAYER
+========================= -->
+<div class="scanlines"></div>
+
+<!-- MAIN SCREEN -->
+<div class="container">
+
+  <!-- GAME TITLE AREA -->
+  <div class="title-section">
+
+    <div class="hud-bar">
+
+  <div class="hud-item">
+    👤 ONLINE USERS: <span id="liveUsers">128</span>
+  </div>
+
+  <div class="hud-item">
+    ⚡ SYSTEM STATUS: ACTIVE
+  </div>
+
+</div>
+
+    <h1 class="glow-text">TRUTH OR CHAOS</h1>
+    <p class="subtitle">A CYBER ANONYMOUS SYSTEM</p>
+
+  </div>
+
+  <!-- SYSTEM STATUS BAR -->
+  <div class="loading">
+    <div></div>
+  </div>
+
+  <!-- MODE SWITCH -->
+  <div class="nav" style="margin-top:20px; justify-content:center; gap:10px;">
+
+    <button onclick="showSignup()">NEW USER</button>
+    <button class="secondary" onclick="showLogin()">EXISTING USER</button>
+
+  </div>
+
+  <!-- =========================
+       SIGNUP MODULE
+  ========================== -->
+  <div id="signupBox" class="composer">
+
+    <h2>INITIALIZE PROFILE</h2>
+
+    <input id="signupUsername" class="input" placeholder="ENTER USERNAME">
+    <input id="signupPassword" class="input" type="password" placeholder="CREATE PASSWORD">
+
+    <button onclick="signup()">BOOT SYSTEM</button>
+
+  </div>
+
+  <!-- =========================
+       LOGIN MODULE
+  ========================== -->
+  <div id="loginBox" class="composer" style="display:none;">
+
+    <h2>ACCESS TERMINAL</h2>
+
+    <input id="loginUsername" class="input" placeholder="USERNAME">
+    <input id="loginPassword" class="input" type="password" placeholder="PASSWORD">
+
+    <button onclick="login()">ENTER WORLD</button>
+
+  </div>
+
+  <!-- SYSTEM FEEDBACK -->
+  <p id="result" class="subtitle" style="margin-top:15px;"></p>
+
+</div>
+
+<!-- =========================
+     SYSTEM FOOTER MODULE
+========================= -->
+<div class="system-footer">
+
+  <div class="footer-header">
+    SYSTEM INFORMATION
+  </div>
+
+  <div class="footer-grid">
+
+    <div class="footer-box">
+      <h4>⚠ SAFETY NOTICE</h4>
+      <p>
+        This is an anonymous system. Do not send harmful, illegal, or abusive content.
+        Misuse may result in restricted access.
+      </p>
+    </div>
+
+    <div class="footer-box">
+      <h4>CONTACT</h4>
+      <p>support@truthorchaos.com</p>
+    </div>
+
+    <div class="footer-box">
+      <h4>❤️ CREATOR NOTE</h4>
+      <p>Made with love for chaos, curiosity and expression.</p>
+    </div>
+
+  </div>
+
+  <div class="footer-signature">
+    v1.0 • TRUTH / CHAOS SYSTEM ACTIVE
+  </div>
+
+</div>
+
+</body>
+
+<script src="app.js"></script>
+
+</html>

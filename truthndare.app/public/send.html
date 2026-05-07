@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Send Message</title>
+
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- HOME NAV -->
+<a href="index.html" class="home-btn">⌂ HOME</a>
+
+<!-- CRT / BACKGROUND OVERLAY -->
+<div class="scanlines"></div>
+
+<!-- MAIN CONTAINER -->
+<div class="container" id="mainBox">
+
+  <!-- HEADER -->
+  <h1 class="glow-text">CHAOS TERMINAL</h1>
+  <p class="subtitle">GENERATE ANONYMOUS SIGNAL</p>
+
+  <!-- MODE SELECT -->
+  <div class="composer">
+
+    <h2>SELECT MODE</h2>
+
+    <select id="type" class="input" onchange="updateMode()">
+      <option value="truth">TRUTH MODULE</option>
+      <option value="chaos">CHAOS MODULE</option>
+      <option value="dare">DARE MODULE</option>
+    </select>
+
+  </div>
+
+  <!-- INPUT SECTION -->
+  <div class="composer">
+
+    <h2>INPUT SIGNAL</h2>
+
+    <!-- NEW: SENDER HINT -->
+    <input id="senderHint" class="input" placeholder="WHO IS THIS FROM? (OPTIONAL HINT)">
+
+    <textarea id="message" class="input" placeholder="ENTER YOUR MESSAGE..."></textarea>
+
+    <button onclick="sendMessage()">EXECUTE TRANSMISSION</button>
+
+  </div>
+
+  <!-- STATUS OUTPUT -->
+  <p id="status" class="subtitle" style="margin-top:15px;"></p>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
