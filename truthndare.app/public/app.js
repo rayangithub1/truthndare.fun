@@ -425,89 +425,101 @@ function wrapText(
 // ==========================
 function downloadImage(id, type, message) {
   const canvas = document.getElementById(`canvas-${id}`);
-  if (!canvas) return;
-
   const ctx = canvas.getContext("2d");
 
   canvas.width = 1080;
-  canvas.height = 1080;
+  canvas.height = 1350; // Instagram post ratio (IMPORTANT)
 
   // =========================
-  // BACKGROUND (GRADIENT)
+  // BACKGROUND GRADIENT (CYBER VOID)
   // =========================
-  const bg = ctx.createLinearGradient(0, 0, 1080, 1080);
+  const bg = ctx.createLinearGradient(0, 0, 1080, 1350);
 
-  if (type === "truth") {
-    bg.addColorStop(0, "#0f172a");
-    bg.addColorStop(1, "#052e16");
-  } else if (type === "chaos") {
-    bg.addColorStop(0, "#0f172a");
-    bg.addColorStop(1, "#3b2f0a");
-  } else {
-    bg.addColorStop(0, "#0f172a");
-    bg.addColorStop(1, "#3b0a0a");
-  }
+  bg.addColorStop(0, "#050816");
+  bg.addColorStop(0.5, "#0b1026");
+  bg.addColorStop(1, "#05060f");
 
   ctx.fillStyle = bg;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   // =========================
-  // TOP BADGE
+  // SOFT GLOW ORBS (MODERN LOOK)
   // =========================
-  ctx.fillStyle = "#ffffff10";
-  ctx.fillRect(60, 60, 960, 120);
-
-  ctx.fillStyle =
-    type === "truth" ? "#22c55e" :
-    type === "chaos" ? "#eab308" :
-    "#ef4444";
-
-  ctx.font = "bold 60px Arial";
-  ctx.textAlign = "left";
-  ctx.fillText(type.toUpperCase(), 90, 140);
+  drawGlow(ctx, 200, 250, "rgba(139,92,246,0.25)");
+  drawGlow(ctx, 900, 300, "rgba(34,197,94,0.18)");
+  drawGlow(ctx, 600, 1100, "rgba(239,68,68,0.15)");
 
   // =========================
-  // MESSAGE BOX
+  // MAIN GLASS CARD
   // =========================
-  ctx.fillStyle = "#00000040";
-  roundRect(ctx, 80, 250, 920, 520, 20);
+  roundRect(ctx, 90, 180, 900, 900, 30);
+
+  ctx.fillStyle = "rgba(255,255,255,0.05)";
   ctx.fill();
 
-  ctx.fillStyle = "#ffffff";
-  ctx.font = "48px Arial";
+  ctx.strokeStyle =
+    type === "truth"
+      ? "#22c55e"
+      : type === "chaos"
+      ? "#eab308"
+      : "#ef4444";
+
+  ctx.lineWidth = 3;
+  ctx.stroke();
+
+  // =========================
+  // HEADER TAG
+  // =========================
+  ctx.font = "bold 60px Arial";
   ctx.textAlign = "left";
 
-  wrapText(ctx, message, 120, 340, 840, 65);
+  ctx.fillStyle = ctx.strokeStyle;
+  ctx.fillText(type.toUpperCase(), 130, 300);
+
+  // subtle label
+  ctx.font = "22px Arial";
+  ctx.fillStyle = "#94a3b8";
+  ctx.fillText("ANONYMOUS SIGNAL TRANSMISSION", 130, 340);
 
   // =========================
-  // FOOTER BRAND
+  // MESSAGE TEXT (MAIN FOCUS)
   // =========================
-  ctx.fillStyle = "#94a3b8";
-  ctx.font = "30px Arial";
+  ctx.fillStyle = "#ffffff";
+  ctx.font = "48px Arial";
+
+  wrapText(ctx, message, 130, 450, 820, 70);
+
+  // =========================
+  // FOOTER BRANDING
+  // =========================
+  ctx.fillStyle = "#64748b";
+  ctx.font = "26px Arial";
   ctx.textAlign = "center";
-  ctx.fillText("Truth or Chaos • Anonymous Signal", 540, 950);
+
+  ctx.fillText(
+    "truthndare.fun • anonymous social chaos",
+    540,
+    1220
+  );
 
   // =========================
   // DOWNLOAD
   // =========================
   const link = document.createElement("a");
-  link.download = `${type}-message.png`;
+  link.download = `${type}-post.png`;
   link.href = canvas.toDataURL("image/png");
   link.click();
 }
 
-function roundRect(ctx, x, y, w, h, r) {
+function drawGlow(ctx, x, y, color) {
+  const gradient = ctx.createRadialGradient(x, y, 0, x, y, 300);
+  gradient.addColorStop(0, color);
+  gradient.addColorStop(1, "transparent");
+
+  ctx.fillStyle = gradient;
   ctx.beginPath();
-  ctx.moveTo(x + r, y);
-  ctx.lineTo(x + w - r, y);
-  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
-  ctx.lineTo(x + w, y + h - r);
-  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
-  ctx.lineTo(x + r, y + h);
-  ctx.quadraticCurveTo(x, y + h, x, y + h - r);
-  ctx.lineTo(x, y + r);
-  ctx.quadraticCurveTo(x, y, x + r, y);
-  ctx.closePath();
+  ctx.arc(x, y, 300, 0, Math.PI * 2);
+  ctx.fill();
 }
 
 // ==========================
