@@ -76,19 +76,6 @@ body::after {
   z-index: 998;
 }
 
-.refresh-note {
-  font-size: 10px;
-  color: #94a3b8;
-  text-align: center;
-  margin-top: 4px;
-  padding-bottom: 4px
-
-  font-family: "Segoe UI", sans-serif;
-  letter-spacing: 0.2px;
-
-  opacity: 0.8;
-}
-
 /* =========================================================
    PAGE LAYOUT SYSTEM
 ========================================================= */
