@@ -7,6 +7,12 @@
   box-sizing: border-box;
 }
 
+input,
+textarea,
+select {
+  font-size: 16px;
+}
+
 :root {
   --bg: #070716;
   --panel: #10102a;
