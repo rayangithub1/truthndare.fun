@@ -264,11 +264,11 @@ function renderMessage(msg) {
 
     <div class="card-actions">
       <button onclick="downloadImage('${msg._id}', '${msg.type}', \`${msg.message}\`)">
-        ⬇ Download
+        Download
       </button>
 
       <button onclick="shareImage('${msg._id}')">
-        📤 Share
+        Share
       </button>
     </div>
 
