@@ -424,64 +424,76 @@ function wrapText(
 // DOWNLOAD IMAGE
 // ==========================
 function downloadImage(id, type, message) {
-
-  const canvas =
-    document.getElementById(`canvas-${id}`);
-
+  const canvas = document.getElementById(`canvas-${id}`);
   if (!canvas) return;
 
-  const ctx =
-    canvas.getContext("2d");
+  const ctx = canvas.getContext("2d");
 
   canvas.width = 1080;
   canvas.height = 1080;
 
-  ctx.fillStyle = "#0a0a0a";
+  // =========================
+  // BACKGROUND (GRADIENT)
+  // =========================
+  const bg = ctx.createLinearGradient(0, 0, 1080, 1080);
+
+  if (type === "truth") {
+    bg.addColorStop(0, "#0f172a");
+    bg.addColorStop(1, "#052e16");
+  } else if (type === "chaos") {
+    bg.addColorStop(0, "#0f172a");
+    bg.addColorStop(1, "#3b2f0a");
+  } else {
+    bg.addColorStop(0, "#0f172a");
+    bg.addColorStop(1, "#3b0a0a");
+  }
+
+  ctx.fillStyle = bg;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  ctx.textAlign = "center";
+  // =========================
+  // TOP BADGE
+  // =========================
+  ctx.fillStyle = "#ffffff10";
+  ctx.fillRect(60, 60, 960, 120);
 
-  ctx.fillStyle = "#ff3c5f";
-  ctx.font = "bold 70px Arial";
+  ctx.fillStyle =
+    type === "truth" ? "#22c55e" :
+    type === "chaos" ? "#eab308" :
+    "#ef4444";
 
-  ctx.fillText(
-    type.toUpperCase(),
-    canvas.width / 2,
-    160
-  );
+  ctx.font = "bold 60px Arial";
+  ctx.textAlign = "left";
+  ctx.fillText(type.toUpperCase(), 90, 140);
 
-  ctx.fillStyle = "#fff";
-  ctx.font = "45px Arial";
+  // =========================
+  // MESSAGE BOX
+  // =========================
+  ctx.fillStyle = "#00000040";
+  roundRect(ctx, 80, 250, 920, 520, 20);
+  ctx.fill();
 
-  wrapText(
-    ctx,
-    message,
-    canvas.width / 2,
-    350,
-    900,
-    60
-  );
+  ctx.fillStyle = "#ffffff";
+  ctx.font = "48px Arial";
+  ctx.textAlign = "left";
 
-  ctx.fillStyle = "#888";
+  wrapText(ctx, message, 120, 340, 840, 65);
+
+  // =========================
+  // FOOTER BRAND
+  // =========================
+  ctx.fillStyle = "#94a3b8";
   ctx.font = "30px Arial";
+  ctx.textAlign = "center";
+  ctx.fillText("Truth or Chaos • Anonymous Signal", 540, 950);
 
-  ctx.fillText(
-    "Truth or Chaos 😈",
-    canvas.width / 2,
-    1000
-  );
-
-  const link =
-    document.createElement("a");
-
-  link.download =
-    `${type}-message.png`;
-
-  link.href =
-    canvas.toDataURL("image/png");
-
+  // =========================
+  // DOWNLOAD
+  // =========================
+  const link = document.createElement("a");
+  link.download = `${type}-message.png`;
+  link.href = canvas.toDataURL("image/png");
   link.click();
-
 }
 
 // ==========================
