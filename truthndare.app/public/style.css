@@ -9,8 +9,10 @@
 
 input,
 textarea,
-select {
+select,
+button {
   font-size: 16px;
+  -webkit-appearance: none;
 }
 
 :root {
