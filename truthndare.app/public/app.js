@@ -425,16 +425,21 @@ function wrapText(
 // ==========================
 function downloadImage(id, type, message) {
   const canvas = document.getElementById(`canvas-${id}`);
+  if (!canvas) {
+    console.error("Canvas not found");
+    return;
+  }
+
   const ctx = canvas.getContext("2d");
 
+  // Instagram-safe portrait size
   canvas.width = 1080;
-  canvas.height = 1350; // Instagram post ratio (IMPORTANT)
+  canvas.height = 1350;
 
   // =========================
-  // BACKGROUND GRADIENT (CYBER VOID)
+  // BACKGROUND (CYBER DARK GRADIENT)
   // =========================
   const bg = ctx.createLinearGradient(0, 0, 1080, 1350);
-
   bg.addColorStop(0, "#050816");
   bg.addColorStop(0.5, "#0b1026");
   bg.addColorStop(1, "#05060f");
@@ -443,7 +448,7 @@ function downloadImage(id, type, message) {
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   // =========================
-  // SOFT GLOW ORBS (MODERN LOOK)
+  // GLOW ORBS (CYBER STYLE)
   // =========================
   drawGlow(ctx, 200, 250, "rgba(139,92,246,0.25)");
   drawGlow(ctx, 900, 300, "rgba(34,197,94,0.18)");
@@ -452,37 +457,38 @@ function downloadImage(id, type, message) {
   // =========================
   // MAIN GLASS CARD
   // =========================
-  roundRect(ctx, 90, 180, 900, 900, 30);
-
-  ctx.fillStyle = "rgba(255,255,255,0.05)";
-  ctx.fill();
-
-  ctx.strokeStyle =
+  const stroke =
     type === "truth"
       ? "#22c55e"
       : type === "chaos"
       ? "#eab308"
       : "#ef4444";
 
+  roundRect(ctx, 90, 180, 900, 900, 30);
+
+  ctx.fillStyle = "rgba(255,255,255,0.05)";
+  ctx.fill();
+
+  ctx.strokeStyle = stroke;
   ctx.lineWidth = 3;
   ctx.stroke();
 
   // =========================
-  // HEADER TAG
+  // HEADER TYPE
   // =========================
-  ctx.font = "bold 60px Arial";
   ctx.textAlign = "left";
 
-  ctx.fillStyle = ctx.strokeStyle;
+  ctx.font = "bold 60px Arial";
+  ctx.fillStyle = stroke;
   ctx.fillText(type.toUpperCase(), 130, 300);
 
-  // subtle label
+  // subtitle
   ctx.font = "22px Arial";
   ctx.fillStyle = "#94a3b8";
   ctx.fillText("ANONYMOUS SIGNAL TRANSMISSION", 130, 340);
 
   // =========================
-  // MESSAGE TEXT (MAIN FOCUS)
+  // MESSAGE TEXT
   // =========================
   ctx.fillStyle = "#ffffff";
   ctx.font = "48px Arial";
@@ -490,27 +496,37 @@ function downloadImage(id, type, message) {
   wrapText(ctx, message, 130, 450, 820, 70);
 
   // =========================
-  // FOOTER BRANDING
+  // FOOTER BRAND (UPDATED DOMAIN)
   // =========================
+  ctx.textAlign = "center";
   ctx.fillStyle = "#64748b";
   ctx.font = "26px Arial";
-  ctx.textAlign = "center";
 
   ctx.fillText(
-    "truthndare.fun • anonymous social chaos",
+    "truthndare.app • anonymous social chaos",
     540,
     1220
   );
 
   // =========================
-  // DOWNLOAD
+  // DOWNLOAD (FIXED RELIABLE METHOD)
   // =========================
-  const link = document.createElement("a");
-  link.download = `${type}-post.png`;
-  link.href = canvas.toDataURL("image/png");
-  link.click();
+  setTimeout(() => {
+    const dataURL = canvas.toDataURL("image/png");
+
+    const link = document.createElement("a");
+    link.href = dataURL;
+    link.download = `${type}-post.png`;
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }, 120);
 }
 
+/* =========================
+   GLOW ORB EFFECT
+========================= */
 function drawGlow(ctx, x, y, color) {
   const gradient = ctx.createRadialGradient(x, y, 0, x, y, 300);
   gradient.addColorStop(0, color);
@@ -520,6 +536,46 @@ function drawGlow(ctx, x, y, color) {
   ctx.beginPath();
   ctx.arc(x, y, 300, 0, Math.PI * 2);
   ctx.fill();
+}
+
+/* =========================
+   ROUNDED RECTANGLE
+========================= */
+function roundRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + w - r, y);
+  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+  ctx.lineTo(x + w, y + h - r);
+  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+  ctx.lineTo(x + r, y + h);
+  ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+  ctx.lineTo(x, y + r);
+  ctx.quadraticCurveTo(x, y, x + r, y);
+  ctx.closePath();
+}
+
+/* =========================
+   TEXT WRAPPING
+========================= */
+function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+  const words = String(text).split(" ");
+  let line = "";
+
+  for (let n = 0; n < words.length; n++) {
+    const testLine = line + words[n] + " ";
+    const width = ctx.measureText(testLine).width;
+
+    if (width > maxWidth && n > 0) {
+      ctx.fillText(line, x, y);
+      line = words[n] + " ";
+      y += lineHeight;
+    } else {
+      line = testLine;
+    }
+  }
+
+  ctx.fillText(line, x, y);
 }
 
 // ==========================
