@@ -17,6 +17,24 @@ function showLogin() {
   if (loginBox) loginBox.style.display = "block";
 }
 
+function togglePassword(id, el) {
+
+  const input = document.getElementById(id);
+
+  if (input.type === "password") {
+
+    input.type = "text";
+    el.innerText = "🙈";
+
+  } else {
+
+    input.type = "password";
+    el.innerText = "👁";
+
+  }
+
+}
+
 // ==========================
 // SIGNUP
 // ==========================
