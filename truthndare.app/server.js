@@ -7,32 +7,55 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const rateLimit = require("express-rate-limit");
 const http = require("http");
-const onlineUsers = new Map(); // socket.id → username
-
-const app = express();
-const server = http.createServer(app);
 const { Server } = require("socket.io");
 
+// ==========================
+// APP + SERVER + SOCKET
+// ==========================
+const app = express();
+const server = http.createServer(app);
+
 const io = new Server(server, {
-  cors: {
-    origin: "*"
-  }
+  cors: { origin: "*" }
 });
 
-const onlineUsers = new Map();
+// ==========================
+// ONLINE USERS STORE
+// ==========================
+const onlineUsers = new Map(); // socket.id → username
 
+function logOnlineUsers() {
+  console.log("================================");
+  console.log("ONLINE USERS:", onlineUsers.size);
+
+  for (const [id, username] of onlineUsers.entries()) {
+    console.log(`- ${username} (${id})`);
+  }
+
+  console.log("================================");
+}
+
+// ==========================
+// SOCKET CONNECTION
+// ==========================
 io.on("connection", (socket) => {
+  console.log(`[SOCKET CONNECT] ${socket.id}`);
 
-  console.log(`[CONNECT] ${socket.id}`);
-
+  // user joins after login (frontend must emit this)
   socket.on("join", (username) => {
     socket.username = username;
-
     onlineUsers.set(socket.id, username);
 
-    console.log(`[ONLINE] ${username} | total=${onlineUsers.size}`);
+    console.log(`[ONLINE] ${username}`);
+
+    logOnlineUsers();
 
     io.emit("online-count", onlineUsers.size);
+  });
+
+  // optional activity tracking
+  socket.on("activity", (data) => {
+    console.log(`[ACTIVITY] ${socket.username}:`, data);
   });
 
   socket.on("send-message", (data) => {
@@ -46,9 +69,10 @@ io.on("connection", (socket) => {
 
     onlineUsers.delete(socket.id);
 
+    logOnlineUsers();
+
     io.emit("online-count", onlineUsers.size);
   });
-
 });
 
 // ==========================
@@ -64,7 +88,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
 // ==========================
-// ENV VARIABLES
+// ENV
 // ==========================
 const JWT_SECRET = process.env.JWT_SECRET;
 const MONGO_URI = process.env.MONGO_URI;
@@ -72,69 +96,34 @@ const MONGO_URI = process.env.MONGO_URI;
 // ==========================
 // DATABASE
 // ==========================
-mongoose.set("bufferCommands", false);
-
-mongoose.connect(MONGO_URI, {
-  serverSelectionTimeoutMS: 30000,
-  socketTimeoutMS: 60000,
-  connectTimeoutMS: 30000,
-  maxPoolSize: 10,
-  minPoolSize: 2
-})
-.then(() => {
-  console.log("MongoDB Connected ✔");
-})
-.catch((err) => {
-  console.log("MongoDB Error:", err);
-});
-
-mongoose.connection.on("disconnected", () => {
-  console.log("MongoDB disconnected — retrying...");
-});
-
-mongoose.connection.on("error", (err) => {
-  console.log("MongoDB runtime error:", err);
-});
+mongoose.connect(MONGO_URI)
+  .then(() => console.log("MongoDB Connected ✔"))
+  .catch(err => console.log("Mongo Error:", err));
 
 // ==========================
 // RATE LIMITERS
 // ==========================
-
-// Global limiter
 app.use(rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 300
 }));
 
-// Auth limiter
 const authLimiter = rateLimit({
   windowMs: 10 * 60 * 1000,
   max: 20
 });
 
-// Send limiter
 const sendLimiter = rateLimit({
   windowMs: 60 * 1000,
-  max: 5,
-  message: {
-    error: "Too many messages. Slow down."
-  }
+  max: 5
 });
 
 // ==========================
 // MODELS
 // ==========================
 const User = mongoose.model("User", {
-  username: {
-    type: String,
-    unique: true,
-    required: true
-  },
-
-  password: {
-    type: String,
-    required: true
-  }
+  username: { type: String, unique: true },
+  password: String
 });
 
 const Message = mongoose.model("Message", {
@@ -143,40 +132,22 @@ const Message = mongoose.model("Message", {
   message: String,
   hint: String,
   response: String,
-
-  createdAt: {
-    type: Date,
-    default: Date.now
-  }
+  createdAt: { type: Date, default: Date.now }
 });
 
 // ==========================
 // AUTH MIDDLEWARE
 // ==========================
 function auth(req, res, next) {
-
   const token = req.headers.authorization;
-
-  if (!token) {
-    return res.status(403).json({
-      error: "No token"
-    });
-  }
+  if (!token) return res.status(403).json({ error: "No token" });
 
   try {
-
     const decoded = jwt.verify(token, JWT_SECRET);
-
     req.userId = decoded.id;
-
     next();
-
   } catch {
-
-    return res.status(403).json({
-      error: "Invalid token"
-    });
-
+    return res.status(403).json({ error: "Invalid token" });
   }
 }
 
@@ -184,270 +155,97 @@ function auth(req, res, next) {
 // SIGNUP
 // ==========================
 app.post("/signup", authLimiter, async (req, res) => {
+  const { username, password } = req.body;
 
-  try {
+  if (!username || !password)
+    return res.json({ error: "All fields required" });
 
-    const { username, password } = req.body;
+  const exists = await User.findOne({ username });
+  if (exists) return res.json({ error: "Username taken" });
 
-    if (!username || !password) {
-      return res.json({
-        error: "All fields required"
-      });
-    }
+  const hashed = await bcrypt.hash(password, 10);
 
-    if (username.length < 3) {
-      return res.json({
-        error: "Username too short"
-      });
-    }
+  await User.create({ username, password: hashed });
 
-    const exists = await User.findOne({ username });
-
-    if (exists) {
-      return res.json({
-        error: "Username taken"
-      });
-    }
-
-    const hashed = await bcrypt.hash(password, 10);
-
-    await User.create({
-      username,
-      password: hashed
-    });
-
-    res.json({
-      success: true
-    });
-
-  } catch (err) {
-
-    console.log(err);
-
-    res.status(500).json({
-      error: "Server error"
-    });
-
-  }
-
+  res.json({ success: true });
 });
 
 // ==========================
 // LOGIN
 // ==========================
 app.post("/login", authLimiter, async (req, res) => {
+  const { username, password } = req.body;
 
-  try {
+  const user = await User.findOne({ username });
+  if (!user) return res.json({ error: "User not found" });
 
-    const { username, password } = req.body;
+  const ok = await bcrypt.compare(password, user.password);
+  if (!ok) return res.json({ error: "Wrong password" });
 
-    const user = await User.findOne({ username });
+  const token = jwt.sign({ id: user._id }, JWT_SECRET, {
+    expiresIn: "7d"
+  });
 
-    if (!user) {
-      return res.json({
-        error: "User not found"
-      });
-    }
-
-    const valid = await bcrypt.compare(password, user.password);
-
-    if (!valid) {
-      return res.json({
-        error: "Wrong password"
-      });
-    }
-
-    const token = jwt.sign(
-      { id: user._id },
-      JWT_SECRET,
-      { expiresIn: "7d" }
-    );
-
-    res.json({
-      token
-    });
-
-  } catch (err) {
-
-    console.log(err);
-
-    res.status(500).json({
-      error: "Server error"
-    });
-
-  }
-
+  res.json({ token });
 });
 
 // ==========================
 // SEND MESSAGE
 // ==========================
 app.post("/send/:username", sendLimiter, async (req, res) => {
+  const { type, message, hint } = req.body;
 
-  try {
+  if (!message) return res.json({ error: "Message required" });
 
-    const { type, message, hint } = req.body;
+  await Message.create({
+    to: req.params.username,
+    type,
+    message,
+    hint
+  });
 
-    if (!message) {
-      return res.json({
-        error: "Message required"
-      });
-    }
-
-    if (message.length > 300) {
-      return res.json({
-        error: "Message too long"
-      });
-    }
-
-    if (!["truth", "chaos", "dare"].includes(type)) {
-      return res.json({
-        error: "Invalid type"
-      });
-    }
-
-    const targetUser = await User.findOne({
-      username: req.params.username
-    });
-
-    if (!targetUser) {
-      return res.json({
-        error: "User does not exist"
-      });
-    }
-
-    await Message.create({
-      to: req.params.username,
-      type,
-      message,
-      hint
-    });
-
-    res.json({
-      success: true
-    });
-
-  } catch (err) {
-
-    console.log(err);
-
-    res.status(500).json({
-      error: "Failed to send message"
-    });
-
-  }
-
+  res.json({ success: true });
 });
 
 // ==========================
-// GET INBOX
+// GET MESSAGES
 // ==========================
 app.get("/messages", auth, async (req, res) => {
+  const user = await User.findById(req.userId);
 
-  try {
+  const messages = await Message.find({ to: user.username })
+    .sort({ createdAt: -1 });
 
-    const user = await User.findById(req.userId);
-
-    if (!user) {
-      return res.status(404).json({
-        error: "User not found"
-      });
-    }
-
-    const messages = await Message.find({
-      to: user.username
-    }).sort({
-      createdAt: -1
-    });
-
-    res.json({
-      username: user.username,
-      messages
-    });
-
-  } catch (err) {
-
-    console.log(err);
-
-    res.status(500).json({
-      error: "Failed to load messages"
-    });
-
-  }
-
+  res.json({
+    username: user.username,
+    messages
+  });
 });
 
 // ==========================
-// RESPOND
+// PAGES
 // ==========================
-app.post("/respond/:id", auth, async (req, res) => {
+app.get("/", (req, res) =>
+  res.sendFile(path.join(__dirname, "public/index.html"))
+);
 
-  try {
-
-    const { response } = req.body;
-
-    await Message.findByIdAndUpdate(
-      req.params.id,
-      { response }
-    );
-
-    res.json({
-      success: true
-    });
-
-  } catch (err) {
-
-    console.log(err);
-
-    res.status(500).json({
-      error: "Failed to respond"
-    });
-
-  }
-
-});
+app.get("/inbox", (req, res) =>
+  res.sendFile(path.join(__dirname, "public/inbox.html"))
+);
 
 // ==========================
-// ROUTES
+// PROFILE ROUTES
 // ==========================
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public/index.html"));
-});
-
-app.get("/inbox", (req, res) => {
-  res.sendFile(path.join(__dirname, "public/inbox.html"));
-});
-
-// ==========================
-// CLEAN USER PROFILE LINK
-// ==========================
-const reservedRoutes = [
-  "signup",
-  "login",
-  "send",
-  "messages",
-  "respond",
-  "inbox"
-];
+const reserved = ["signup", "login", "send", "messages", "inbox"];
 
 app.get("/@:username", (req, res, next) => {
-
-  if (reservedRoutes.includes(req.params.username)) {
-    return next();
-  }
-
+  if (reserved.includes(req.params.username)) return next();
   res.sendFile(path.join(__dirname, "public/send.html"));
-
 });
 
 app.get("/:username", (req, res, next) => {
-
-  if (reservedRoutes.includes(req.params.username)) {
-    return next();
-  }
-
+  if (reserved.includes(req.params.username)) return next();
   res.sendFile(path.join(__dirname, "public/send.html"));
-
 });
 
 // ==========================
