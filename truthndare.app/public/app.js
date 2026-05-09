@@ -425,157 +425,202 @@ function wrapText(
 // ==========================
 function downloadImage(id, type, message) {
   const canvas = document.getElementById(`canvas-${id}`);
-  if (!canvas) {
-    console.error("Canvas not found");
-    return;
-  }
+  if (!canvas) return;
 
   const ctx = canvas.getContext("2d");
 
-  // Instagram-safe portrait size
+  // =========================
+  // SIZE
+  // =========================
   canvas.width = 1080;
   canvas.height = 1350;
 
   // =========================
-  // BACKGROUND (CYBER DARK GRADIENT)
+  // DYNAMIC COLORS
   // =========================
-  const bg = ctx.createLinearGradient(0, 0, 1080, 1350);
+  let accent = "#8b5cf6";
+
+  if (type === "truth") accent = "#22c55e";
+  if (type === "chaos") accent = "#facc15";
+  if (type === "dare") accent = "#ef4444";
+
+  // =========================
+  // BACKGROUND
+  // =========================
+  const bg = ctx.createLinearGradient(0, 0, 0, canvas.height);
+
   bg.addColorStop(0, "#050816");
-  bg.addColorStop(0.5, "#0b1026");
-  bg.addColorStop(1, "#05060f");
+  bg.addColorStop(1, "#090b14");
 
   ctx.fillStyle = bg;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   // =========================
-  // GLOW ORBS (CYBER STYLE)
+  // GLOW BACKLIGHTS
   // =========================
-  drawGlow(ctx, 200, 250, "rgba(139,92,246,0.25)");
-  drawGlow(ctx, 900, 300, "rgba(34,197,94,0.18)");
-  drawGlow(ctx, 600, 1100, "rgba(239,68,68,0.15)");
+  drawGlow(ctx, 180, 250, accent, 300);
+  drawGlow(ctx, 950, 180, "#8b5cf6", 220);
+  drawGlow(ctx, 850, 1150, "#ffffff15", 260);
 
   // =========================
-  // MAIN GLASS CARD
+  // TOP SMALL BRAND
   // =========================
-  const stroke =
-    type === "truth"
-      ? "#22c55e"
-      : type === "chaos"
-      ? "#eab308"
-      : "#ef4444";
+  ctx.textAlign = "center";
 
-  roundRect(ctx, 90, 180, 900, 900, 30);
+  ctx.font = "24px Arial";
+  ctx.fillStyle = "#94a3b8";
 
-  ctx.fillStyle = "rgba(255,255,255,0.05)";
+  ctx.fillText(
+    "ANONYMOUS SOCIAL CHAOS",
+    canvas.width / 2,
+    90
+  );
+
+  // =========================
+  // MAIN CARD
+  // =========================
+  roundRect(ctx, 70, 140, 940, 980, 36);
+
+  ctx.fillStyle = "rgba(255,255,255,0.04)";
   ctx.fill();
 
-  ctx.strokeStyle = stroke;
-  ctx.lineWidth = 3;
+  // border glow
+  ctx.strokeStyle = accent;
+  ctx.lineWidth = 4;
+
+  ctx.shadowColor = accent;
+  ctx.shadowBlur = 25;
+
   ctx.stroke();
 
-  // =========================
-  // HEADER TYPE
-  // =========================
-  ctx.textAlign = "left";
+  ctx.shadowBlur = 0;
 
-  ctx.font = "bold 60px Arial";
-  ctx.fillStyle = stroke;
-  ctx.fillText(type.toUpperCase(), 130, 300);
+  // =========================
+  // TYPE LABEL
+  // =========================
+  roundRect(ctx, 120, 200, 260, 75, 18);
 
-  // subtitle
-  ctx.font = "22px Arial";
-  ctx.fillStyle = "#94a3b8";
-  ctx.fillText("ANONYMOUS SIGNAL TRANSMISSION", 130, 340);
+  ctx.fillStyle = accent;
+  ctx.fill();
+
+  ctx.fillStyle = "#fff";
+  ctx.font = "bold 34px Arial";
+
+  ctx.textAlign = "center";
+  ctx.fillText(type.toUpperCase(), 250, 248);
 
   // =========================
   // MESSAGE TEXT
   // =========================
   ctx.fillStyle = "#ffffff";
-  ctx.font = "48px Arial";
 
-  wrapText(ctx, message, 130, 450, 820, 70);
+  ctx.textAlign = "left";
 
-  // =========================
-  // FOOTER BRAND (UPDATED DOMAIN)
-  // =========================
-  ctx.textAlign = "center";
-  ctx.fillStyle = "#64748b";
-  ctx.font = "26px Arial";
+  ctx.font = "bold 52px Arial";
 
-  ctx.fillText(
-    "truthndare.app • anonymous social chaos",
-    540,
-    1220
+  wrapText(
+    ctx,
+    `"${message}"`,
+    130,
+    380,
+    820,
+    78
   );
 
   // =========================
-  // DOWNLOAD (FIXED RELIABLE METHOD)
+  // DECORATIVE LINE
   // =========================
-  setTimeout(() => {
-    const dataURL = canvas.toDataURL("image/png");
+  ctx.beginPath();
+  ctx.moveTo(130, 920);
+  ctx.lineTo(950, 920);
 
-    const link = document.createElement("a");
-    link.href = dataURL;
-    link.download = `${type}-post.png`;
+  ctx.strokeStyle = "rgba(255,255,255,0.08)";
+  ctx.lineWidth = 2;
+  ctx.stroke();
 
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  }, 120);
+  // =========================
+  // FOOTER
+  // =========================
+  ctx.textAlign = "center";
+
+  ctx.fillStyle = "#cbd5e1";
+  ctx.font = "bold 32px Arial";
+
+  ctx.fillText(
+    "truthndare.fun",
+    canvas.width / 2,
+    1040
+  );
+
+  ctx.fillStyle = "#64748b";
+  ctx.font = "24px Arial";
+
+  ctx.fillText(
+    "send anonymous truths, dares & chaos",
+    canvas.width / 2,
+    1085
+  );
+
+  // =========================
+  // EXPORT
+  // =========================
+  const link = document.createElement("a");
+
+  link.download = `${type}-truthndare.png`;
+  link.href = canvas.toDataURL("image/png");
+
+  link.click();
 }
 
-/* =========================
-   GLOW ORB EFFECT
-========================= */
-function drawGlow(ctx, x, y, color) {
-  const gradient = ctx.createRadialGradient(x, y, 0, x, y, 300);
+// =========================
+// GLOW ORB
+// =========================
+function drawGlow(ctx, x, y, color, size) {
+  const gradient = ctx.createRadialGradient(
+    x,
+    y,
+    0,
+    x,
+    y,
+    size
+  );
+
   gradient.addColorStop(0, color);
   gradient.addColorStop(1, "transparent");
 
   ctx.fillStyle = gradient;
+
   ctx.beginPath();
-  ctx.arc(x, y, 300, 0, Math.PI * 2);
+  ctx.arc(x, y, size, 0, Math.PI * 2);
   ctx.fill();
 }
 
-/* =========================
-   ROUNDED RECTANGLE
-========================= */
-function roundRect(ctx, x, y, w, h, r) {
+// =========================
+// ROUNDED RECTANGLE
+// =========================
+function roundRect(ctx, x, y, width, height, radius) {
   ctx.beginPath();
-  ctx.moveTo(x + r, y);
-  ctx.lineTo(x + w - r, y);
-  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
-  ctx.lineTo(x + w, y + h - r);
-  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
-  ctx.lineTo(x + r, y + h);
-  ctx.quadraticCurveTo(x, y + h, x, y + h - r);
-  ctx.lineTo(x, y + r);
-  ctx.quadraticCurveTo(x, y, x + r, y);
+
+  ctx.moveTo(x + radius, y);
+
+  ctx.lineTo(x + width - radius, y);
+  ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+
+  ctx.lineTo(x + width, y + height - radius);
+  ctx.quadraticCurveTo(
+    x + width,
+    y + height,
+    x + width - radius,
+    y + height
+  );
+
+  ctx.lineTo(x + radius, y + height);
+  ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+
+  ctx.lineTo(x, y + radius);
+  ctx.quadraticCurveTo(x, y, x + radius, y);
+
   ctx.closePath();
-}
-
-/* =========================
-   TEXT WRAPPING
-========================= */
-function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
-  const words = String(text).split(" ");
-  let line = "";
-
-  for (let n = 0; n < words.length; n++) {
-    const testLine = line + words[n] + " ";
-    const width = ctx.measureText(testLine).width;
-
-    if (width > maxWidth && n > 0) {
-      ctx.fillText(line, x, y);
-      line = words[n] + " ";
-      y += lineHeight;
-    } else {
-      line = testLine;
-    }
-  }
-
-  ctx.fillText(line, x, y);
 }
 
 // ==========================
