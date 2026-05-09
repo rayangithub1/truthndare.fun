@@ -64,33 +64,75 @@
   </div>
 
   <!-- =========================
-       SIGNUP MODULE
-  ========================== -->
-  <div id="signupBox" class="composer">
+     SIGNUP MODULE
+========================= -->
+<div id="signupBox" class="composer">
 
-    <h2>INITIALIZE PROFILE</h2>
-    <p class="subtitle">REMEMBER YOUR PASSWORD PLEASE</p>
+  <h2>INITIALIZE PROFILE</h2>
+  <p class="subtitle">REMEMBER YOUR PASSWORD PLEASE</p>
 
-    <input id="signupUsername" class="input" placeholder="ENTER USERNAME">
-    <input id="signupPassword" class="input" type="password" placeholder="CREATE PASSWORD">
+  <input
+    id="signupUsername"
+    class="input"
+    placeholder="ENTER USERNAME"
+  >
 
-    <button onclick="signup()">BOOT SYSTEM</button>
+  <div class="password-box">
+
+    <input
+      id="signupPassword"
+      class="input"
+      type="password"
+      placeholder="CREATE PASSWORD"
+    >
+
+    <span
+      class="eye-btn"
+      onclick="togglePassword('signupPassword', this)"
+    >
+      👁
+    </span>
 
   </div>
 
-  <!-- =========================
-       LOGIN MODULE
-  ========================== -->
-  <div id="loginBox" class="composer" style="display:none;">
+  <button onclick="signup()">BOOT SYSTEM</button>
 
-    <h2>ACCESS TERMINAL</h2>
+</div>
 
-    <input id="loginUsername" class="input" placeholder="USERNAME">
-    <input id="loginPassword" class="input" type="password" placeholder="PASSWORD">
+<!-- =========================
+     LOGIN MODULE
+========================= -->
+<div id="loginBox" class="composer" style="display:none;">
 
-    <button onclick="login()">ENTER WORLD</button>
+  <h2>ACCESS TERMINAL</h2>
+
+  <input
+    id="loginUsername"
+    class="input"
+    placeholder="USERNAME"
+  >
+
+  <div class="password-box">
+
+    <input
+      id="loginPassword"
+      class="input"
+      type="password"
+      placeholder="PASSWORD"
+    >
+
+    <span
+      class="eye-btn"
+      onclick="togglePassword('loginPassword', this)"
+    >
+      👁
+    </span>
 
   </div>
+
+  <button onclick="login()">ENTER WORLD</button>
+
+</div>
 
   <!-- SYSTEM FEEDBACK -->
   <p id="result" class="subtitle" style="margin-top:15px;"></p>
