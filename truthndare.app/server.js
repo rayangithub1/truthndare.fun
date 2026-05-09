@@ -7,6 +7,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const rateLimit = require("express-rate-limit");
 const http = require("http");
+const onlineUsers = new Map(); // socket.id → username
 
 const app = express();
 const server = http.createServer(app);
