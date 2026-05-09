@@ -11,6 +11,45 @@ const onlineUsers = new Map(); // socket.id → username
 
 const app = express();
 const server = http.createServer(app);
+const { Server } = require("socket.io");
+
+const io = new Server(server, {
+  cors: {
+    origin: "*"
+  }
+});
+
+const onlineUsers = new Map();
+
+io.on("connection", (socket) => {
+
+  console.log(`[CONNECT] ${socket.id}`);
+
+  socket.on("join", (username) => {
+    socket.username = username;
+
+    onlineUsers.set(socket.id, username);
+
+    console.log(`[ONLINE] ${username} | total=${onlineUsers.size}`);
+
+    io.emit("online-count", onlineUsers.size);
+  });
+
+  socket.on("send-message", (data) => {
+    console.log(`[MESSAGE] ${socket.username}: ${data.message}`);
+  });
+
+  socket.on("disconnect", () => {
+    const user = onlineUsers.get(socket.id);
+
+    console.log(`[DISCONNECT] ${user || "unknown"}`);
+
+    onlineUsers.delete(socket.id);
+
+    io.emit("online-count", onlineUsers.size);
+  });
+
+});
 
 // ==========================
 // TRUST PROXY
