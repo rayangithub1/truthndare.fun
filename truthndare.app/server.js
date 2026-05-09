@@ -11,7 +11,14 @@ const onlineUsers = new Map(); // socket.id → username
 
 const app = express();
 const server = http.createServer(app);
+const { Server } = require("socket.io");
+const io = new Server(server, {
+  cors: {
+    origin: "*"
+  }
+});
 
+const onlineUsers = new Map();
 // ==========================
 // TRUST PROXY
 // ==========================
@@ -410,7 +417,44 @@ app.get("/:username", (req, res, next) => {
   res.sendFile(path.join(__dirname, "public/send.html"));
 
 });
+io.on("connection", (socket) => {
 
+  console.log(`[SOCKET CONNECT] ${socket.id}`);
+
+  // user joins
+  socket.on("join", (username) => {
+
+    socket.username = username;
+    onlineUsers.set(socket.id, username);
+
+    console.log(`[ONLINE] ${username} | total=${onlineUsers.size}`);
+
+    io.emit("online-count", onlineUsers.size);
+  });
+
+  // track activity (optional but useful)
+  socket.on("activity", (data) => {
+    console.log(`[ACTIVITY] ${socket.username}: ${data}`);
+  });
+
+  // message tracking
+  socket.on("send-message", (msg) => {
+    console.log(`[MESSAGE] ${socket.username}: ${msg}`);
+  });
+
+  // disconnect
+  socket.on("disconnect", () => {
+
+    const user = onlineUsers.get(socket.id);
+
+    console.log(`[DISCONNECT] ${user || "unknown"}`);
+
+    onlineUsers.delete(socket.id);
+
+    io.emit("online-count", onlineUsers.size);
+  });
+
+});
 // ==========================
 // START SERVER
 // ==========================
