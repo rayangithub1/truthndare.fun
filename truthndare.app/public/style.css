@@ -1,35 +1,16 @@
 /* =========================================================
-   MODERN LIGHT UI
-   CLEAN • SQUARE • SIMPLE
+   PREMIUM TYPOGRAPHY
 ========================================================= */
-
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
 
 :root{
 
-  --bg:#eceff3;
+  --title-font:
+  "Space Grotesk",
+  sans-serif;
 
-  --panel:#ffffff;
-
-  --border:#d7dce3;
-
-  --text:#111827;
-
-  --muted:#6b7280;
-
-  --primary:#2563eb;
-
-  --hover:#f3f4f6;
-
-  --green:#16a34a;
-
-  --red:#dc2626;
-
-  --orange:#ea9800;
+  --body-font:
+  "Inter",
+  sans-serif;
 }
 
 /* =========================================================
@@ -38,292 +19,152 @@
 
 body{
 
-  background:var(--bg);
+  font-family:var(--body-font);
 
-  color:var(--text);
+  -webkit-font-smoothing:antialiased;
 
-  font-family:
-  Inter,
-  Arial,
-  sans-serif;
-
-  overflow-x:hidden;
-
-  padding:20px;
+  text-rendering:optimizeLegibility;
 }
 
 /* =========================================================
-   APP
+   WINDOW TITLE
 ========================================================= */
-
-.app{
-
-  width:100%;
-  max-width:560px;
-
-  margin:auto;
-}
-
-/* =========================================================
-   TOP BAR
-========================================================= */
-
-.window-bar{
-
-  background:white;
-
-  border:1px solid var(--border);
-
-  padding:14px 16px;
-
-  margin-bottom:14px;
-
-  font-size:14px;
-  font-weight:600;
-
-  color:#111;
-
-  box-shadow:
-  0 2px 6px rgba(0,0,0,0.04);
-}
 
 .window-title{
 
-  white-space:nowrap;
-
-  overflow:hidden;
-
-  text-overflow:ellipsis;
-}
-
-/* =========================================================
-   PANEL
-========================================================= */
-
-.panel{
-
-  background:var(--panel);
-
-  border:1px solid var(--border);
-
-  padding:18px;
-
-  overflow:hidden;
-
-  box-shadow:
-  0 2px 10px rgba(0,0,0,0.04);
-}
-
-/* =========================================================
-   HOME BUTTON
-========================================================= */
-
-.home-btn{
-
-  display:inline-flex;
-
-  align-items:center;
-  justify-content:center;
-
-  text-decoration:none;
-
-  background:white;
-
-  color:#111;
-
-  border:1px solid var(--border);
-
-  padding:11px 14px;
-
   font-size:13px;
+
   font-weight:600;
 
-  margin-bottom:18px;
-
-  transition:0.18s;
-}
-
-.home-btn:hover{
-
-  background:var(--hover);
+  letter-spacing:-0.2px;
 }
 
 /* =========================================================
-   LOGO AREA
+   MAIN LOGO TITLE
 ========================================================= */
-
-.logo-area{
-
-  text-align:center;
-
-  margin-bottom:24px;
-}
-
-.logo{
-
-  width:85px;
-
-  margin:auto;
-}
 
 .logo-title{
 
-  margin-top:16px;
+  margin-top:18px;
 
-  font-size:26px;
+  font-family:var(--title-font);
+
+  font-size:34px;
+
+  font-weight:700;
+
+  letter-spacing:-2px;
+
+  line-height:1;
+}
+
+/* =========================================================
+   SUBTITLE
+========================================================= */
+
+.logo-sub{
+
+  margin-top:10px;
+
+  color:var(--muted);
+
+  font-size:13px;
+
+  font-weight:500;
+
+  letter-spacing:0.3px;
+}
+
+/* =========================================================
+   SECTION HEADINGS
+========================================================= */
+
+.share-header,
+.auth-title,
+.section-title{
+
+  font-family:var(--title-font);
+
+  font-size:20px;
 
   font-weight:700;
 
   letter-spacing:-1px;
+
+  color:#111827;
+
+  margin-bottom:10px;
 }
 
-.logo-sub{
+/* =========================================================
+   DESCRIPTION TEXT
+========================================================= */
 
-  margin-top:8px;
+.share-sub,
+.subtitle,
+.status-text,
+.vault-status{
 
   color:var(--muted);
 
   font-size:13px;
+
+  line-height:1.8;
+
+  font-weight:400;
 }
 
 /* =========================================================
-   TABS
+   LABELS
 ========================================================= */
 
-.auth-tabs,
-.screen-tabs{
+.input-label{
 
-  display:flex;
+  font-size:12px;
 
-  gap:8px;
-
-  margin-bottom:18px;
-}
-
-.auth-tab,
-.screen-tab{
-
-  flex:1;
-
-  background:#f5f7fa;
-
-  border:1px solid var(--border);
-
-  padding:13px;
-
-  text-align:center;
-
-  font-size:13px;
   font-weight:600;
 
-  color:var(--muted);
+  letter-spacing:0.2px;
 
-  transition:0.18s;
-}
-
-.auth-tab.active,
-.screen-tab.active{
-
-  background:var(--primary);
-
-  color:white;
-
-  border-color:var(--primary);
-}
-
-/* =========================================================
-   BOXES
-========================================================= */
-
-.auth-box,
-.share-card,
-.messages-section{
-
-  background:white;
-
-  border:1px solid var(--border);
-
-  padding:18px;
+  color:#374151;
 }
 
 /* =========================================================
    INPUTS
 ========================================================= */
 
-.input-group{
-
-  margin-bottom:14px;
-}
-
-.input-label{
-
-  display:block;
-
-  margin-bottom:8px;
-
-  font-size:12px;
-  font-weight:600;
-
-  color:#374151;
-}
-
 .input{
 
-  width:100%;
-
-  background:white;
-
-  border:1px solid var(--border);
-
-  padding:14px;
+  font-family:var(--body-font);
 
   font-size:14px;
 
-  color:#111;
+  font-weight:500;
 
-  transition:0.18s;
+  letter-spacing:-0.2px;
 }
 
-.input:focus{
+.input::placeholder{
 
-  border-color:var(--primary);
+  color:#9ca3af;
 
-  background:#fcfcff;
+  font-weight:500;
 }
 
 /* =========================================================
-   PASSWORD BOX
+   TABS
 ========================================================= */
 
-.password-box{
+.auth-tab,
+.screen-tab{
 
-  position:relative;
-}
+  font-family:var(--body-font);
 
-.password-box .input{
+  font-size:13px;
 
-  padding-right:50px;
-}
+  font-weight:600;
 
-.eye-btn{
-
-  position:absolute;
-
-  right:16px;
-  top:50%;
-
-  transform:translateY(-50%);
-
-  cursor:pointer;
-
-  font-size:16px;
-
-  opacity:0.7;
-}
-
-.eye-btn:hover{
-
-  opacity:1;
+  letter-spacing:-0.2px;
 }
 
 /* =========================================================
@@ -332,180 +173,18 @@ body{
 
 button{
 
-  width:100%;
-
-  border:none;
-
-  background:var(--primary);
-
-  color:white;
-
-  padding:14px;
+  font-family:var(--body-font);
 
   font-size:13px;
+
   font-weight:600;
 
-  margin-top:12px;
-
-  transition:0.18s;
-}
-
-button:hover{
-
-  opacity:0.92;
-}
-
-.secondary{
-
-  background:#eef2f7;
-
-  color:#111;
-
-  border:1px solid var(--border);
+  letter-spacing:-0.2px;
 }
 
 /* =========================================================
-   STATUS
+   MESSAGE TYPE
 ========================================================= */
-
-.status-text,
-.vault-status{
-
-  margin-top:14px;
-
-  text-align:center;
-
-  color:var(--muted);
-
-  font-size:12px;
-
-  line-height:1.7;
-}
-
-/* =========================================================
-   SHARE
-========================================================= */
-
-.share-header{
-
-  font-size:18px;
-
-  font-weight:700;
-
-  margin-bottom:10px;
-}
-
-.share-sub{
-
-  color:var(--muted);
-
-  font-size:13px;
-
-  line-height:1.7;
-
-  margin-bottom:16px;
-}
-
-.share-buttons{
-
-  display:flex;
-
-  gap:10px;
-
-  margin-top:12px;
-}
-
-.share-buttons button{
-
-  margin-top:0;
-}
-
-/* =========================================================
-   FIX SLIDER BLANK SPACE
-========================================================= */
-
-.screen-wrapper{
-
-  width:100%;
-
-  overflow:hidden;
-
-  position:relative;
-}
-
-.screen-slider{
-
-  display:flex;
-
-  width:200%;
-
-  align-items:flex-start;
-
-  transition:0.35s ease;
-}
-
-.screen-page{
-
-  width:50%;
-
-  flex-shrink:0;
-
-  padding:0;
-}
-
-/* IMPORTANT FIX */
-.share-card,
-.messages-section{
-
-  min-height:unset !important;
-
-  height:auto !important;
-}
-
-/* =========================================================
-   INBOX
-========================================================= */
-
-.inbox{
-
-  display:flex;
-
-  flex-direction:column;
-
-  gap:10px;
-}
-
-/* =========================================================
-   MINIMAL MESSAGE CARD
-========================================================= */
-
-.message-card{
-
-  background:white;
-
-  border:1px solid var(--border);
-
-  padding:13px;
-
-  transition:0.18s;
-}
-
-.message-card:hover{
-
-  background:#fafafa;
-}
-
-.message-card.truth{
-  border-left:4px solid var(--green);
-}
-
-.message-card.dare{
-  border-left:4px solid var(--red);
-}
-
-.message-card.chaos{
-  border-left:4px solid var(--orange);
-}
 
 .message-type{
 
@@ -513,23 +192,31 @@ button:hover{
 
   font-weight:700;
 
-  color:var(--muted);
+  letter-spacing:1px;
 
-  margin-bottom:8px;
-
-  letter-spacing:0.5px;
+  text-transform:uppercase;
 }
+
+/* =========================================================
+   MESSAGE TEXT
+========================================================= */
 
 .message-text{
 
   font-size:14px;
 
-  line-height:1.7;
+  line-height:1.8;
 
-  color:#111;
+  font-weight:500;
 
-  word-break:break-word;
+  color:#111827;
+
+  letter-spacing:-0.15px;
 }
+
+/* =========================================================
+   MESSAGE META
+========================================================= */
 
 .message-meta{
 
@@ -537,33 +224,9 @@ button:hover{
 
   font-size:11px;
 
-  color:var(--muted);
-}
+  font-weight:500;
 
-/* =========================================================
-   ACTIONS
-========================================================= */
-
-.message-actions{
-
-  display:flex;
-
-  gap:8px;
-
-  margin-top:12px;
-
-  flex-wrap:wrap;
-}
-
-.message-actions button{
-
-  flex:1;
-
-  min-width:120px;
-
-  margin-top:0;
-
-  padding:11px;
+  color:#9ca3af;
 }
 
 /* =========================================================
@@ -572,43 +235,29 @@ button:hover{
 
 .footer{
 
-  margin-top:18px;
-
-  background:white;
-
-  border:1px solid var(--border);
-
-  padding:14px;
-
-  text-align:center;
-
   font-size:12px;
 
-  color:var(--muted);
+  font-weight:500;
+
+  line-height:1.7;
 }
 
 /* =========================================================
    MOBILE
 ========================================================= */
 
-@media (max-width:600px){
-
-  body{
-    padding:12px;
-  }
-
-  .panel{
-    padding:14px;
-  }
+@media(max-width:600px){
 
   .logo-title{
-    font-size:22px;
+
+    font-size:28px;
   }
 
-  .share-buttons,
-  .message-actions{
+  .share-header,
+  .auth-title,
+  .section-title{
 
-    flex-direction:column;
+    font-size:18px;
   }
 
 }
