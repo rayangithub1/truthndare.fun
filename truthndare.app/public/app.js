@@ -448,360 +448,169 @@ function wrapText(
 // ==========================
 // DOWNLOAD IMAGE
 // ==========================
-// ==========================
-// DRAW ROUNDED RECTANGLE
-// ==========================
-function roundRect(ctx, x, y, width, height, radius) {
-
-  ctx.beginPath();
-
-  ctx.moveTo(x + radius, y);
-
-  ctx.lineTo(x + width - radius, y);
-  ctx.quadraticCurveTo(
-    x + width,
-    y,
-    x + width,
-    y + radius
-  );
-
-  ctx.lineTo(x + width, y + height - radius);
-
-  ctx.quadraticCurveTo(
-    x + width,
-    y + height,
-    x + width - radius,
-    y + height
-  );
-
-  ctx.lineTo(x + radius, y + height);
-
-  ctx.quadraticCurveTo(
-    x,
-    y + height,
-    x,
-    y + height - radius
-  );
-
-  ctx.lineTo(x, y + radius);
-
-  ctx.quadraticCurveTo(
-    x,
-    y,
-    x + radius,
-    y
-  );
-
-  ctx.closePath();
-
-}
-
-// ==========================
-// DRAW GLOW
-// ==========================
-function drawGlow(ctx, x, y, color, size) {
-
-  const glow =
-    ctx.createRadialGradient(
-      x,
-      y,
-      0,
-      x,
-      y,
-      size
-    );
-
-  glow.addColorStop(0, color);
-  glow.addColorStop(1, "transparent");
-
-  ctx.fillStyle = glow;
-
-  ctx.fillRect(
-    x - size,
-    y - size,
-    size * 2,
-    size * 2
-  );
-
-}
 function downloadImage(id, type, message) {
 
-  const canvas =
-    document.getElementById(`canvas-${id}`);
-
+  const canvas = document.getElementById(`canvas-${id}`);
   if (!canvas) return;
 
   const ctx = canvas.getContext("2d");
 
-  // ==========================
+  // =========================
   // SIZE
-  // ==========================
+  // =========================
   canvas.width = 1080;
   canvas.height = 1350;
 
-  // ==========================
-  // COLORS
-  // ==========================
+  // =========================
+  // THEME COLORS
+  // =========================
   let accent = "#8b5cf6";
 
-  if (type === "truth")
-    accent = "#22c55e";
+  if (type === "truth") accent = "#22c55e";
+  if (type === "chaos") accent = "#facc15";
+  if (type === "dare") accent = "#ef4444";
 
-  if (type === "chaos")
-    accent = "#facc15";
-
-  if (type === "dare")
-    accent = "#ef4444";
-
-  // ==========================
-  // BACKGROUND
-  // ==========================
-  const bg =
-    ctx.createLinearGradient(
-      0,
-      0,
-      canvas.width,
-      canvas.height
-    );
-
-  bg.addColorStop(0, "#030712");
-  bg.addColorStop(0.5, "#0b1120");
-  bg.addColorStop(1, "#020617");
+  // =========================
+  // BACKGROUND GRADIENT
+  // =========================
+  const bg = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+  bg.addColorStop(0, "#020617");
+  bg.addColorStop(0.5, "#0b1020");
+  bg.addColorStop(1, "#030712");
 
   ctx.fillStyle = bg;
-  ctx.fillRect(
-    0,
-    0,
-    canvas.width,
-    canvas.height
-  );
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  // ==========================
-  // AMBIENT GLOWS
-  // ==========================
-  drawGlow(
-    ctx,
-    150,
-    250,
-    accent,
-    320
-  );
+  // =========================
+  // CYBER GLOW ORBS
+  // =========================
+  function glow(x, y, color, size) {
+    const g = ctx.createRadialGradient(x, y, 0, x, y, size);
+    g.addColorStop(0, color);
+    g.addColorStop(1, "transparent");
 
-  drawGlow(
-    ctx,
-    920,
-    180,
-    "#8b5cf6",
-    260
-  );
-
-  drawGlow(
-    ctx,
-    850,
-    1150,
-    "#ffffff10",
-    300
-  );
-
-  // ==========================
-  // NOISE DOTS
-  // ==========================
-  for (let i = 0; i < 120; i++) {
-
+    ctx.fillStyle = g;
     ctx.beginPath();
+    ctx.arc(x, y, size, 0, Math.PI * 2);
+    ctx.fill();
+  }
 
+  glow(200, 250, accent + "55", 350);
+  glow(900, 300, "#8b5cf655", 300);
+  glow(700, 1100, "#ffffff10", 400);
+
+  // =========================
+  // NOISE DOTS (enhanced)
+  // =========================
+  for (let i = 0; i < 180; i++) {
+    ctx.fillStyle = "rgba(255,255,255,0.04)";
+    ctx.beginPath();
     ctx.arc(
       Math.random() * canvas.width,
       Math.random() * canvas.height,
-      Math.random() * 2,
+      Math.random() * 2.2,
       0,
       Math.PI * 2
     );
-
-    ctx.fillStyle =
-      "rgba(255,255,255,0.04)";
-
     ctx.fill();
-
   }
 
-  // ==========================
-  // GLASS CARD
-  // ==========================
-  roundRect(
-    ctx,
-    70,
-    140,
-    940,
-    1020,
-    42
-  );
+  // =========================
+  // MAIN CARD (glass effect)
+  // =========================
+  const cardX = 80;
+  const cardY = 160;
+  const cardW = 920;
+  const cardH = 1000;
 
-  ctx.fillStyle =
-    "rgba(255,255,255,0.05)";
+  // shadow layer (depth)
+  ctx.fillStyle = "rgba(0,0,0,0.3)";
+  ctx.fillRect(cardX + 10, cardY + 10, cardW, cardH);
 
-  ctx.fill();
+  // glass layer
+  ctx.fillStyle = "rgba(255,255,255,0.05)";
+  ctx.fillRect(cardX, cardY, cardW, cardH);
 
-  // glow border
-  ctx.shadowColor = accent;
-  ctx.shadowBlur = 30;
-
+  // border glow
   ctx.strokeStyle = accent;
-  ctx.lineWidth = 4;
-
-  ctx.stroke();
-
+  ctx.lineWidth = 3;
+  ctx.shadowColor = accent;
+  ctx.shadowBlur = 25;
+  ctx.strokeRect(cardX, cardY, cardW, cardH);
   ctx.shadowBlur = 0;
 
-  // ==========================
+  // =========================
   // HEADER
-  // ==========================
+  // =========================
   ctx.textAlign = "center";
-
   ctx.fillStyle = "#94a3b8";
+  ctx.font = "600 24px Arial";
+  ctx.fillText("TRUTH N DARE SYSTEM", canvas.width / 2, 110);
 
-  ctx.font =
-    "600 24px Arial";
-
-  ctx.fillText(
-    "ANONYMOUS SOCIAL APP",
-    canvas.width / 2,
-    95
-  );
-
-  // ==========================
-  // TYPE PILL
-  // ==========================
-  roundRect(
-    ctx,
-    120,
-    210,
-    250,
-    78,
-    20
-  );
-
+  // =========================
+  // TYPE BADGE
+  // =========================
   ctx.fillStyle = accent;
-  ctx.fill();
+  roundRect(ctx, 130, 220, 240, 70, 18, true);
 
-  ctx.fillStyle = "#fff";
+  ctx.fillStyle = "#000";
+  ctx.font = "bold 34px Arial";
+  ctx.fillText(type.toUpperCase(), 250, 268);
 
-  ctx.font =
-    "bold 36px Arial";
-
-  ctx.textAlign = "center";
-
-  ctx.fillText(
-    type.toUpperCase(),
-    245,
-    260
-  );
-
-  // ==========================
-  // MAIN MESSAGE
-  // ==========================
-  ctx.textAlign = "left";
-
+  // =========================
+  // MESSAGE TEXT (BIG IMPACT)
+  // =========================
   ctx.fillStyle = "#ffffff";
-
-  ctx.font =
-    "bold 60px Arial";
+  ctx.font = "bold 58px Arial";
+  ctx.textAlign = "left";
 
   wrapText(
     ctx,
     `"${message}"`,
-    130,
+    140,
     420,
-    820,
-    84
+    800,
+    80
   );
 
-  // ==========================
-  // ACCENT LINE
-  // ==========================
-  ctx.beginPath();
-
-  ctx.moveTo(130, 950);
-  ctx.lineTo(950, 950);
-
-  ctx.strokeStyle =
-    "rgba(255,255,255,0.08)";
-
+  // =========================
+  // DIVIDER LINE
+  // =========================
+  ctx.strokeStyle = "rgba(255,255,255,0.08)";
   ctx.lineWidth = 2;
-
+  ctx.beginPath();
+  ctx.moveTo(140, 980);
+  ctx.lineTo(940, 980);
   ctx.stroke();
 
-  // ==========================
+  // =========================
   // FOOTER BRAND
-  // ==========================
+  // =========================
   ctx.textAlign = "center";
-
   ctx.fillStyle = "#ffffff";
-
-  ctx.font =
-    "bold 38px Arial";
-
-  ctx.fillText(
-    "truthndare.fun",
-    canvas.width / 2,
-    1050
-  );
+  ctx.font = "bold 36px Arial";
+  ctx.fillText("truthndare.fun", canvas.width / 2, 1060);
 
   ctx.fillStyle = "#94a3b8";
+  ctx.font = "24px Arial";
+  ctx.fillText("anonymous truth • chaos • dare system", canvas.width / 2, 1110);
 
-  ctx.font =
-    "28px Arial";
+  // =========================
+  // CTA BOX
+  // =========================
+  roundRect(ctx, 300, 1180, 480, 80, 20, true);
 
-  ctx.fillText(
-    "send anonymous truths, dares & chaos",
-    canvas.width / 2,
-    1100
-  );
+  ctx.fillStyle = "#fff";
+  ctx.font = "bold 28px Arial";
+  ctx.fillText("tap to reply anonymously", canvas.width / 2, 1230);
 
-  // ==========================
-  // BOTTOM CTA
-  // ==========================
-  roundRect(
-    ctx,
-    320,
-    1180,
-    440,
-    70,
-    20
-  );
-
-  ctx.fillStyle =
-    "rgba(255,255,255,0.07)";
-
-  ctx.fill();
-
-  ctx.fillStyle = "#ffffff";
-
-  ctx.font =
-    "bold 30px Arial";
-
-  ctx.textAlign = "center";
-
-  ctx.fillText(
-    "reply anonymously now",
-    canvas.width / 2,
-    1225
-  );
-
-  // ==========================
-  // EXPORT
-  // ==========================
-  const link =
-    document.createElement("a");
-
-  link.download =
-    `${type}-truthndare.png`;
-
-  link.href =
-    canvas.toDataURL("image/png");
-
+  // =========================
+  // DOWNLOAD
+  // =========================
+  const link = document.createElement("a");
+  link.download = `${type}-truthndare.png`;
+  link.href = canvas.toDataURL("image/png");
   link.click();
-
 }
 
 // ==========================
