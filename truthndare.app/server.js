@@ -9,9 +9,13 @@ const rateLimit = require("express-rate-limit");
 const socketIo = require("socket.io");
 const http = require("http");
 const onlineUsers = new Map(); // socket.id → username
-
 const app = express();
 const server = http.createServer(app);
+const io = socketIo(server, {
+  cors: {
+    origin: "*"
+  }
+});
 
 // ==========================
 // TRUST PROXY
