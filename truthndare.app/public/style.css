@@ -888,58 +888,70 @@ button{
   margin-top:12px;
 }
 
-
 /* =========================================================
-   MESSAGE CARD (MINIMAL FEED STYLE)
+   MESSAGE CARD (CLEAN FEED STYLE)
 ========================================================= */
 
 .message-card{
   background:#ffffff;
-  border:1px solid #e2e8f0;
+  border:1px solid var(--border);
   border-radius:10px;
   padding:10px 12px;
   display:flex;
   flex-direction:column;
   gap:6px;
   transition:0.15s ease;
+  position:relative;
 }
 
+/* subtle hover (no jumpy movement) */
 .message-card:hover{
   border-color:#cbd5e1;
 }
 
-/* TYPE (SMALL BADGE FEEL) */
-.message-type{
-  font-size:10px;
-  font-weight:800;
-  letter-spacing:0.8px;
-  text-transform:uppercase;
-  color:#64748b;
-}
-
-/* TYPE COLORS (SUBTLE LEFT ACCENT INSTEAD OF HEAVY BORDER) */
+/* left accent strip (cleaner than thick border) */
 .message-card.truth{
-  border-left:3px solid #16a34a;
+  border-left:3px solid var(--green);
 }
 
 .message-card.dare{
-  border-left:3px solid #dc2626;
+  border-left:3px solid var(--red);
 }
 
 .message-card.chaos{
-  border-left:3px solid #f59e0b;
+  border-left:3px solid var(--orange);
 }
 
-/* MESSAGE TEXT (COMPACT BUT READABLE) */
+/* =========================================================
+   MESSAGE TYPE (SMALL LABEL)
+========================================================= */
+
+.message-type{
+  font-size:10px;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:0.8px;
+  color:#64748b;
+  margin-bottom:2px;
+}
+
+/* =========================================================
+   MESSAGE TEXT (MAIN CONTENT)
+========================================================= */
+
 .message-text{
   font-size:13px;
-  line-height:1.45;
+  line-height:1.5;
   color:#0f172a;
   word-break:break-word;
 }
 
-/* META (TIGHT INLINE STYLE) */
+/* =========================================================
+   META INFO (COMPACT FOOTER TEXT)
+========================================================= */
+
 .message-meta{
+  margin-top:4px;
   font-size:11px;
   color:#94a3b8;
   display:flex;
@@ -947,16 +959,20 @@ button{
   gap:2px;
 }
 
-/* ACTIONS (SMALL FOOTER BUTTON ROW) */
+/* =========================================================
+   ACTIONS (MINIMAL BUTTON ROW)
+========================================================= */
+
 .message-actions{
   display:flex;
   gap:6px;
-  margin-top:4px;
+  margin-top:6px;
 }
 
-/* BUTTONS INSIDE CARD */
+/* buttons inside card */
 .message-actions button{
   flex:1;
+  min-width:0;
   padding:7px 8px;
   font-size:11px;
   font-weight:700;
@@ -964,13 +980,19 @@ button{
   border:1px solid #e2e8f0;
   background:#f8fafc;
   color:#111827;
+  transition:0.15s ease;
 }
 
+/* hover */
 .message-actions button:hover{
   background:#eef2f7;
+  border-color:#cbd5e1;
 }
 
-/* REMOVE EXTRA SPACING ISSUES */
+/* =========================================================
+   SAFETY RESET (prevents weird spacing bugs)
+========================================================= */
+
 .message-card *{
   margin:0;
 }
