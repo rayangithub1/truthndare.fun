@@ -1,5 +1,6 @@
 /* =========================================================
-   90s INTERNET / YAHOO / WINDOWS 98 STYLE
+   HYBRID RETRO + MODERN UI (SAFE UPGRADE)
+   Windows 98 x Clean Social App
 ========================================================= */
 
 * {
@@ -16,53 +17,50 @@ button {
   -webkit-appearance: none;
 }
 
+/* =========================================================
+   DESIGN TOKENS (SOFT MODERNIZATION)
+========================================================= */
+
 :root {
   --bg: #c0c0c0;
-  --panel: #d4d0c8;
-  --panel-dark: #808080;
+  --panel: #e6e6e6;
+  --panel-dark: #7a7a7a;
   --panel-light: #ffffff;
 
-  --text: #000000;
-  --muted: #444444;
+  --text: #111;
+  --muted: #555;
 
-  --blue: #000080;
-  --link: #0000ee;
+  --blue: #1e3a8a;
+  --link: #1d4ed8;
 
-  --green: #008000;
-  --orange: #cc7a00;
-  --red: #990000;
+  --green: #16a34a;
+  --orange: #d97706;
+  --red: #dc2626;
 
   --ui: Tahoma, Verdana, Arial, sans-serif;
 }
 
 /* =========================================================
-   BODY
+   BODY (LESS NOISE, MORE CLEAN)
 ========================================================= */
 
 body {
   min-height: 100vh;
-
-  background: #c0c0c0;
-
   font-family: var(--ui);
   color: var(--text);
 
+  background: linear-gradient(180deg, #d6d6d6, #c0c0c0);
+
   overflow-x: hidden;
-
-  background-image:
-    linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
-
-  background-size: 6px 6px;
 }
 
 /* =========================================================
-   CONTAINER
+   CONTAINER (CARD-LIKE MODERN RETRO HYBRID)
 ========================================================= */
 
 .container {
   width: 92%;
-  max-width: 520px;
+  max-width: 560px;
 
   margin: 35px auto;
 
@@ -70,12 +68,13 @@ body {
 
   padding: 18px;
 
-  border-top: 3px solid var(--panel-light);
-  border-left: 3px solid var(--panel-light);
-  border-right: 3px solid var(--panel-dark);
-  border-bottom: 3px solid var(--panel-dark);
+  border: 2px solid #9a9a9a;
+  border-radius: 10px;
 
-  box-shadow: 3px 3px 0 #000;
+  box-shadow:
+    0 10px 25px rgba(0,0,0,0.15);
+
+  position: relative;
 }
 
 .container.large {
@@ -83,37 +82,34 @@ body {
 }
 
 /* =========================================================
-   HEADINGS
+   HEADINGS (BIGGER FOR VIRAL READABILITY)
 ========================================================= */
 
-h1,
-h2,
-h3 {
+h1, h2, h3 {
   font-family: Verdana, Arial, sans-serif;
   color: var(--blue);
-
-  margin-bottom: 12px;
 }
 
 h1 {
-  font-size: 28px;
-  border-bottom: 2px solid var(--blue);
-  padding-bottom: 8px;
+  font-size: 30px;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 h2 {
   font-size: 20px;
+  margin-bottom: 10px;
 }
 
 .subtitle {
   text-align: center;
   color: var(--muted);
-  font-size: 12px;
-  margin-bottom: 20px;
+  font-size: 13px;
+  margin-bottom: 16px;
 }
 
 /* =========================================================
-   INPUTS
+   INPUTS (CLEAN + MODERN FEEL)
 ========================================================= */
 
 input,
@@ -121,101 +117,95 @@ textarea,
 select {
   width: 100%;
 
-  margin-top: 12px;
-  padding: 10px;
+  margin-top: 10px;
+  padding: 12px;
 
-  background: white;
-  color: black;
+  background: #fff;
+  color: var(--text);
 
-  font-family: var(--ui);
-
-  border-top: 2px solid #808080;
-  border-left: 2px solid #808080;
-  border-right: 2px solid #ffffff;
-  border-bottom: 2px solid #ffffff;
+  border: 1px solid #999;
+  border-radius: 6px;
 
   outline: none;
+
+  transition: 0.2s;
 }
 
 input:focus,
 textarea:focus,
 select:focus {
-  background: #fffff0;
+  border-color: var(--blue);
+  background: #f9fafb;
 }
 
 /* =========================================================
-   BUTTONS
+   BUTTONS (MORE APP-LIKE, LESS WINDOWS 98 HEAVY)
 ========================================================= */
 
 button {
   width: 100%;
 
-  margin-top: 14px;
-  padding: 10px;
+  margin-top: 12px;
+  padding: 12px;
 
-  background: var(--panel);
+  border-radius: 8px;
 
-  color: black;
+  background: var(--blue);
+  color: white;
 
-  font-family: Tahoma, sans-serif;
-  font-size: 13px;
   font-weight: bold;
 
   cursor: pointer;
 
-  border-top: 2px solid var(--panel-light);
-  border-left: 2px solid var(--panel-light);
-  border-right: 2px solid var(--panel-dark);
-  border-bottom: 2px solid var(--panel-dark);
+  border: none;
+
+  transition: 0.2s;
 }
 
 button:hover {
-  background: #e5e5e5;
+  opacity: 0.9;
+  transform: translateY(-1px);
 }
 
 button:active {
-  border-top: 2px solid var(--panel-dark);
-  border-left: 2px solid var(--panel-dark);
-  border-right: 2px solid var(--panel-light);
-  border-bottom: 2px solid var(--panel-light);
+  transform: scale(0.98);
 }
 
 button.secondary {
-  background: #dfdfdf;
+  background: #e5e7eb;
+  color: #111;
 }
 
 button.danger {
-  background: #b00000;
-  color: white;
+  background: var(--red);
 }
 
 /* =========================================================
-   MESSAGE SYSTEM
+   MESSAGE SYSTEM (VIRAL CARD STYLE)
 ========================================================= */
 
 .inbox {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
 .message,
 .message-card {
   margin-top: 10px;
 
-  background: #f3f3f3;
+  background: white;
 
-  padding: 12px;
+  padding: 14px;
 
-  font-family: Arial, sans-serif;
-  color: black;
+  border-radius: 10px;
 
-  border-top: 2px solid var(--panel-light);
-  border-left: 2px solid var(--panel-light);
-  border-right: 2px solid var(--panel-dark);
-  border-bottom: 2px solid var(--panel-dark);
+  border: 1px solid #ddd;
+
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
 }
 
+/* accent strip */
 .message.truth,
 .message-card.truth {
   border-left: 6px solid var(--green);
@@ -231,17 +221,19 @@ button.danger {
   border-left: 6px solid var(--red);
 }
 
+/* hover subtle */
 .message:hover,
 .message-card:hover {
-  background: #ffffdd;
+  transform: translateY(-2px);
 }
 
 /* =========================================================
-   CARD DETAILS
+   CARD TEXT (IMPORTANT FOR VIRAL READABILITY)
 ========================================================= */
 
 .card-title {
   font-weight: bold;
+  font-size: 14px;
   color: var(--blue);
   margin-bottom: 6px;
 }
@@ -249,12 +241,7 @@ button.danger {
 .card-meta {
   font-size: 11px;
   color: #666;
-  margin-top: 6px;
-}
-
-.inbox-status {
-  font-size: 12px;
-  padding: 15px 0;
+  margin-top: 8px;
 }
 
 /* =========================================================
@@ -271,97 +258,64 @@ button.danger {
 .card-actions button {
   flex: 1;
   min-width: 120px;
+  font-size: 12px;
 }
 
 /* =========================================================
-   COMPOSER
+   COMPOSER (SOFTER PANEL)
 ========================================================= */
 
 .composer {
-  background: #efefef;
+  background: #f3f4f6;
 
-  border: 2px groove #999;
+  border-radius: 10px;
 
-  padding: 15px;
+  padding: 16px;
+
+  border: 1px solid #d1d5db;
 }
 
 /* =========================================================
-   NAVIGATION BAR
+   NAV BAR (SIMPLIFIED)
 ========================================================= */
 
 .nav {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  gap: 10px;
 
-  padding: 8px 10px;
-  margin-bottom: 20px;
+  padding: 10px;
 
   background: var(--blue);
-  color: white;
+  border-radius: 8px;
 
-  border: 2px solid black;
+  justify-content: center;
 }
 
-.nav a {
-  color: yellow;
-  text-decoration: underline;
-  font-weight: bold;
-}
-
-/* =========================================================
-   HOME BUTTON
-========================================================= */
-
-.home-btn {
-  position: fixed;
-  top: 12px;
-  left: 12px;
-
-  padding: 8px 10px;
-
-  background: var(--panel);
-
-  color: black;
-  text-decoration: none;
-
-  font-family: Tahoma, sans-serif;
-  font-size: 12px;
-  font-weight: bold;
-
-  border-top: 2px solid var(--panel-light);
-  border-left: 2px solid var(--panel-light);
-  border-right: 2px solid var(--panel-dark);
-  border-bottom: 2px solid var(--panel-dark);
-
-  z-index: 999;
-}
-
-.home-btn:hover {
-  background: #e4e4e4;
+.nav button {
+  width: auto;
+  padding: 8px 14px;
+  font-size: 13px;
 }
 
 /* =========================================================
-   FOOTER
+   FOOTER (CLEANER, LESS CLUTTER)
 ========================================================= */
 
 .system-footer {
   margin-top: 30px;
 
-  padding: 15px;
+  padding: 16px;
 
-  background: #dfdfdf;
+  background: #f3f4f6;
 
-  border: 2px ridge #999;
+  border-radius: 10px;
 }
 
 .footer-header {
   text-align: center;
-
   font-weight: bold;
   color: var(--blue);
-
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 }
 
 .footer-grid {
@@ -372,44 +326,31 @@ button.danger {
 .footer-box {
   background: white;
 
-  border: 1px solid #999;
+  border-radius: 8px;
 
   padding: 10px;
 
   font-size: 12px;
-}
 
-.footer-box h4 {
-  color: var(--blue);
-  margin-bottom: 5px;
-}
-
-.footer-signature {
-  margin-top: 12px;
-
-  text-align: center;
-
-  font-size: 11px;
-  color: #666;
+  border: 1px solid #ddd;
 }
 
 /* =========================================================
-   HUD BAR
+   HUD BAR (KEEP RETRO FEEL BUT CLEANER)
 ========================================================= */
 
 .hud-bar {
   display: flex;
   justify-content: space-between;
-  align-items: center;
 
   margin: 10px 0 20px;
 
-  padding: 8px 10px;
+  padding: 10px;
 
   background: var(--blue);
   color: white;
 
-  border: 2px solid black;
+  border-radius: 8px;
 }
 
 .hud-item {
@@ -423,26 +364,17 @@ button.danger {
 
 .password-box {
   position: relative;
-  width: 100%;
-}
-
-.password-box input {
-  padding-right: 50px;
 }
 
 .eye-btn {
   position: absolute;
-
-  top: 57%;
-  right: 15px;
+  right: 12px;
+  top: 50%;
 
   transform: translateY(-50%);
 
   cursor: pointer;
-
-  font-size: 16px;
-
-  opacity: 0.7;
+  opacity: 0.6;
 }
 
 .eye-btn:hover {
@@ -450,87 +382,66 @@ button.danger {
 }
 
 /* =========================================================
-   INTRO BOX
+   INTRO BOX (SIMPLIFIED)
 ========================================================= */
 
 .intro-box {
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 
-  padding: 18px;
+  padding: 16px;
 
-  background: #efefef;
+  background: white;
 
-  border: 2px ridge #999;
-}
+  border-radius: 10px;
 
-.intro-box h3 {
-  margin-bottom: 12px;
-
-  color: var(--blue);
-
-  font-size: 16px;
+  border: 1px solid #ddd;
 }
 
 .intro-box p {
   font-size: 13px;
-  line-height: 1.7;
-
+  line-height: 1.6;
   color: #333;
-
-  margin-bottom: 12px;
 }
 
 .intro-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 6px;
 }
 
 .intro-tags span {
-  padding: 6px 8px;
-
-  background: white;
-
-  border: 1px solid #999;
-
   font-size: 11px;
 
-  color: #000080;
+  padding: 4px 8px;
+
+  background: #f3f4f6;
+
+  border-radius: 6px;
+
+  border: 1px solid #ddd;
 }
 
 /* =========================================================
-   MOBILE
+   MOBILE OPTIMIZATION
 ========================================================= */
 
 @media (max-width: 600px) {
 
-  body {
-    padding: 10px;
-  }
-
   .container {
     width: 100%;
-    max-width: 100%;
-
-    margin: 40px 0 20px;
-
-    padding: 14px;
+    margin: 20px auto;
+    border-radius: 0;
   }
 
   h1 {
     font-size: 22px;
   }
 
-  h2 {
-    font-size: 18px;
-  }
-
   button {
-    font-size: 12px;
+    font-size: 13px;
   }
 
-  .home-btn {
-    top: 8px;
-    left: 8px;
+  .card-actions {
+    flex-direction: column;
   }
 }
