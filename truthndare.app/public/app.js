@@ -114,8 +114,12 @@ async function login() {
       return;
     }
 
-    localStorage.setItem("token", data.token);
+localStorage.setItem("token", data.token);
 
+// ✅ SOCKET CONNECTION (FRONTEND)
+const socket = io(); // connects to server
+
+socket.emit("user-online", username);
     window.location.href = "/inbox";
 
   } catch (err) {
