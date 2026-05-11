@@ -171,11 +171,7 @@ body{
 }
 
 /* =========================================================
-   HUD BAR
-========================================================= */
-
-/* =========================================================
-   HUD BAR (MINIMAL CLEAN CARD STYLE)
+   HUD BAR (CLEAN LEFT / RIGHT LAYOUT)
 ========================================================= */
 
 .hud-bar{
@@ -186,11 +182,11 @@ body{
 
   align-items:center;
 
-  gap:10px;
+  gap:12px;
 
   background:#ffffff;
 
-  border:1px solid #d7e0ea;
+  border:1px solid #e2e8f0;
 
   border-radius:12px;
 
@@ -202,61 +198,53 @@ body{
   0 6px 18px rgba(15,23,42,0.06);
 }
 
-/* remove decorative noise */
-.hud-bar::before,
-.hud-bar::after{
-  display:none;
-}
-
 /* =========================================================
-   HUD ITEM (CLEAN PILL STYLE)
+   LEFT SIDE (ONLINE USERS)
 ========================================================= */
 
-.hud-item{
+.hud-left{
 
   display:flex;
 
   align-items:center;
 
-  gap:6px;
-
-  flex:1;
-
-  justify-content:center;
-
-  background:#f8fafc;
-
-  border:1px solid #e2e8f0;
-
-  padding:10px 12px;
-
-  border-radius:10px;
+  gap:8px;
 
   font-size:12px;
 
   font-weight:600;
 
   color:#334155;
-
-  letter-spacing:0.2px;
-
-  transition:0.2s ease;
 }
 
-/* subtle hover (not flashy) */
-.hud-item:hover{
-
-  background:#ffffff;
-
-  border-color:#cbd5e1;
-}
-
-/* highlight numbers if any */
-.hud-item span{
-
-  color:#2563eb;
+.hud-left span{
 
   font-weight:800;
+
+  color:#2563eb;
+}
+
+/* =========================================================
+   RIGHT SIDE (STATUS)
+========================================================= */
+
+.hud-right{
+
+  font-size:11px;
+
+  font-weight:700;
+
+  letter-spacing:0.4px;
+
+  color:#64748b;
+
+  background:#f8fafc;
+
+  border:1px solid #e2e8f0;
+
+  padding:8px 10px;
+
+  border-radius:8px;
 }
 
 /* =========================================================
@@ -269,12 +257,16 @@ body{
 
     flex-direction:column;
 
-    align-items:stretch;
+    align-items:flex-start;
+
+    gap:8px;
   }
 
-  .hud-item{
+  .hud-right{
 
-    justify-content:flex-start;
+    width:100%;
+
+    text-align:center;
   }
 }
 
