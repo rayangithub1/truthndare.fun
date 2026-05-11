@@ -586,6 +586,7 @@ button.danger {
   position: absolute;
   width: 100%;
   left: 0;
+  top: 10px;
   opacity: 0;
   transform: translateY(10px);
   animation: thoughtCycle 25s infinite;
