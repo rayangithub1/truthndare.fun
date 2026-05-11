@@ -441,249 +441,286 @@ function wrapText(
 // ==========================
 // DOWNLOAD IMAGE
 // ==========================
+// ==========================
+// DOWNLOAD IMAGE
+// ==========================
 function downloadImage(id, type, message) {
-  const canvas = document.getElementById(`canvas-${id}`);
-  if (!canvas) return;
-
-  const ctx = canvas.getContext("2d");
-
-  // =========================
-  // SIZE
-  // =========================
-  canvas.width = 1080;
-  canvas.height = 1350;
-
-  // =========================
-  // DYNAMIC COLORS
-  // =========================
-  let accent = "#8b5cf6";
-
-  if (type === "truth") accent = "#22c55e";
-  if (type === "chaos") accent = "#facc15";
-  if (type === "dare") accent = "#ef4444";
-
-  // =========================
-  // BACKGROUND
-  // =========================
-  const bg = ctx.createLinearGradient(0, 0, 0, canvas.height);
-
-  bg.addColorStop(0, "#050816");
-  bg.addColorStop(1, "#090b14");
-
-  ctx.fillStyle = bg;
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-  // =========================
-  // GLOW BACKLIGHTS
-  // =========================
-  drawGlow(ctx, 180, 250, accent, 300);
-  drawGlow(ctx, 950, 180, "#8b5cf6", 220);
-  drawGlow(ctx, 850, 1150, "#ffffff15", 260);
-
-  // =========================
-  // TOP SMALL BRAND
-  // =========================
-  ctx.textAlign = "center";
-
-  ctx.font = "24px Arial";
-  ctx.fillStyle = "#94a3b8";
-
-  ctx.fillText(
-    "ANONYMOUS SOCIAL CHAOS",
-    canvas.width / 2,
-    90
-  );
-
-  // =========================
-  // MAIN CARD
-  // =========================
-  roundRect(ctx, 70, 140, 940, 980, 36);
-
-  ctx.fillStyle = "rgba(255,255,255,0.04)";
-  ctx.fill();
-
-  // border glow
-  ctx.strokeStyle = accent;
-  ctx.lineWidth = 4;
-
-  ctx.shadowColor = accent;
-  ctx.shadowBlur = 25;
-
-  ctx.stroke();
-
-  ctx.shadowBlur = 0;
-
-  // =========================
-  // TYPE LABEL
-  // =========================
-  roundRect(ctx, 120, 200, 260, 75, 18);
-
-  ctx.fillStyle = accent;
-  ctx.fill();
-
-  ctx.fillStyle = "#fff";
-  ctx.font = "bold 34px Arial";
-
-  ctx.textAlign = "center";
-  ctx.fillText(type.toUpperCase(), 250, 248);
-
-  // =========================
-  // MESSAGE TEXT
-  // =========================
-  ctx.fillStyle = "#ffffff";
-
-  ctx.textAlign = "left";
-
-  ctx.font = "bold 52px Arial";
-
-  wrapText(
-    ctx,
-    `"${message}"`,
-    130,
-    380,
-    820,
-    78
-  );
-
-  // =========================
-  // DECORATIVE LINE
-  // =========================
-  ctx.beginPath();
-  ctx.moveTo(130, 920);
-  ctx.lineTo(950, 920);
-
-  ctx.strokeStyle = "rgba(255,255,255,0.08)";
-  ctx.lineWidth = 2;
-  ctx.stroke();
-
-  // =========================
-  // FOOTER
-  // =========================
-  ctx.textAlign = "center";
-
-  ctx.fillStyle = "#cbd5e1";
-  ctx.font = "bold 32px Arial";
-
-  ctx.fillText(
-    "truthndare.fun",
-    canvas.width / 2,
-    1040
-  );
-
-  ctx.fillStyle = "#64748b";
-  ctx.font = "24px Arial";
-
-  ctx.fillText(
-    "send anonymous truths, dares & chaos",
-    canvas.width / 2,
-    1085
-  );
-
-  // =========================
-  // EXPORT
-  // =========================
-  const link = document.createElement("a");
-
-  link.download = `${type}-truthndare.png`;
-  link.href = canvas.toDataURL("image/png");
-
-  link.click();
-}
-
-// =========================
-// GLOW ORB
-// =========================
-function drawGlow(ctx, x, y, color, size) {
-  const gradient = ctx.createRadialGradient(
-    x,
-    y,
-    0,
-    x,
-    y,
-    size
-  );
-
-  gradient.addColorStop(0, color);
-  gradient.addColorStop(1, "transparent");
-
-  ctx.fillStyle = gradient;
-
-  ctx.beginPath();
-  ctx.arc(x, y, size, 0, Math.PI * 2);
-  ctx.fill();
-}
-
-// =========================
-// ROUNDED RECTANGLE
-// =========================
-function roundRect(ctx, x, y, width, height, radius) {
-  ctx.beginPath();
-
-  ctx.moveTo(x + radius, y);
-
-  ctx.lineTo(x + width - radius, y);
-  ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
-
-  ctx.lineTo(x + width, y + height - radius);
-  ctx.quadraticCurveTo(
-    x + width,
-    y + height,
-    x + width - radius,
-    y + height
-  );
-
-  ctx.lineTo(x + radius, y + height);
-  ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
-
-  ctx.lineTo(x, y + radius);
-  ctx.quadraticCurveTo(x, y, x + radius, y);
-
-  ctx.closePath();
-}
-
-// ==========================
-// SHARE IMAGE
-// ==========================
-function shareImage(id) {
 
   const canvas =
     document.getElementById(`canvas-${id}`);
 
   if (!canvas) return;
 
-  canvas.toBlob(async (blob) => {
+  const ctx = canvas.getContext("2d");
 
-    try {
+  // ==========================
+  // SIZE
+  // ==========================
+  canvas.width = 1080;
+  canvas.height = 1350;
 
-      const file = new File(
-        [blob],
-        "message.png",
-        {
-          type: "image/png"
-        }
-      );
+  // ==========================
+  // COLORS
+  // ==========================
+  let accent = "#8b5cf6";
 
-      if (navigator.share) {
+  if (type === "truth")
+    accent = "#22c55e";
 
-        await navigator.share({
-          files: [file],
-          title: "Truth or Chaos",
-          text: "Anonymous message 😈"
-        });
+  if (type === "chaos")
+    accent = "#facc15";
 
-      } else {
+  if (type === "dare")
+    accent = "#ef4444";
 
-        alert("Download and share manually");
+  // ==========================
+  // BACKGROUND
+  // ==========================
+  const bg =
+    ctx.createLinearGradient(
+      0,
+      0,
+      canvas.width,
+      canvas.height
+    );
 
-      }
+  bg.addColorStop(0, "#030712");
+  bg.addColorStop(0.5, "#0b1120");
+  bg.addColorStop(1, "#020617");
 
-    } catch (err) {
+  ctx.fillStyle = bg;
+  ctx.fillRect(
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
 
-      console.log(err);
+  // ==========================
+  // AMBIENT GLOWS
+  // ==========================
+  drawGlow(
+    ctx,
+    150,
+    250,
+    accent,
+    320
+  );
 
-    }
+  drawGlow(
+    ctx,
+    920,
+    180,
+    "#8b5cf6",
+    260
+  );
 
-  });
+  drawGlow(
+    ctx,
+    850,
+    1150,
+    "#ffffff10",
+    300
+  );
+
+  // ==========================
+  // NOISE DOTS
+  // ==========================
+  for (let i = 0; i < 120; i++) {
+
+    ctx.beginPath();
+
+    ctx.arc(
+      Math.random() * canvas.width,
+      Math.random() * canvas.height,
+      Math.random() * 2,
+      0,
+      Math.PI * 2
+    );
+
+    ctx.fillStyle =
+      "rgba(255,255,255,0.04)";
+
+    ctx.fill();
+
+  }
+
+  // ==========================
+  // GLASS CARD
+  // ==========================
+  roundRect(
+    ctx,
+    70,
+    140,
+    940,
+    1020,
+    42
+  );
+
+  ctx.fillStyle =
+    "rgba(255,255,255,0.05)";
+
+  ctx.fill();
+
+  // glow border
+  ctx.shadowColor = accent;
+  ctx.shadowBlur = 30;
+
+  ctx.strokeStyle = accent;
+  ctx.lineWidth = 4;
+
+  ctx.stroke();
+
+  ctx.shadowBlur = 0;
+
+  // ==========================
+  // HEADER
+  // ==========================
+  ctx.textAlign = "center";
+
+  ctx.fillStyle = "#94a3b8";
+
+  ctx.font =
+    "600 24px Arial";
+
+  ctx.fillText(
+    "ANONYMOUS SOCIAL APP",
+    canvas.width / 2,
+    95
+  );
+
+  // ==========================
+  // TYPE PILL
+  // ==========================
+  roundRect(
+    ctx,
+    120,
+    210,
+    250,
+    78,
+    20
+  );
+
+  ctx.fillStyle = accent;
+  ctx.fill();
+
+  ctx.fillStyle = "#fff";
+
+  ctx.font =
+    "bold 36px Arial";
+
+  ctx.textAlign = "center";
+
+  ctx.fillText(
+    type.toUpperCase(),
+    245,
+    260
+  );
+
+  // ==========================
+  // MAIN MESSAGE
+  // ==========================
+  ctx.textAlign = "left";
+
+  ctx.fillStyle = "#ffffff";
+
+  ctx.font =
+    "bold 60px Arial";
+
+  wrapText(
+    ctx,
+    `"${message}"`,
+    130,
+    420,
+    820,
+    84
+  );
+
+  // ==========================
+  // ACCENT LINE
+  // ==========================
+  ctx.beginPath();
+
+  ctx.moveTo(130, 950);
+  ctx.lineTo(950, 950);
+
+  ctx.strokeStyle =
+    "rgba(255,255,255,0.08)";
+
+  ctx.lineWidth = 2;
+
+  ctx.stroke();
+
+  // ==========================
+  // FOOTER BRAND
+  // ==========================
+  ctx.textAlign = "center";
+
+  ctx.fillStyle = "#ffffff";
+
+  ctx.font =
+    "bold 38px Arial";
+
+  ctx.fillText(
+    "truthndare.fun",
+    canvas.width / 2,
+    1050
+  );
+
+  ctx.fillStyle = "#94a3b8";
+
+  ctx.font =
+    "28px Arial";
+
+  ctx.fillText(
+    "send anonymous truths, dares & chaos",
+    canvas.width / 2,
+    1100
+  );
+
+  // ==========================
+  // BOTTOM CTA
+  // ==========================
+  roundRect(
+    ctx,
+    320,
+    1180,
+    440,
+    70,
+    20
+  );
+
+  ctx.fillStyle =
+    "rgba(255,255,255,0.07)";
+
+  ctx.fill();
+
+  ctx.fillStyle = "#ffffff";
+
+  ctx.font =
+    "bold 30px Arial";
+
+  ctx.textAlign = "center";
+
+  ctx.fillText(
+    "reply anonymously now",
+    canvas.width / 2,
+    1225
+  );
+
+  // ==========================
+  // EXPORT
+  // ==========================
+  const link =
+    document.createElement("a");
+
+  link.download =
+    `${type}-truthndare.png`;
+
+  link.href =
+    canvas.toDataURL("image/png");
+
+  link.click();
 
 }
 
