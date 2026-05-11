@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-
-  <title>Truth or Chaos</title>
 
   <meta charset="UTF-8">
 
   <meta
     name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    content="width=device-width, initial-scale=1.0"
   >
+
+  <title>Truth N Dare</title>
 
   <link rel="stylesheet" href="style.css">
 
@@ -23,124 +23,195 @@
 <body>
 
 <!-- =========================
-     WORLD ATMOSPHERE LAYER
+     CRT OVERLAY
 ========================= -->
 <div class="scanlines"></div>
 
-<!-- MAIN SCREEN -->
+<!-- =========================
+     MAIN CONTAINER
+========================= -->
 <div class="container">
 
-  <!-- GAME TITLE AREA -->
-  <div class="title-section">
+  <!-- =========================
+       TOP HUD
+  ========================= -->
+  <div class="hud-bar">
 
-    <div class="hud-bar">
+    <div class="hud-item">
+      👤 ONLINE: <span id="liveUsers">128</span>
+    </div>
 
-  <div class="hud-item">
-    👤 ONLINE USERS: <span id="liveUsers">128</span>
-  </div>
-
-  <div class="hud-item">
-    ⚡ SYSTEM STATUS: ACTIVE
-  </div>
-
-</div>
-
-    <h1 class="glow-text">TRUTH N DARE</h1>
-    <p class="subtitle">A CYBER ANONYMOUS SYSTEM</p>
-
-  </div>
-
-  <!-- SYSTEM STATUS BAR -->
-  <div class="loading">
-    <div></div>
-  </div>
-
-  <!-- MODE SWITCH -->
-  <div class="nav" style="margin-top:20px; justify-content:center; gap:10px;">
-
-    <button onclick="showSignup()">NEW USER</button>
-    <button class="secondary" onclick="showLogin()">LOGIN</button>
+    <div class="hud-item">
+      ⚡ STATUS: ACTIVE
+    </div>
 
   </div>
 
   <!-- =========================
-     SIGNUP MODULE
-========================= -->
-<div id="signupBox" class="composer">
+       TITLE
+  ========================= -->
+  <div class="title-section">
 
-  <h2>INITIALIZE PROFILE</h2>
-  <p class="subtitle">REMEMBER YOUR PASSWORD PLEASE</p>
+    <h1 class="glow-text">
+      TRUTH N DARE
+    </h1>
 
-  <input
-    id="signupUsername"
-    class="input"
-    placeholder="ENTER USERNAME"
-  >
-
-  <div class="password-box">
-
-    <input
-      id="signupPassword"
-      class="input"
-      type="password"
-      placeholder="CREATE PASSWORD"
-    >
-
-    <span
-      class="eye-btn"
-      onclick="togglePassword('signupPassword', this)"
-    >
-      
-    </span>
+    <p class="subtitle">
+      ANONYMOUS CYBER SYSTEM
+    </p>
 
   </div>
 
-  <button onclick="signup()">BOOT SYSTEM</button>
+  <!-- =========================
+       LOADING BAR
+  ========================= -->
+  <div class="loading">
+    <div></div>
+  </div>
+
+  <!-- =========================
+       AUTH SWITCH
+  ========================= -->
+  <div
+    class="nav"
+    style="
+      margin-top:20px;
+      justify-content:center;
+      gap:10px;
+    "
+  >
+
+    <button onclick="showSignup()">
+      NEW USER
+    </button>
+
+    <button
+      class="secondary"
+      onclick="showLogin()"
+    >
+      LOGIN
+    </button>
+
+  </div>
+
+  <!-- =========================
+       SIGNUP BOX
+  ========================= -->
+  <div
+    id="signupBox"
+    class="composer"
+  >
+
+    <h2>CREATE ACCOUNT</h2>
+
+    <p class="subtitle">
+      SAVE YOUR PASSWORD SAFELY
+    </p>
+
+    <!-- username -->
+    <input
+      id="signupUsername"
+      placeholder="ENTER USERNAME"
+    >
+
+    <!-- password -->
+    <div class="password-box">
+
+      <input
+        id="signupPassword"
+        type="password"
+        placeholder="CREATE PASSWORD"
+      >
+
+      <span
+        class="eye-btn"
+        onclick="
+          togglePassword(
+            'signupPassword',
+            this
+          )
+        "
+      >
+        🙉
+      </span>
+
+    </div>
+
+    <!-- signup button -->
+    <button onclick="signup()">
+      CREATE ACCOUNT
+    </button>
+
+    <!-- copy credentials -->
+    <button
+      class="secondary"
+      onclick="copySignupCredentials()"
+    >
+      COPY CREDENTIALS
+    </button>
+
+  </div>
+
+  <!-- =========================
+       LOGIN BOX
+  ========================= -->
+  <div
+    id="loginBox"
+    class="composer"
+    style="display:none;"
+  >
+
+    <h2>LOGIN SYSTEM</h2>
+
+    <!-- username -->
+    <input
+      id="loginUsername"
+      placeholder="USERNAME"
+    >
+
+    <!-- password -->
+    <div class="password-box">
+
+      <input
+        id="loginPassword"
+        type="password"
+        placeholder="PASSWORD"
+      >
+
+      <span
+        class="eye-btn"
+        onclick="
+          togglePassword(
+            'loginPassword',
+            this
+          )
+        "
+      >
+        🙉
+      </span>
+
+    </div>
+
+    <!-- login button -->
+    <button onclick="login()">
+      ENTER WORLD
+    </button>
+
+  </div>
+
+  <!-- =========================
+       RESULT TEXT
+  ========================= -->
+  <p
+    id="result"
+    class="subtitle"
+    style="margin-top:18px;"
+  ></p>
 
 </div>
 
 <!-- =========================
-     LOGIN MODULE
-========================= -->
-<div id="loginBox" class="composer" style="display:none;">
-
-  <h2>ACCESS TERMINAL</h2>
-
-  <input
-    id="loginUsername"
-    class="input"
-    placeholder="USERNAME"
-  >
-
-  <div class="password-box">
-
-    <input
-      id="loginPassword"
-      class="input"
-      type="password"
-      placeholder="PASSWORD"
-    >
-
-    <span
-      class="eye-btn"
-      onclick="togglePassword('loginPassword', this)"
-    >
-      🙉
-    </span>
-
-  </div>
-
-  <button onclick="login()">ENTER WORLD</button>
-
-</div>
-
-  <!-- SYSTEM FEEDBACK -->
-  <p id="result" class="subtitle" style="margin-top:15px;"></p>
-
-</div>
-
-<!-- =========================
-     SYSTEM FOOTER MODULE
+     FOOTER
 ========================= -->
 <div class="system-footer">
 
@@ -150,34 +221,62 @@
 
   <div class="footer-grid">
 
+    <!-- safety -->
     <div class="footer-box">
+
       <h4>⚠ SAFETY NOTICE</h4>
+
       <p>
-        This is an anonymous system. Do not send harmful, illegal or abusive content.
-        Misuse may result in restricted access.
+        This is an anonymous platform.
+        Do not send illegal,
+        harmful or abusive content.
       </p>
+
     </div>
 
+    <!-- contact -->
     <div class="footer-box">
+
       <h4>CONTACT</h4>
-      <p>support@truthndare.fun</p>
-      <p>if you forget your password, please mail us directly we might help you recover it. By nature passwords and usernames are unrecoverable on this site, make sure to save them safely with you.</p>
+
+      <p>
+        support@truthndare.fun
+      </p>
+
+      <p style="margin-top:8px;">
+
+        Save your credentials safely.
+        Password recovery may not
+        always be possible.
+
+      </p>
+
     </div>
 
+    <!-- creator -->
     <div class="footer-box">
+
       <h4>❤️ CREATOR NOTE</h4>
-      <p>Made with love for chaos, curiosity and expression.</p>
+
+      <p>
+        Built for chaos,
+        curiosity and expression.
+      </p>
+
     </div>
 
   </div>
 
   <div class="footer-signature">
-    v1.0 • TRUTH / CHAOS SYSTEM ACTIVE
+    v1.0 • SYSTEM ACTIVE
   </div>
 
 </div>
 
-</body>
+<!-- =========================
+     APP SCRIPT
+========================= -->
 <script src="app.js"></script>
 
+</body>
 </html>
