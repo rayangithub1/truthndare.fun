@@ -888,112 +888,128 @@ button{
   margin-top:12px;
 }
 
+
 /* =========================================================
-   MESSAGE CARD
+   MESSAGE CARD (COMPACT / MINIMAL)
 ========================================================= */
 
 .message-card{
 
-  background:white;
+  background:#ffffff;
 
   border:1px solid var(--border);
 
-  border-radius:12px;
+  border-radius:10px;
 
-  padding:14px;
+  padding:10px 12px;
 
-  transition:0.2s;
+  transition:0.15s ease;
+
+  display:flex;
+  flex-direction:column;
+  gap:6px;
 }
 
+/* subtle hover (no jumpy feel) */
 .message-card:hover{
-
   transform:translateY(-1px);
-}
-
-.message-card.truth{
-
-  border-left:4px solid var(--green);
-}
-
-.message-card.dare{
-
-  border-left:4px solid var(--red);
-}
-
-.message-card.chaos{
-
-  border-left:4px solid var(--orange);
+  border-color:#cbd5e1;
 }
 
 /* =========================================================
-   MESSAGE TYPE
+   TYPE ACCENT (LEFT BAR)
+========================================================= */
+
+.message-card.truth{
+  border-left:3px solid var(--green);
+}
+
+.message-card.dare{
+  border-left:3px solid var(--red);
+}
+
+.message-card.chaos{
+  border-left:3px solid var(--orange);
+}
+
+/* =========================================================
+   MESSAGE TYPE (SMALL LABEL)
 ========================================================= */
 
 .message-type{
 
-  font-size:10px;
+  font-size:9px;
 
   font-weight:700;
 
+  letter-spacing:1.2px;
+
   text-transform:uppercase;
 
-  letter-spacing:1px;
+  color:#94a3b8;
 
-  color:#64748b;
-
-  margin-bottom:8px;
+  margin:0;
 }
 
 /* =========================================================
-   MESSAGE TEXT
+   MESSAGE TEXT (COMPACT)
 ========================================================= */
 
 .message-text{
 
-  font-size:14px;
+  font-size:13.5px;
 
-  line-height:1.8;
+  line-height:1.5;
 
-  color:#111827;
+  color:#0f172a;
 
   word-break:break-word;
+
+  margin:0;
 }
 
 /* =========================================================
-   MESSAGE META
+   META (TIGHT + CLEAN)
 ========================================================= */
 
 .message-meta{
 
-  margin-top:10px;
-
-  font-size:11px;
+  font-size:10px;
 
   color:#94a3b8;
+
+  margin-top:2px;
 }
 
 /* =========================================================
-   MESSAGE ACTIONS
+   ACTIONS (MINIMAL BUTTON ROW)
 ========================================================= */
 
 .message-actions{
 
   display:flex;
 
-  gap:8px;
+  gap:6px;
 
-  margin-top:12px;
-
-  flex-wrap:wrap;
+  margin-top:8px;
 }
 
+/* buttons become compact chips */
 .message-actions button{
 
   flex:1;
 
-  min-width:120px;
+  min-width:auto;
 
-  margin-top:0;
+  padding:8px 10px;
+
+  font-size:11px;
+
+  font-weight:600;
+
+  margin:0;
+
+  border-radius:8px;
 }
 
 /* =========================================================
