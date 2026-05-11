@@ -292,10 +292,6 @@ function renderMessage(msg) {
 )'>
         Download
       </button>
-
-      <button onclick="shareImage('${msg._id}')">
-        Share
-      </button>
     </div>
 
     <canvas
