@@ -246,9 +246,6 @@ function timeAgo(date) {
 
 }
 
-// ==========================
-// RENDER MESSAGE
-// ==========================
 function renderMessage(msg) {
 
   const container =
@@ -272,8 +269,15 @@ function renderMessage(msg) {
 
   card.innerHTML = `
     <div class="message-top">
-      <div class="message-type">${msg.type}</div>
-      <div class="message-time">${time}</div>
+      
+      <div class="message-type">
+        ${msg.type}
+      </div>
+
+      <div class="message-time">
+        ${time}
+      </div>
+
     </div>
 
     <div class="message-text">
@@ -285,16 +289,29 @@ function renderMessage(msg) {
     </div>
 
     <div class="message-actions">
-      <button onclick='downloadImage("${msg._id}", "${msg.type}", ${JSON.stringify(msg.message)})'>
+
+      <button onclick='downloadImage(
+        "${msg._id}",
+        "${msg.type}",
+        ${JSON.stringify(msg.message)}
+      )'>
         Download
       </button>
 
-      <button onclick="navigator.clipboard.writeText(${JSON.stringify(msg.message)})">
+      <button onclick="
+        navigator.clipboard.writeText(
+          ${JSON.stringify(msg.message)}
+        )
+      ">
         Copy
       </button>
+
     </div>
 
-    <canvas id="canvas-${msg._id}" style="display:none;"></canvas>
+    <canvas
+      id="canvas-${msg._id}"
+      style="display:none;">
+    </canvas>
   `;
 
   container.prepend(card);
