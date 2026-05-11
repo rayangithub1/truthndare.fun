@@ -445,9 +445,6 @@ function wrapText(
 // ==========================
 // DOWNLOAD IMAGE
 // ==========================
-// ==========================
-// DOWNLOAD IMAGE
-// ==========================
 function downloadImage(id, type, message) {
 
   const canvas = document.getElementById(`canvas-${id}`);
@@ -456,153 +453,109 @@ function downloadImage(id, type, message) {
   const ctx = canvas.getContext("2d");
 
   // =========================
-  // SIZE
+  // SIZE (kept clean portrait)
   // =========================
   canvas.width = 1080;
   canvas.height = 1350;
 
   // =========================
-  // THEME COLORS
+  // PALETTE (OLD WEB)
   // =========================
-  let accent = "#8b5cf6";
+  const bg = "#f4f1e8";        // beige paper
+  const border = "#000000";    // harsh black
+  const accent = "#333333";    // dark gray text
 
-  if (type === "truth") accent = "#22c55e";
-  if (type === "chaos") accent = "#facc15";
-  if (type === "dare") accent = "#ef4444";
+  // type stamp colors (muted)
+  let tagColor = "#444";
+
+  if (type === "truth") tagColor = "#2f6f3e";
+  if (type === "chaos") tagColor = "#7a5a00";
+  if (type === "dare") tagColor = "#7a1f1f";
 
   // =========================
-  // BACKGROUND GRADIENT
+  // BACKGROUND
   // =========================
-  const bg = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-  bg.addColorStop(0, "#020617");
-  bg.addColorStop(0.5, "#0b1020");
-  bg.addColorStop(1, "#030712");
-
   ctx.fillStyle = bg;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   // =========================
-  // CYBER GLOW ORBS
+  // OUTER BORDER (old web box)
   // =========================
-  function glow(x, y, color, size) {
-    const g = ctx.createRadialGradient(x, y, 0, x, y, size);
-    g.addColorStop(0, color);
-    g.addColorStop(1, "transparent");
+  ctx.strokeStyle = border;
+  ctx.lineWidth = 6;
+  ctx.strokeRect(30, 30, canvas.width - 60, canvas.height - 60);
 
-    ctx.fillStyle = g;
-    ctx.beginPath();
-    ctx.arc(x, y, size, 0, Math.PI * 2);
-    ctx.fill();
-  }
-
-  glow(200, 250, accent + "55", 350);
-  glow(900, 300, "#8b5cf655", 300);
-  glow(700, 1100, "#ffffff10", 400);
+  // inner thin border
+  ctx.lineWidth = 2;
+  ctx.strokeRect(50, 50, canvas.width - 100, canvas.height - 100);
 
   // =========================
-  // NOISE DOTS (enhanced)
+  // HEADER (VERY 90s WEB)
   // =========================
-  for (let i = 0; i < 180; i++) {
-    ctx.fillStyle = "rgba(255,255,255,0.04)";
-    ctx.beginPath();
-    ctx.arc(
-      Math.random() * canvas.width,
-      Math.random() * canvas.height,
-      Math.random() * 2.2,
-      0,
-      Math.PI * 2
-    );
-    ctx.fill();
-  }
-
-  // =========================
-  // MAIN CARD (glass effect)
-  // =========================
-  const cardX = 80;
-  const cardY = 160;
-  const cardW = 920;
-  const cardH = 1000;
-
-  // shadow layer (depth)
-  ctx.fillStyle = "rgba(0,0,0,0.3)";
-  ctx.fillRect(cardX + 10, cardY + 10, cardW, cardH);
-
-  // glass layer
-  ctx.fillStyle = "rgba(255,255,255,0.05)";
-  ctx.fillRect(cardX, cardY, cardW, cardH);
-
-  // border glow
-  ctx.strokeStyle = accent;
-  ctx.lineWidth = 3;
-  ctx.shadowColor = accent;
-  ctx.shadowBlur = 25;
-  ctx.strokeRect(cardX, cardY, cardW, cardH);
-  ctx.shadowBlur = 0;
-
-  // =========================
-  // HEADER
-  // =========================
-  ctx.textAlign = "center";
-  ctx.fillStyle = "#94a3b8";
-  ctx.font = "600 24px Arial";
-  ctx.fillText("TRUTH N DARE SYSTEM", canvas.width / 2, 110);
-
-  // =========================
-  // TYPE BADGE
-  // =========================
-  ctx.fillStyle = accent;
-  roundRect(ctx, 130, 220, 240, 70, 18, true);
-
   ctx.fillStyle = "#000";
-  ctx.font = "bold 34px Arial";
-  ctx.fillText(type.toUpperCase(), 250, 268);
+  ctx.textAlign = "center";
+  ctx.font = "bold 42px Times New Roman";
+  ctx.fillText("TRUTH N DARE SYSTEM", canvas.width / 2, 140);
+
+  ctx.font = "20px Courier New";
+  ctx.fillText("anonymous message archive", canvas.width / 2, 180);
+
+  // dotted separator
+  ctx.fillText("----------------------------------------", canvas.width / 2, 220);
 
   // =========================
-  // MESSAGE TEXT (BIG IMPACT)
+  // TYPE LABEL (ugly stamp style)
   // =========================
-  ctx.fillStyle = "#ffffff";
-  ctx.font = "bold 58px Arial";
+  ctx.fillStyle = tagColor;
+  ctx.fillRect(80, 260, 200, 50);
+
+  ctx.fillStyle = "#fff";
+  ctx.font = "bold 24px Courier New";
+  ctx.textAlign = "center";
+  ctx.fillText(type.toUpperCase(), 180, 295);
+
+  // =========================
+  // MESSAGE BOX (plain text block)
+  // =========================
+  ctx.fillStyle = "#000";
   ctx.textAlign = "left";
+  ctx.font = "26px Courier New";
 
   wrapText(
     ctx,
-    `"${message}"`,
-    140,
-    420,
-    800,
-    80
+    message,
+    80,
+    380,
+    920,
+    40
   );
 
   // =========================
-  // DIVIDER LINE
+  // META INFO (old internet vibe)
   // =========================
-  ctx.strokeStyle = "rgba(255,255,255,0.08)";
-  ctx.lineWidth = 2;
-  ctx.beginPath();
-  ctx.moveTo(140, 980);
-  ctx.lineTo(940, 980);
-  ctx.stroke();
+  ctx.font = "20px Courier New";
+  ctx.fillStyle = "#333";
+
+  ctx.fillText("FROM: anonymous user", 80, 980);
+  ctx.fillText("TIME: just now", 80, 1010);
+  ctx.fillText("STATUS: unread", 80, 1040);
+
+  // divider
+  ctx.fillText("----------------------------------------", 80, 1080);
 
   // =========================
-  // FOOTER BRAND
+  // FOOTER (VERY OLD WEB)
   // =========================
   ctx.textAlign = "center";
-  ctx.fillStyle = "#ffffff";
-  ctx.font = "bold 36px Arial";
-  ctx.fillText("truthndare.fun", canvas.width / 2, 1060);
+  ctx.fillStyle = "#000";
 
-  ctx.fillStyle = "#94a3b8";
-  ctx.font = "24px Arial";
-  ctx.fillText("anonymous truth • chaos • dare system", canvas.width / 2, 1110);
+  ctx.font = "bold 28px Times New Roman";
+  ctx.fillText("truthndare.fun", canvas.width / 2, 1150);
 
-  // =========================
-  // CTA BOX
-  // =========================
-  roundRect(ctx, 300, 1180, 480, 80, 20, true);
+  ctx.font = "18px Courier New";
+  ctx.fillText("best viewed on Netscape Navigator", canvas.width / 2, 1190);
 
-  ctx.fillStyle = "#fff";
-  ctx.font = "bold 28px Arial";
-  ctx.fillText("tap to reply anonymously", canvas.width / 2, 1230);
+  ctx.fillText("© anonymous system 2001-style UI", canvas.width / 2, 1230);
 
   // =========================
   // DOWNLOAD
@@ -611,21 +564,6 @@ function downloadImage(id, type, message) {
   link.download = `${type}-truthndare.png`;
   link.href = canvas.toDataURL("image/png");
   link.click();
-}
-
-function roundRect(ctx, x, y, w, h, r, fill = false) {
-  ctx.beginPath();
-  ctx.moveTo(x + r, y);
-  ctx.lineTo(x + w - r, y);
-  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
-  ctx.lineTo(x + w, y + h - r);
-  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
-  ctx.lineTo(x + r, y + h);
-  ctx.quadraticCurveTo(x, y + h, x, y + h - r);
-  ctx.lineTo(x, y + r);
-  ctx.quadraticCurveTo(x, y, x + r, y);
-  ctx.closePath();
-  if (fill) ctx.fill();
 }
 
 // ==========================
