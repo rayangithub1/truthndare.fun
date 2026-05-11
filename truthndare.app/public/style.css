@@ -1,5 +1,5 @@
 /* =========================================================
-   RETRO CYBER / GEOCITIES / WINDOWS 98 HYBRID (ANIMATED)
+   90s INTERNET / YAHOO / WINDOWS 98 STYLE
 ========================================================= */
 
 * {
@@ -19,316 +19,258 @@ button {
 :root {
   --bg: #c0c0c0;
   --panel: #d4d0c8;
-  --dark: #808080;
-  --light: #ffffff;
+  --panel-dark: #808080;
+  --panel-light: #ffffff;
+
+  --text: #000000;
+  --muted: #444444;
 
   --blue: #000080;
-  --green: #00ff66;
-  --yellow: #ffcc00;
-  --red: #ff0033;
+  --link: #0000ee;
 
-  --text: #000;
-  --font: Tahoma, Verdana, Arial, sans-serif;
+  --green: #008000;
+  --orange: #cc7a00;
+  --red: #990000;
+
+  --ui: Tahoma, Verdana, Arial, sans-serif;
 }
 
 /* =========================================================
-   BACKGROUND (RETRO GRID + SCANLINES + NOISE)
+   BODY
 ========================================================= */
 
 body {
   min-height: 100vh;
-  font-family: var(--font);
+
+  background: #c0c0c0;
+
+  font-family: var(--ui);
   color: var(--text);
 
-  background: var(--bg);
+  overflow-x: hidden;
 
   background-image:
-    linear-gradient(to right, rgba(0,0,0,0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0,0,0,0.04) 1px, transparent 1px);
+    linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
 
-  background-size: 8px 8px;
-
-  overflow-x: hidden;
-}
-
-/* animated scanlines */
-.scanlines {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-
-  background: repeating-linear-gradient(
-    0deg,
-    rgba(0,0,0,0.03),
-    rgba(0,0,0,0.03) 1px,
-    transparent 2px,
-    transparent 4px
-  );
-
-  animation: flicker 3s infinite linear;
-}
-
-@keyframes flicker {
-  0%, 100% { opacity: 0.6; }
-  50% { opacity: 0.3; }
+  background-size: 6px 6px;
 }
 
 /* =========================================================
-   CONTAINER (RETRO WINDOW)
+   CONTAINER
 ========================================================= */
 
 .container {
   width: 92%;
-  max-width: 560px;
+  max-width: 520px;
 
-  margin: 40px auto;
+  margin: 35px auto;
 
   background: var(--panel);
 
-  border-top: 3px solid var(--light);
-  border-left: 3px solid var(--light);
-  border-right: 3px solid var(--dark);
-  border-bottom: 3px solid var(--dark);
+  padding: 18px;
 
-  box-shadow: 4px 4px 0 #000;
+  border-top: 3px solid var(--panel-light);
+  border-left: 3px solid var(--panel-light);
+  border-right: 3px solid var(--panel-dark);
+  border-bottom: 3px solid var(--panel-dark);
 
-  padding: 16px;
-
-  animation: popIn 0.4s ease;
+  box-shadow: 3px 3px 0 #000;
 }
 
-@keyframes popIn {
-  from {
-    transform: scale(0.95);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
+.container.large {
+  max-width: 900px;
 }
 
 /* =========================================================
-   TITLE (RETRO GLOW + PULSE)
+   HEADINGS
 ========================================================= */
 
-h1.glow-text {
-  font-size: 30px;
-  text-align: center;
-
+h1,
+h2,
+h3 {
+  font-family: Verdana, Arial, sans-serif;
   color: var(--blue);
 
-  text-shadow:
-    0 0 5px #0000ff,
-    0 0 10px #00f,
-    0 0 15px #0088ff;
-
-  animation: glowPulse 2s infinite alternate;
+  margin-bottom: 12px;
 }
 
-@keyframes glowPulse {
-  from { opacity: 0.8; }
-  to { opacity: 1; }
+h1 {
+  font-size: 28px;
+  border-bottom: 2px solid var(--blue);
+  padding-bottom: 8px;
+}
+
+h2 {
+  font-size: 20px;
 }
 
 .subtitle {
   text-align: center;
+  color: var(--muted);
   font-size: 12px;
-  color: #333;
-  margin-bottom: 14px;
+  margin-bottom: 20px;
 }
 
 /* =========================================================
-   HUD BAR (OLD SCHOOL TERMINAL STYLE)
+   INPUTS
 ========================================================= */
 
-.hud-bar {
-  display: flex;
-  justify-content: space-between;
-
-  padding: 8px;
-
-  background: var(--blue);
-  color: white;
-
-  border: 2px solid #000;
-
-  font-size: 11px;
-
-  animation: slideDown 0.5s ease;
-}
-
-@keyframes slideDown {
-  from { transform: translateY(-10px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-/* blinking effect */
-#liveUsers {
-  color: var(--yellow);
-  animation: blink 1s infinite;
-}
-
-@keyframes blink {
-  50% { opacity: 0.3; }
-}
-
-/* =========================================================
-   LOADING BAR (RETRO INTERNET LOADING)
-========================================================= */
-
-.loading {
-  width: 100%;
-  height: 14px;
-
-  background: #aaa;
-
-  border: 2px inset #666;
-
-  margin: 12px 0;
-  overflow: hidden;
-}
-
-.loading div {
-  width: 30%;
-  height: 100%;
-
-  background: linear-gradient(90deg, #000080, #00ffff, #000080);
-
-  animation: load 1.5s infinite linear;
-}
-
-@keyframes load {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(400%); }
-}
-
-/* =========================================================
-   BUTTONS (CLASSIC PUSH BUTTON)
-========================================================= */
-
-button {
+input,
+textarea,
+select {
   width: 100%;
 
   margin-top: 12px;
   padding: 10px;
 
-  background: var(--panel);
-
-  border-top: 2px solid var(--light);
-  border-left: 2px solid var(--light);
-  border-right: 2px solid var(--dark);
-  border-bottom: 2px solid var(--dark);
-
-  font-weight: bold;
-  cursor: pointer;
-
-  transition: 0.1s;
-}
-
-button:hover {
-  background: #eaeaea;
-}
-
-button:active {
-  border-top: 2px solid var(--dark);
-  border-left: 2px solid var(--dark);
-  border-right: 2px solid var(--light);
-  border-bottom: 2px solid var(--light);
-  transform: translateY(1px);
-}
-
-button.secondary {
-  background: #dcdcdc;
-}
-
-/* =========================================================
-   INPUTS (OLD WINDOWS STYLE)
-========================================================= */
-
-input {
-  width: 100%;
-  margin-top: 10px;
-  padding: 10px;
-
   background: white;
+  color: black;
 
-  border: 2px inset #888;
+  font-family: var(--ui);
+
+  border-top: 2px solid #808080;
+  border-left: 2px solid #808080;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
 
   outline: none;
 }
 
-input:focus {
-  background: #ffffe0;
+input:focus,
+textarea:focus,
+select:focus {
+  background: #fffff0;
 }
 
 /* =========================================================
-   MESSAGE CARDS (RETRO POST STYLE)
+   BUTTONS
 ========================================================= */
 
+button {
+  width: 100%;
+
+  margin-top: 14px;
+  padding: 10px;
+
+  background: var(--panel);
+
+  color: black;
+
+  font-family: Tahoma, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  border-top: 2px solid var(--panel-light);
+  border-left: 2px solid var(--panel-light);
+  border-right: 2px solid var(--panel-dark);
+  border-bottom: 2px solid var(--panel-dark);
+}
+
+button:hover {
+  background: #e5e5e5;
+}
+
+button:active {
+  border-top: 2px solid var(--panel-dark);
+  border-left: 2px solid var(--panel-dark);
+  border-right: 2px solid var(--panel-light);
+  border-bottom: 2px solid var(--panel-light);
+}
+
+button.secondary {
+  background: #dfdfdf;
+}
+
+button.danger {
+  background: #b00000;
+  color: white;
+}
+
+/* =========================================================
+   MESSAGE SYSTEM
+========================================================= */
+
+.inbox {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.message,
 .message-card {
   margin-top: 10px;
 
-  background: #fff;
+  background: #f3f3f3;
 
   padding: 12px;
 
-  border: 2px solid #999;
+  font-family: Arial, sans-serif;
+  color: black;
 
-  box-shadow: 2px 2px 0 #000;
-
-  animation: fadeIn 0.3s ease;
+  border-top: 2px solid var(--panel-light);
+  border-left: 2px solid var(--panel-light);
+  border-right: 2px solid var(--panel-dark);
+  border-bottom: 2px solid var(--panel-dark);
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.98); }
-  to { opacity: 1; transform: scale(1); }
+.message.truth,
+.message-card.truth {
+  border-left: 6px solid var(--green);
 }
 
+.message.chaos,
+.message-card.chaos {
+  border-left: 6px solid var(--orange);
+}
+
+.message.dare,
+.message-card.dare {
+  border-left: 6px solid var(--red);
+}
+
+.message:hover,
 .message-card:hover {
-  background: #ffffcc;
+  background: #ffffdd;
 }
-
-/* type accents */
-.message-card.truth { border-left: 6px solid var(--green); }
-.message-card.chaos { border-left: 6px solid var(--yellow); }
-.message-card.dare  { border-left: 6px solid var(--red); }
 
 /* =========================================================
-   CARD TEXT (IMPORTANT FOR RETRO FEEL)
+   CARD DETAILS
 ========================================================= */
 
 .card-title {
   font-weight: bold;
   color: var(--blue);
-  font-size: 13px;
+  margin-bottom: 6px;
 }
 
 .card-meta {
-  font-size: 10px;
-  color: #555;
+  font-size: 11px;
+  color: #666;
   margin-top: 6px;
 }
 
-/* =========================================================
-   NAV BAR (YAHOO STYLE STRIP)
-========================================================= */
-
-.nav {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-
-  padding: 8px;
-
-  background: var(--blue);
-  border: 2px solid #000;
+.inbox-status {
+  font-size: 12px;
+  padding: 15px 0;
 }
 
-.nav button {
-  width: auto;
-  padding: 6px 10px;
-  font-size: 12px;
+/* =========================================================
+   CARD ACTIONS
+========================================================= */
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.card-actions button {
+  flex: 1;
+  min-width: 120px;
 }
 
 /* =========================================================
@@ -338,26 +280,173 @@ input:focus {
 .composer {
   background: #efefef;
 
-  border: 2px ridge #999;
+  border: 2px groove #999;
 
-  padding: 14px;
-
-  animation: popIn 0.4s ease;
+  padding: 15px;
 }
 
 /* =========================================================
-   PASSWORD EYE
+   NAVIGATION BAR
 ========================================================= */
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 8px 10px;
+  margin-bottom: 20px;
+
+  background: var(--blue);
+  color: white;
+
+  border: 2px solid black;
+}
+
+.nav a {
+  color: yellow;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+/* =========================================================
+   HOME BUTTON
+========================================================= */
+
+.home-btn {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+
+  padding: 8px 10px;
+
+  background: var(--panel);
+
+  color: black;
+  text-decoration: none;
+
+  font-family: Tahoma, sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+
+  border-top: 2px solid var(--panel-light);
+  border-left: 2px solid var(--panel-light);
+  border-right: 2px solid var(--panel-dark);
+  border-bottom: 2px solid var(--panel-dark);
+
+  z-index: 999;
+}
+
+.home-btn:hover {
+  background: #e4e4e4;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.system-footer {
+  margin-top: 30px;
+
+  padding: 15px;
+
+  background: #dfdfdf;
+
+  border: 2px ridge #999;
+}
+
+.footer-header {
+  text-align: center;
+
+  font-weight: bold;
+  color: var(--blue);
+
+  margin-bottom: 15px;
+}
+
+.footer-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.footer-box {
+  background: white;
+
+  border: 1px solid #999;
+
+  padding: 10px;
+
+  font-size: 12px;
+}
+
+.footer-box h4 {
+  color: var(--blue);
+  margin-bottom: 5px;
+}
+
+.footer-signature {
+  margin-top: 12px;
+
+  text-align: center;
+
+  font-size: 11px;
+  color: #666;
+}
+
+/* =========================================================
+   HUD BAR
+========================================================= */
+
+.hud-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin: 10px 0 20px;
+
+  padding: 8px 10px;
+
+  background: var(--blue);
+  color: white;
+
+  border: 2px solid black;
+}
+
+.hud-item {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* =========================================================
+   PASSWORD FIELD
+========================================================= */
+
+.password-box {
+  position: relative;
+  width: 100%;
+}
+
+.password-box input {
+  padding-right: 50px;
+}
 
 .eye-btn {
   position: absolute;
-  right: 12px;
-  top: 50%;
+
+  top: 57%;
+  right: 15px;
 
   transform: translateY(-50%);
 
   cursor: pointer;
+
+  font-size: 16px;
+
   opacity: 0.7;
+}
+
+.eye-btn:hover {
+  opacity: 1;
 }
 
 /* =========================================================
@@ -365,48 +454,48 @@ input:focus {
 ========================================================= */
 
 .intro-box {
+  margin-bottom: 24px;
+
+  padding: 18px;
+
   background: #efefef;
 
-  padding: 14px;
-
   border: 2px ridge #999;
+}
 
-  margin-bottom: 16px;
+.intro-box h3 {
+  margin-bottom: 12px;
+
+  color: var(--blue);
+
+  font-size: 16px;
+}
+
+.intro-box p {
+  font-size: 13px;
+  line-height: 1.7;
+
+  color: #333;
+
+  margin-bottom: 12px;
+}
+
+.intro-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .intro-tags span {
+  padding: 6px 8px;
+
   background: white;
+
   border: 1px solid #999;
-  padding: 4px 6px;
-  font-size: 10px;
-}
 
-/* =========================================================
-   FOOTER (OLD SCHOOL PANEL)
-========================================================= */
-
-.system-footer {
-  margin-top: 25px;
-
-  background: #dcdcdc;
-
-  border: 2px ridge #999;
-
-  padding: 12px;
-}
-
-.footer-header {
-  text-align: center;
-  font-weight: bold;
-  color: var(--blue);
-}
-
-.footer-box {
-  background: white;
-  border: 1px solid #999;
-  padding: 8px;
   font-size: 11px;
-  margin-top: 8px;
+
+  color: #000080;
 }
 
 /* =========================================================
@@ -414,12 +503,34 @@ input:focus {
 ========================================================= */
 
 @media (max-width: 600px) {
-  .container {
-    width: 100%;
-    margin: 20px 0;
+
+  body {
+    padding: 10px;
   }
 
-  h1.glow-text {
+  .container {
+    width: 100%;
+    max-width: 100%;
+
+    margin: 40px 0 20px;
+
+    padding: 14px;
+  }
+
+  h1 {
     font-size: 22px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  button {
+    font-size: 12px;
+  }
+
+  .home-btn {
+    top: 8px;
+    left: 8px;
   }
 }
