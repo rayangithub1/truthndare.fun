@@ -1,6 +1,7 @@
 /* =========================================================
    TRUTHNDARE.FUN
-   RETRO CYBER UI
+   RETRO CYBER INTERNET UI
+   WINDOWS 98 + Y2K + MOBILE APP
 ========================================================= */
 
 /* =========================================================
@@ -13,19 +14,81 @@
   box-sizing:border-box;
 }
 
+html{
+  scroll-behavior:smooth;
+}
+
 html,
 body{
   overflow-x:hidden;
-  scroll-behavior:smooth;
 }
+
+img{
+  max-width:100%;
+  display:block;
+}
+
+button,
+input,
+textarea{
+  border:none;
+  outline:none;
+  font-family:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+:root{
+
+  --bg:#bdbdbd;
+
+  --panel:#d4d0c8;
+
+  --light:#ffffff;
+
+  --dark:#707070;
+
+  --deep:#2f2f2f;
+
+  --blue:#000080;
+
+  --blue2:#204bff;
+
+  --text:#111;
+
+  --muted:#555;
+
+  --green:#108b10;
+
+  --red:#a10000;
+
+  --orange:#d18100;
+
+  --shadow:
+  4px 4px 0 #000;
+
+  --font:
+  Tahoma,
+  Verdana,
+  Arial,
+  sans-serif;
+}
+
+/* =========================================================
+   BODY
+========================================================= */
 
 body{
 
   min-height:100vh;
 
-  background:#bdbdbd;
-
-  background-image:
+  background:
   linear-gradient(
     rgba(255,255,255,0.03),
     rgba(0,0,0,0.03)
@@ -39,19 +102,18 @@ body{
     to bottom,
     rgba(0,0,0,0.04) 1px,
     transparent 1px
-  );
+  ),
+  var(--bg);
 
   background-size:
   auto,
   6px 6px,
-  6px 6px;
+  6px 6px,
+  auto;
 
-  color:#111;
+  color:var(--text);
 
-  font-family:
-  Tahoma,
-  Verdana,
-  sans-serif;
+  font-family:var(--font);
 
   padding:18px;
 }
@@ -73,8 +135,8 @@ body{
   background:
   repeating-linear-gradient(
     to bottom,
-    rgba(255,255,255,0.03),
-    rgba(255,255,255,0.03) 1px,
+    rgba(255,255,255,0.02),
+    rgba(255,255,255,0.02) 1px,
     transparent 1px,
     transparent 3px
   );
@@ -111,62 +173,101 @@ body{
 
   color:white;
 
-  padding:8px 10px;
+  padding:10px 12px;
 
   border:2px solid black;
 
-  box-shadow:4px 4px 0 black;
+  box-shadow:var(--shadow);
+
+  position:relative;
 }
 
 .window-title{
 
   font-size:12px;
+
   font-weight:bold;
 
   letter-spacing:0.5px;
-}
 
-.window-actions{
+  white-space:nowrap;
 
-  display:flex;
-  gap:5px;
-}
+  overflow:hidden;
 
-.window-dot{
-
-  width:15px;
-  height:15px;
-
-  background:#d4d0c8;
-
-  border-top:2px solid white;
-  border-left:2px solid white;
-  border-right:2px solid #666;
-  border-bottom:2px solid #666;
+  text-overflow:ellipsis;
 }
 
 /* =========================================================
-   MAIN PANEL
+   PANEL
 ========================================================= */
 
 .panel{
 
   margin-top:10px;
 
-  background:#d4d0c8;
+  background:var(--panel);
 
   padding:18px;
 
-  border-top:3px solid white;
-  border-left:3px solid white;
-  border-right:3px solid #777;
-  border-bottom:3px solid #777;
+  border-top:3px solid var(--light);
+  border-left:3px solid var(--light);
+  border-right:3px solid var(--dark);
+  border-bottom:3px solid var(--dark);
 
-  box-shadow:4px 4px 0 black;
+  box-shadow:var(--shadow);
+
+  overflow:hidden;
+
+  position:relative;
 }
 
 /* =========================================================
-   HUD
+   HOME BUTTON
+========================================================= */
+
+.home-btn{
+
+  display:inline-flex;
+
+  align-items:center;
+  justify-content:center;
+
+  text-decoration:none;
+
+  background:var(--panel);
+
+  color:black;
+
+  padding:10px 14px;
+
+  margin-bottom:20px;
+
+  font-size:12px;
+  font-weight:bold;
+
+  border-top:2px solid white;
+  border-left:2px solid white;
+  border-right:2px solid #666;
+  border-bottom:2px solid #666;
+
+  transition:0.15s;
+}
+
+.home-btn:hover{
+
+  background:#ececec;
+}
+
+.home-btn:active{
+
+  border-top:2px solid #666;
+  border-left:2px solid #666;
+  border-right:2px solid white;
+  border-bottom:2px solid white;
+}
+
+/* =========================================================
+   HUD BAR
 ========================================================= */
 
 .hud-bar{
@@ -175,36 +276,37 @@ body{
   justify-content:space-between;
   align-items:center;
 
-  gap:10px;
+  flex-wrap:wrap;
 
-  padding:10px;
+  gap:10px;
 
   background:#000080;
 
   color:white;
 
+  padding:10px;
+
   border:2px solid black;
 
   margin-bottom:18px;
-
-  flex-wrap:wrap;
 }
 
 .hud-item{
 
   font-size:11px;
+
   font-weight:bold;
 }
 
 /* =========================================================
-   LOGO
+   LOGO AREA
 ========================================================= */
 
 .logo-area{
 
   text-align:center;
 
-  margin-bottom:22px;
+  margin-bottom:24px;
 }
 
 .logo{
@@ -221,28 +323,31 @@ body{
 
 .logo-title{
 
-  margin-top:15px;
-
-  font-size:26px;
-
-  color:#000080;
-
-  line-height:1.4;
+  margin-top:16px;
 
   font-family:
   'Press Start 2P',
   cursive;
+
+  font-size:24px;
+
+  line-height:1.6;
+
+  color:#000080;
+
+  text-shadow:
+  2px 2px 0 white;
 }
 
 .logo-sub{
 
-  margin-top:10px;
-
-  color:#555;
+  margin-top:12px;
 
   font-size:11px;
 
   letter-spacing:1px;
+
+  color:#555;
 }
 
 /* =========================================================
@@ -255,12 +360,12 @@ body{
 
   padding:18px;
 
+  margin-bottom:22px;
+
   border-top:2px solid white;
   border-left:2px solid white;
   border-right:2px solid #777;
   border-bottom:2px solid #777;
-
-  margin-bottom:22px;
 }
 
 .intro-box h3{
@@ -274,16 +379,17 @@ body{
 
 .intro-box p{
 
+  color:#333;
+
   font-size:13px;
 
   line-height:1.8;
-
-  color:#333;
 }
 
 .intro-tags{
 
   display:flex;
+
   flex-wrap:wrap;
 
   gap:8px;
@@ -295,22 +401,23 @@ body{
 
   background:white;
 
-  padding:6px 10px;
+  padding:7px 10px;
 
   border:1px solid #888;
+
+  color:#000080;
 
   font-size:10px;
 
   font-weight:bold;
-
-  color:#000080;
 }
 
 /* =========================================================
-   AUTH TABS
+   TABS
 ========================================================= */
 
-.auth-tabs{
+.auth-tabs,
+.screen-tabs{
 
   display:flex;
 
@@ -319,27 +426,31 @@ body{
   border:2px inset #999;
 
   overflow:hidden;
+
+  background:#bdbdbd;
 }
 
-.auth-tab{
+.auth-tab,
+.screen-tab{
 
   flex:1;
 
-  text-align:center;
-
-  padding:12px;
+  padding:14px 10px;
 
   background:#c0c0c0;
+
+  color:black;
 
   font-size:12px;
   font-weight:bold;
 
-  cursor:pointer;
-
   transition:0.2s;
+
+  text-align:center;
 }
 
-.auth-tab.active{
+.auth-tab.active,
+.screen-tab.active{
 
   background:#000080;
 
@@ -347,10 +458,12 @@ body{
 }
 
 /* =========================================================
-   AUTH BOX
+   BOXES
 ========================================================= */
 
-.auth-box{
+.auth-box,
+.share-card,
+.messages-section{
 
   background:#efefef;
 
@@ -377,39 +490,38 @@ body{
 
   margin-bottom:7px;
 
-  color:#000080;
-
   font-size:11px;
+
   font-weight:bold;
+
+  color:#000080;
 }
 
 .input{
 
   width:100%;
 
-  padding:12px;
-
-  padding-right:48px;
-
   background:white;
+
+  color:black;
+
+  font-size:14px;
+
+  padding:13px;
 
   border-top:2px solid #666;
   border-left:2px solid #666;
   border-right:2px solid white;
   border-bottom:2px solid white;
-
-  font-size:14px;
-
-  color:black;
 }
 
 .input:focus{
 
-  background:#ffffe7;
+  background:#ffffe9;
 }
 
 /* =========================================================
-   PASSWORD BOX FIX
+   PASSWORD BOX
 ========================================================= */
 
 .password-box{
@@ -421,51 +533,50 @@ body{
 
 .password-box .input{
 
-  padding-right:50px;
+  padding-right:52px;
 }
 
 .eye-btn{
 
   position:absolute;
 
+  top:50%;
   right:14px;
 
-  top:50%;
-
   transform:translateY(-50%);
-
-  z-index:10;
-
-  cursor:pointer;
-
-  font-size:18px;
-
-  user-select:none;
-
-  line-height:1;
 
   display:flex;
   align-items:center;
   justify-content:center;
 
-  height:20px;
+  width:24px;
+  height:24px;
+
+  cursor:pointer;
+
+  user-select:none;
+
+  z-index:20;
+
+  font-size:16px;
 }
 
 /* =========================================================
    BUTTONS
 ========================================================= */
 
+button,
 .btn{
 
   width:100%;
 
   margin-top:12px;
 
-  padding:12px;
-
-  background:#d4d0c8;
+  background:var(--panel);
 
   color:black;
+
+  padding:12px;
 
   font-size:12px;
   font-weight:bold;
@@ -478,11 +589,13 @@ body{
   transition:0.15s;
 }
 
+button:hover,
 .btn:hover{
 
   background:#ececec;
 }
 
+button:active,
 .btn:active{
 
   border-top:2px solid #666;
@@ -498,51 +611,98 @@ body{
   color:white;
 }
 
-/* =========================================================
-   STATUS TEXT
-========================================================= */
+.secondary{
 
-.status-text{
-
-  margin-top:14px;
-
-  text-align:center;
-
-  font-size:12px;
-
-  color:#444;
-
-  line-height:1.6;
+  background:#dfdfdf;
 }
 
 /* =========================================================
-   FOOTER
+   STATUS
 ========================================================= */
 
-.footer{
+.status-text,
+.vault-status{
 
-  margin-top:18px;
-
-  padding:14px;
+  margin-top:15px;
 
   text-align:center;
 
-  background:#d4d0c8;
-
-  border-top:2px solid white;
-  border-left:2px solid white;
-  border-right:2px solid #777;
-  border-bottom:2px solid #777;
-
-  box-shadow:4px 4px 0 black;
+  color:#555;
 
   font-size:11px;
 
-  color:#444;
+  line-height:1.7;
 }
 
 /* =========================================================
-   INBOX PAGE FIXES
+   SCREEN SLIDER
+========================================================= */
+
+.screen-wrapper{
+
+  overflow:hidden;
+
+  width:100%;
+}
+
+.screen-slider{
+
+  display:flex;
+
+  width:200%;
+
+  transition:0.45s ease;
+}
+
+.screen-page{
+
+  width:50%;
+
+  padding:4px;
+}
+
+/* =========================================================
+   SHARE PAGE
+========================================================= */
+
+.share-header{
+
+  color:#000080;
+
+  font-size:17px;
+
+  font-weight:bold;
+
+  margin-bottom:10px;
+}
+
+.share-sub{
+
+  color:#444;
+
+  font-size:12px;
+
+  line-height:1.7;
+
+  margin-bottom:18px;
+}
+
+.share-buttons{
+
+  display:flex;
+
+  gap:10px;
+
+  margin-top:14px;
+}
+
+.share-buttons button{
+
+  margin-top:0;
+}
+
+/* =========================================================
+   INBOX
 ========================================================= */
 
 .inbox{
@@ -556,41 +716,54 @@ body{
   width:100%;
 }
 
+/* =========================================================
+   MESSAGE CARD
+========================================================= */
+
 .message-card{
+
+  position:relative;
 
   width:100%;
 
-  background:#f1f1f1;
-
-  padding:14px;
-
   overflow:hidden;
+
+  background:#f3f3f3;
+
+  padding:15px;
 
   border-top:2px solid white;
   border-left:2px solid white;
   border-right:2px solid #777;
   border-bottom:2px solid #777;
 
-  position:relative;
+  transition:
+  transform 0.2s,
+  background 0.2s;
+}
+
+.message-card:hover{
+
+  transform:translateY(-2px);
+
+  background:#ffffde;
 }
 
 .message-card.truth{
-  border-left:6px solid #0f8d0f;
+  border-left:6px solid var(--green);
 }
 
 .message-card.dare{
-  border-left:6px solid #9d1010;
+  border-left:6px solid var(--red);
 }
 
 .message-card.chaos{
-  border-left:6px solid #d17c00;
+  border-left:6px solid var(--orange);
 }
 
 .message-type{
 
   display:inline-block;
-
-  margin-bottom:10px;
 
   background:#000080;
 
@@ -598,28 +771,43 @@ body{
 
   padding:4px 8px;
 
+  margin-bottom:10px;
+
   font-size:10px;
   font-weight:bold;
 }
 
 .message-text{
 
+  color:#111;
+
   font-size:14px;
 
   line-height:1.8;
 
   word-break:break-word;
-
-  color:#111;
 }
+
+.message-meta{
+
+  margin-top:10px;
+
+  font-size:11px;
+
+  color:#666;
+}
+
+/* =========================================================
+   MESSAGE ACTIONS
+========================================================= */
 
 .message-actions{
 
   display:flex;
 
-  gap:8px;
-
   flex-wrap:wrap;
+
+  gap:8px;
 
   margin-top:14px;
 }
@@ -629,37 +817,34 @@ body{
   flex:1;
 
   min-width:120px;
+
+  margin-top:0;
 }
 
 /* =========================================================
-   SHARE PAGE
+   FOOTER
 ========================================================= */
 
-.share-card{
+.footer{
 
-  background:#efefef;
+  margin-top:18px;
 
-  padding:18px;
+  background:var(--panel);
+
+  padding:14px;
+
+  text-align:center;
+
+  font-size:11px;
+
+  color:#444;
 
   border-top:2px solid white;
   border-left:2px solid white;
   border-right:2px solid #777;
   border-bottom:2px solid #777;
-}
 
-.user-link{
-
-  margin-top:12px;
-
-  background:white;
-
-  padding:10px;
-
-  border:2px inset #999;
-
-  word-break:break-word;
-
-  font-size:12px;
+  box-shadow:var(--shadow);
 }
 
 /* =========================================================
@@ -678,14 +863,18 @@ body{
 
   .logo-title{
 
-    font-size:20px;
+    font-size:18px;
 
-    line-height:1.7;
+    line-height:1.8;
   }
 
-  .intro-box p{
+  .logo{
+    width:85px;
+  }
 
-    font-size:12px;
+  .share-buttons{
+
+    flex-direction:column;
   }
 
   .message-actions{
@@ -701,7 +890,13 @@ body{
   .hud-bar{
 
     flex-direction:column;
+
     align-items:flex-start;
+  }
+
+  .intro-box p{
+
+    font-size:12px;
   }
 
 }
