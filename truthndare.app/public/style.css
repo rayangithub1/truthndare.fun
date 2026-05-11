@@ -1,6 +1,7 @@
 /* =========================================================
-   GLOBAL RESET + DESIGN SYSTEM
+   90s INTERNET / YAHOO / WINDOWS 98 STYLE
 ========================================================= */
+
 * {
   margin: 0;
   padding: 0;
@@ -16,613 +17,385 @@ button {
 }
 
 :root {
-  --bg: #070716;
-  --panel: #10102a;
-  --panel-2: #141432;
+  --bg: #c0c0c0;
+  --panel: #d4d0c8;
+  --panel-dark: #808080;
+  --panel-light: #ffffff;
 
-  --primary: #8b5cf6;
-  --secondary: #a78bfa;
-  --glow: #c4b5fd;
+  --text: #000000;
+  --muted: #444444;
 
-  --text: #e2e8f0;
-  --muted: #94a3b8;
+  --blue: #000080;
+  --link: #0000ee;
 
-  --danger: #ff3c5f;
-  --success: #22c55e;
+  --green: #008000;
+  --orange: #cc7a00;
+  --red: #990000;
 
-  --pixel: "Press Start 2P", monospace;
-  --ui: "Segoe UI", sans-serif;
+  --ui: Tahoma, Verdana, Arial, sans-serif;
 }
 
 /* =========================================================
-   BACKGROUND (RETRO VOID UNIVERSE)
+   BODY
 ========================================================= */
+
 body {
   min-height: 100vh;
-  font-family: var(--pixel);
+
+  background: #c0c0c0;
+
+  font-family: var(--ui);
   color: var(--text);
 
-  background: radial-gradient(circle at center, #14142e, var(--bg));
   overflow-x: hidden;
-  position: relative;
-}
 
-/* CRT scanlines */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
 
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(255, 255, 255, 0.03) 3px
-  );
-
-  pointer-events: none;
-  z-index: 999;
-}
-
-/* vignette dark edges */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-
-  background: transparent;
-
-  pointer-events: none;
-  z-index: 998;
+  background-size: 6px 6px;
 }
 
 /* =========================================================
-   PAGE LAYOUT SYSTEM
+   CONTAINER
 ========================================================= */
+
 .container {
   width: 92%;
   max-width: 520px;
 
-  margin: 40px auto;
+  margin: 35px auto;
 
-  background: rgba(16, 16, 42, 0.92);
-  border: 4px solid rgba(79, 103, 129, 0.8);
+  background: var(--panel);
 
-  padding: 20px;
+  padding: 18px;
 
-  box-shadow:
-    10px 10px 0 rgba(0,0,0,0.75),
-    0 0 30px rgba(139, 92, 246, 0.2);
+  border-top: 3px solid var(--panel-light);
+  border-left: 3px solid var(--panel-light);
+  border-right: 3px solid var(--panel-dark);
+  border-bottom: 3px solid var(--panel-dark);
 
-  position: relative;
-  z-index: 10;
+  box-shadow: 3px 3px 0 #000;
 }
 
-/* larger layouts (inbox/chat pages) */
 .container.large {
   max-width: 900px;
 }
 
 /* =========================================================
-   HEADERS / TITLES (GAME UI STYLE)
+   HEADINGS
 ========================================================= */
-h1, h2 {
-  text-align: center;
-  margin-bottom: 12px;
 
-  text-shadow:
-    0 0 12px var(--primary),
-    4px 4px 0 rgba(0,0,0,0.8);
+h1,
+h2,
+h3 {
+  font-family: Verdana, Arial, sans-serif;
+  color: var(--blue);
+
+  margin-bottom: 12px;
+}
+
+h1 {
+  font-size: 28px;
+  border-bottom: 2px solid var(--blue);
+  padding-bottom: 8px;
+}
+
+h2 {
+  font-size: 20px;
 }
 
 .subtitle {
   text-align: center;
-  font-size: 10px;
   color: var(--muted);
+  font-size: 12px;
   margin-bottom: 20px;
 }
 
 /* =========================================================
-   INPUT SYSTEM (TERMINAL STYLE)
+   INPUTS
 ========================================================= */
+
 input,
 textarea,
 select {
   width: 100%;
+
   margin-top: 12px;
+  padding: 10px;
 
-  padding: 14px;
+  background: white;
+  color: black;
 
-  background: #0f0f22;
-  border: 3px solid rgba(79, 103, 129, 0.9);
-
-  color: var(--text);
   font-family: var(--ui);
 
-  outline: none;
+  border-top: 2px solid #808080;
+  border-left: 2px solid #808080;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
 
-  transition: 0.2s ease;
+  outline: none;
 }
 
 input:focus,
 textarea:focus,
 select:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 15px rgba(139, 92, 246, 0.5);
-  transform: translateY(-1px);
+  background: #fffff0;
 }
 
 /* =========================================================
-   BUTTON SYSTEM (ARCADE PRESS STYLE)
+   BUTTONS
 ========================================================= */
+
 button {
   width: 100%;
+
   margin-top: 14px;
+  padding: 10px;
 
-  padding: 14px;
+  background: var(--panel);
 
-  background: linear-gradient(180deg, var(--primary), #5b21b6);
-  border: 4px solid var(--glow);
+  color: black;
 
-  color: white;
-
-  font-family: var(--pixel);
-  font-size: 10px;
-
-  letter-spacing: 2px;
-  text-transform: uppercase;
+  font-family: Tahoma, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
 
   cursor: pointer;
 
-  box-shadow: 6px 6px 0 black;
-
-  transition: 0.15s ease;
+  border-top: 2px solid var(--panel-light);
+  border-left: 2px solid var(--panel-light);
+  border-right: 2px solid var(--panel-dark);
+  border-bottom: 2px solid var(--panel-dark);
 }
 
 button:hover {
-  transform: translate(2px, 2px);
-  box-shadow: 4px 4px 0 black;
+  background: #e5e5e5;
 }
 
 button:active {
-  transform: translate(6px, 6px);
-  box-shadow: none;
+  border-top: 2px solid var(--panel-dark);
+  border-left: 2px solid var(--panel-dark);
+  border-right: 2px solid var(--panel-light);
+  border-bottom: 2px solid var(--panel-light);
 }
 
-/* secondary button */
 button.secondary {
-  background: linear-gradient(180deg, #334155, #1e293b);
-  border-color: #64748b;
+  background: #dfdfdf;
 }
 
-/* danger button */
 button.danger {
-  background: linear-gradient(180deg, var(--danger), #be123c);
-  border-color: #ff8fab;
+  background: #b00000;
+  color: white;
 }
 
 /* =========================================================
-   MESSAGE / INBOX SYSTEM
+   MESSAGE SYSTEM
 ========================================================= */
-/* =========================
-   BASE THOUGHT CARD SYSTEM
-========================= */
 
-.message {
-  margin-top: 14px;
-  padding: 16px;
-
-  position: relative;
-  overflow: hidden;
-
-  background: #070711;
-
-  border-left: 5px solid var(--primary);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  border-right: 1px solid rgba(255, 255, 255, 0.05);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-
-  font-family: var(--ui);
-  color: #e5e7eb;
-
-  box-shadow:
-    0 0 0 1px rgba(255,255,255,0.04),
-    10px 10px 0 rgba(0,0,0,0.9);
-
-  transform: translateY(10px);
-  opacity: 0;
-
-  animation: thoughtEnter 0.5s ease forwards;
-
-  transition: all 0.25s ease;
-}
-
-/* =========================
-   ENTRY ANIMATION (THOUGHT BIRTH)
-========================= */
-
-@keyframes thoughtEnter {
-  0% {
-    transform: translateY(20px) scale(0.98);
-    opacity: 0;
-    filter: blur(6px);
-  }
-
-  100% {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-    filter: blur(0);
-  }
-}
-
-/* =========================
-   EMOTIONAL STATES (THOUGHT TYPES)
-========================= */
-
-.message.truth {
-  border-left-color: #22c55e;
-  box-shadow:
-    0 0 18px rgba(34, 197, 94, 0.15),
-    10px 10px 0 rgba(0,0,0,0.9);
-}
-
-.message.chaos {
-  border-left-color: #facc15;
-  color: #fff7cc;
-  box-shadow:
-    0 0 18px rgba(250, 204, 21, 0.12),
-    10px 10px 0 rgba(0,0,0,0.9);
-}
-
-.message.dare {
-  border-left-color: #ef4444;
-  color: #ffe4e6;
-  box-shadow:
-    0 0 18px rgba(239, 68, 68, 0.15),
-    10px 10px 0 rgba(0,0,0,0.9);
-}
-
-/* =========================
-   “FOCUSED THOUGHT” INTERACTION
-========================= */
-
-.message:hover {
-  transform: translateY(-3px) scale(1.01);
-
-  box-shadow:
-    0 0 25px rgba(139, 92, 246, 0.2),
-    14px 14px 0 rgba(0,0,0,0.95);
-}
-
-/* =========================
-   THOUGHT EDGE SIGNAL
-========================= */
-
-.message::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 5px;
-  height: 100%;
-  background: inherit;
-  filter: brightness(1.4);
-}
-
-/* =========================
-   MEMORY DECAY SYSTEM
-========================= */
-
-.message.old {
-  opacity: 0.45;
-  filter: blur(0.3px);
-  transform: scale(0.99);
-}
-
-/* =========================
-   OPTIONAL: SUBTLE INTERNAL GLOW
-========================= */
-
-.message::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-
-  background: radial-gradient(
-    circle at 30% 20%,
-    rgba(139, 92, 246, 0.08),
-    transparent 60%
-  );
-
-  pointer-events: none;
-}
-
-/* =========================
-   TEXT INSIDE CARD
-========================= */
-
-.message b {
-  color: #ffffff;
-}
-
-.message br {
-  line-height: 1.6;
-}
-
-.message:hover {
-  transform: translateX(3px);
-  border-left-color: var(--secondary);
-}
-
-/* inbox list */
 .inbox {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-/* =========================================================
-   SEND PAGE SPECIAL UI (composer box)
-========================================================= */
-.composer {
-  background: var(--panel);
-  border: 4px solid var(--primary);
-  padding: 15px;
+.message,
+.message-card {
+  margin-top: 10px;
 
-  box-shadow: 8px 8px 0 black;
+  background: #f3f3f3;
+
+  padding: 12px;
+
+  font-family: Arial, sans-serif;
+  color: black;
+
+  border-top: 2px solid var(--panel-light);
+  border-left: 2px solid var(--panel-light);
+  border-right: 2px solid var(--panel-dark);
+  border-bottom: 2px solid var(--panel-dark);
+}
+
+.message.truth,
+.message-card.truth {
+  border-left: 6px solid var(--green);
+}
+
+.message.chaos,
+.message-card.chaos {
+  border-left: 6px solid var(--orange);
+}
+
+.message.dare,
+.message-card.dare {
+  border-left: 6px solid var(--red);
+}
+
+.message:hover,
+.message-card:hover {
+  background: #ffffdd;
 }
 
 /* =========================================================
-   NAV / HEADER BAR (if you use one)
+   CARD DETAILS
 ========================================================= */
+
+.card-title {
+  font-weight: bold;
+  color: var(--blue);
+  margin-bottom: 6px;
+}
+
+.card-meta {
+  font-size: 11px;
+  color: #666;
+  margin-top: 6px;
+}
+
+.inbox-status {
+  font-size: 12px;
+  padding: 15px 0;
+}
+
+/* =========================================================
+   CARD ACTIONS
+========================================================= */
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.card-actions button {
+  flex: 1;
+  min-width: 120px;
+}
+
+/* =========================================================
+   COMPOSER
+========================================================= */
+
+.composer {
+  background: #efefef;
+
+  border: 2px groove #999;
+
+  padding: 15px;
+}
+
+/* =========================================================
+   NAVIGATION BAR
+========================================================= */
+
 .nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  padding: 10px;
-
-  border-bottom: 3px solid var(--primary);
+  padding: 8px 10px;
   margin-bottom: 20px;
+
+  background: var(--blue);
+  color: white;
+
+  border: 2px solid black;
+}
+
+.nav a {
+  color: yellow;
+  text-decoration: underline;
+  font-weight: bold;
 }
 
 /* =========================================================
-   GLITCH / HOVER EFFECTS
+   HOME BUTTON
 ========================================================= */
-.glow-text {
-  text-shadow: 0 0 10px var(--primary);
-}
 
-@keyframes glitch {
-  0% { transform: translate(0); }
-  25% { transform: translate(-2px, 2px); }
-  50% { transform: translate(2px, -2px); }
-  75% { transform: translate(-1px, -1px); }
-  100% { transform: translate(0); }
-}
-
-.glitch:hover {
-  animation: glitch 0.25s infinite;
-}
-
-/* =========================================================
-   LOADING BAR (GAME STYLE)
-========================================================= */
-.loading {
-  width: 100%;
-  height: 8px;
-  background: #0f0f22;
-  border: 2px solid var(--border);
-  margin-top: 10px;
-  overflow: hidden;
-}
-
-.loading div {
-  height: 100%;
-  background: var(--primary);
-  animation: load 2.5s infinite;
-}
-
-@keyframes load {
-  0% { width: 0%; }
-  50% { width: 100%; }
-  100% { width: 0%; }
-}
-
-/* =========================================================
-   MOBILE RESPONSIVE
-========================================================= */
-@media (max-width: 600px) {
-  .container {
-    margin: 20px auto;
-    padding: 15px;
-  }
-
-  button {
-    font-size: 9px;
-    padding: 12px;
-  }
-}
-
-/* =========================
-   HOME NAV BUTTON (GLOBAL)
-========================= */
 .home-btn {
   position: fixed;
-  top: 18px;
-  left: 18px;
+  top: 12px;
+  left: 12px;
 
-  padding: 10px 12px;
+  padding: 8px 10px;
 
-  background: linear-gradient(180deg, #8b5cf6, #5b21b6);
-  border: 3px solid #c4b5fd;
+  background: var(--panel);
 
-  color: white;
+  color: black;
   text-decoration: none;
 
-  font-family: "Press Start 2P", monospace;
-  font-size: 8px;
+  font-family: Tahoma, sans-serif;
+  font-size: 12px;
+  font-weight: bold;
 
-  box-shadow: 4px 4px 0 black;
+  border-top: 2px solid var(--panel-light);
+  border-left: 2px solid var(--panel-light);
+  border-right: 2px solid var(--panel-dark);
+  border-bottom: 2px solid var(--panel-dark);
 
-  z-index: 9999;
-
-  transition: 0.15s ease;
+  z-index: 999;
 }
 
 .home-btn:hover {
-  transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0 black;
+  background: #e4e4e4;
 }
 
-.home-btn:active {
-  transform: translate(4px, 4px);
-  box-shadow: none;
-}
-
-/* =========================
-   MOBILE FIX (CRITICAL)
-========================= */
-@media (max-width: 600px) {
-
-  body {
-    padding: 10px;
-    align-items: flex-start;
-  }
-
-  .container {
-    width: 100%;
-    max-width: 100%;
-    margin: 40px 0 20px;
-    padding: 15px;
-    border-width: 3px;
-  }
-
-  h1 {
-    font-size: 14px;
-  }
-
-  h2 {
-    font-size: 12px;
-  }
-
-  input,
-  textarea,
-  select {
-    font-size: 12px;
-    padding: 12px;
-  }
-
-  button {
-    font-size: 9px;
-    padding: 12px;
-  }
-
-  .home-btn {
-    font-size: 7px;
-    padding: 8px 10px;
-    top: 10px;
-    left: 10px;
-  }
-}
-
-/* =========================
-   MODE COLOR STATES
-========================= */
-
-.container.truth-mode {
-  border-color: #22c55e;
-  box-shadow: 10px 10px 0 rgba(0,0,0,0.75),
-              0 0 25px rgba(34,197,94,0.25);
-}
-
-.container.chaos-mode {
-  border-color: #eab308;
-  box-shadow: 10px 10px 0 rgba(0,0,0,0.75),
-              0 0 25px rgba(234,179,8,0.25);
-}
-
-.container.dare-mode {
-  border-color: #ef4444;
-  box-shadow: 10px 10px 0 rgba(0,0,0,0.75),
-              0 0 25px rgba(239,68,68,0.25);
-}
-
-/* Optional: glow input feedback */
-.truth-mode input,
-.truth-mode textarea {
-  border-color: #22c55e;
-}
-
-.chaos-mode input,
-.chaos-mode textarea {
-  border-color: #eab308;
-}
-
-.dare-mode input,
-.dare-mode textarea {
-  border-color: #ef4444;
-}
-
-/* =========================
-   SYSTEM FOOTER (GAME STYLE)
-========================= */
+/* =========================================================
+   FOOTER
+========================================================= */
 
 .system-footer {
   margin-top: 30px;
+
   padding: 15px;
 
-  border: 3px solid rgba(139, 92, 246, 0.5);
-  background: rgba(16, 16, 42, 0.7);
+  background: #dfdfdf;
 
-  box-shadow: 6px 6px 0 black;
+  border: 2px ridge #999;
 }
 
 .footer-header {
-  font-family: "Press Start 2P", monospace;
-  font-size: 10px;
   text-align: center;
 
-  color: #a78bfa;
+  font-weight: bold;
+  color: var(--blue);
+
   margin-bottom: 15px;
 }
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 1fr;
   gap: 10px;
 }
 
 .footer-box {
-  background: rgba(0,0,0,0.3);
-  border: 2px solid rgba(79, 103, 129, 0.6);
+  background: white;
+
+  border: 1px solid #999;
+
   padding: 10px;
 
-  font-family: "Segoe UI", sans-serif;
   font-size: 12px;
-  color: #94a3b8;
 }
 
 .footer-box h4 {
-  font-family: "Press Start 2P", monospace;
-  font-size: 9px;
-  margin-bottom: 6px;
-  color: #e2e8f0;
+  color: var(--blue);
+  margin-bottom: 5px;
 }
 
 .footer-signature {
-  margin-top: 10px;
+  margin-top: 12px;
+
   text-align: center;
 
-  font-family: "Press Start 2P", monospace;
-  font-size: 8px;
-
-  color: rgba(148, 163, 184, 0.6);
+  font-size: 11px;
+  color: #666;
 }
 
-/* =========================
-   HUD TOP BAR (GAME STYLE)
-========================= */
+/* =========================================================
+   HUD BAR
+========================================================= */
 
 .hud-bar {
   display: flex;
@@ -631,136 +404,22 @@ button.danger {
 
   margin: 10px 0 20px;
 
-  padding: 10px;
+  padding: 8px 10px;
 
-  border: 3px solid rgba(139, 92, 246, 0.5);
-  background: rgba(16, 16, 42, 0.6);
+  background: var(--blue);
+  color: white;
 
-  box-shadow: 5px 5px 0 black;
+  border: 2px solid black;
 }
 
 .hud-item {
-  font-family: "Press Start 2P", monospace;
-  font-size: 8px;
-
-  color: #a78bfa;
-}
-
-/* =========================
-   MESSAGE CARD SYSTEM
-========================= */
-
-.card-container {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.message-card {
-  padding: 12px;
-  border: 2px solid rgba(139, 92, 246, 0.4);
-
-  background: rgba(10, 10, 30, 0.6);
-
-  box-shadow: 5px 5px 0 black;
-
-  animation: cardDrop 0.4s ease;
-  transition: 0.2s ease;
-
-  font-family: "Segoe UI", sans-serif;
-  color: #e2e8f0;
-}
-
-.message-card:hover {
-  transform: translateY(-2px);
-}
-
-/* mode colors */
-.message-card.truth {
-  border-color: #22c55e;
-}
-
-.message-card.chaos {
-  border-color: #eab308;
-}
-
-.message-card.dare {
-  border-color: #ef4444;
-}
-
-/* animation */
-@keyframes cardDrop {
-  0% {
-    transform: translateY(-10px) scale(0.95);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-}
-
-.card-title {
+  font-size: 12px;
   font-weight: bold;
-  margin-bottom: 6px;
 }
 
-.card-meta {
-  font-size: 11px;
-  opacity: 0.7;
-  margin-top: 6px;
-}
-
-.inbox-status {
-    font-size: 10px;
-    padding-top: 17px;
-    padding-bottom: 17px;
-}
-
-/* =========================
-   CARD ACTION BAR (INLINE BUTTONS)
-========================= */
-
-.card-actions {
-  display: flex;
-  gap: 8px;
-  margin-top: 10px;
-  flex-wrap: wrap; /* mobile safety */
-}
-
-/* buttons inside card */
-.card-actions button {
-  flex: 1; /* makes equal width */
-  min-width: 120px;
-
-  padding: 8px 10px;
-
-  font-size: 10px;
-  font-family: "Press Start 2P", monospace;
-
-  background: #1c1c1c;
-  color: #fff;
-
-  border: 2px solid #8b5cf6;
-  cursor: pointer;
-
-  transition: 0.2s ease;
-}
-
-/* hover effect */
-.card-actions button:hover {
-  background: #00ff00;
-  transform: translateY(-2px);
-}
-
-/* specific button types */
-.card-actions button:nth-child(1) {
-  border-color: #a78bfa;
-}
-
-.card-actions button:nth-child(2) {
-  border-color: #f59e0b;
-}
+/* =========================================================
+   PASSWORD FIELD
+========================================================= */
 
 .password-box {
   position: relative;
@@ -768,95 +427,55 @@ button.danger {
 }
 
 .password-box input {
-  padding-right: 60px;
+  padding-right: 50px;
 }
 
 .eye-btn {
   position: absolute;
 
-  right: 18px;
   top: 57%;
+  right: 15px;
 
   transform: translateY(-50%);
 
-  font-size: 18px;
-
   cursor: pointer;
 
-  user-select: none;
+  font-size: 16px;
 
   opacity: 0.7;
-
-  transition: 0.2s ease;
-
-  z-index: 100;
 }
 
 .eye-btn:hover {
   opacity: 1;
-  transform: translateY(-50%) scale(1.1);
 }
+
+/* =========================================================
+   INTRO BOX
+========================================================= */
 
 .intro-box {
-  padding: 18px;
   margin-bottom: 24px;
 
-  background:
-    linear-gradient(
-      180deg,
-      rgba(18,18,40,0.92),
-      rgba(8,8,20,0.96)
-    );
+  padding: 18px;
 
-  border: 2px solid rgba(139,92,246,0.35);
+  background: #efefef;
 
-  box-shadow:
-    0 0 20px rgba(139,92,246,0.08),
-    6px 6px 0 rgba(0,0,0,0.85);
-
-  position: relative;
-
-  overflow: hidden;
-}
-
-.intro-box::before {
-  content: "";
-
-  position: absolute;
-
-  top: 0;
-  left: 0;
-
-  width: 100%;
-  height: 2px;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      #8b5cf6,
-      transparent
-    );
+  border: 2px ridge #999;
 }
 
 .intro-box h3 {
-  font-size: 11px;
+  margin-bottom: 12px;
 
-  margin-bottom: 14px;
+  color: var(--blue);
 
-  color: #c4b5fd;
-
-  text-shadow: 0 0 10px rgba(139,92,246,0.4);
+  font-size: 16px;
 }
 
 .intro-box p {
-  font-family: "Segoe UI", sans-serif;
-
   font-size: 13px;
-
   line-height: 1.7;
 
-  color: #cbd5e1;
+  color: #333;
 
   margin-bottom: 12px;
 }
@@ -864,24 +483,58 @@ button.danger {
 .intro-tags {
   display: flex;
   flex-wrap: wrap;
-
   gap: 8px;
-
-  margin-top: 14px;
 }
 
 .intro-tags span {
-  padding: 8px 10px;
+  padding: 6px 8px;
 
-  font-size: 9px;
+  background: white;
 
-  background: rgba(139,92,246,0.12);
+  border: 1px solid #999;
 
-  border: 1px solid rgba(139,92,246,0.3);
+  font-size: 11px;
 
-  color: #c4b5fd;
+  color: #000080;
+}
 
-  font-family: "Press Start 2P", monospace;
+/* =========================================================
+   MOBILE
+========================================================= */
 
-  box-shadow: 3px 3px 0 rgba(0,0,0,0.7);
+@media (max-width: 600px) {
+
+  body {
+    padding: 10px;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 100%;
+
+    margin: 30px 0 20px;
+
+    padding: 14px;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  button {
+    font-size: 12px;
+  }
+
+  .card-actions {
+    flex-direction: column;
+  }
+
+  .home-btn {
+    top: 8px;
+    left: 8px;
+  }
 }
