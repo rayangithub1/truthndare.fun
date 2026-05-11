@@ -459,45 +459,61 @@ function downloadImage(id, type, message) {
   canvas.width = 1200;
   canvas.height = 630;
 
-  // background
+  // =========================
+  // BACKGROUND
+  // =========================
   ctx.fillStyle = "#ffffff";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  // border
+  // subtle border
   ctx.strokeStyle = "#e5e7eb";
   ctx.lineWidth = 2;
   ctx.strokeRect(30, 30, canvas.width - 60, canvas.height - 60);
 
   // =========================
-  // LOAD LOGO (IMPORTANT PART)
+  // LOAD LOGO
   // =========================
   const logo = new Image();
-  logo.src = "/logo.png"; // <-- your logo path
+  logo.src = "/logo.png";
 
   logo.onload = function () {
 
     // =========================
-    // DRAW LOGO (TOP LEFT)
+    // RIGHT SIDE WATERMARK LOGO
     // =========================
-    ctx.drawImage(logo, 70, 60, 60, 60);
+    ctx.save();
+    ctx.globalAlpha = 0.08; // faint watermark
+
+    const logoSize = 450;
+
+    const x = canvas.width - logoSize - 40;
+    const y = canvas.height / 2 - logoSize / 2;
+
+    ctx.drawImage(logo, x, y, logoSize, logoSize);
+
+    ctx.restore();
 
     // =========================
-    // BRAND TEXT (next to logo)
+    // LEFT SIDE CONTENT
     // =========================
-    ctx.fillStyle = "#111827";
-    ctx.font = "bold 36px Arial";
+
+    ctx.globalAlpha = 1;
     ctx.textAlign = "left";
-    ctx.fillText("truthndare.fun", 150, 100);
+
+    // BRAND
+    ctx.fillStyle = "#111827";
+    ctx.font = "bold 38px Arial";
+    ctx.fillText("truthndare.fun", 90, 110);
 
     ctx.fillStyle = "#6b7280";
     ctx.font = "18px Arial";
-    ctx.fillText("anonymous truth • dare • chaos messages", 150, 130);
+    ctx.fillText("anonymous truth • dare • chaos messages", 90, 145);
 
     // divider
     ctx.strokeStyle = "#e5e7eb";
     ctx.beginPath();
-    ctx.moveTo(200, 180);
-    ctx.lineTo(1000, 180);
+    ctx.moveTo(90, 180);
+    ctx.lineTo(900, 180);
     ctx.stroke();
 
     // =========================
@@ -510,7 +526,7 @@ function downloadImage(id, type, message) {
 
     ctx.fillStyle = color;
     ctx.font = "bold 22px Arial";
-    ctx.fillText(type.toUpperCase(), 140, 250);
+    ctx.fillText(type.toUpperCase(), 90, 250);
 
     // =========================
     // MESSAGE
@@ -521,18 +537,19 @@ function downloadImage(id, type, message) {
     wrapText(
       ctx,
       message,
-      140,
+      90,
       320,
-      920,
+      700, // reduced width so logo doesn't clash
       60
     );
 
     // =========================
     // FOOTER
     // =========================
+    ctx.textAlign = "center";
+
     ctx.fillStyle = "#2563eb";
     ctx.font = "bold 20px Arial";
-    ctx.textAlign = "center";
     ctx.fillText("truthndare.fun", canvas.width / 2, 520);
 
     ctx.fillStyle = "#9ca3af";
@@ -540,7 +557,7 @@ function downloadImage(id, type, message) {
     ctx.fillText("messages are anonymous • no identity stored", canvas.width / 2, 555);
 
     // =========================
-    // EXPORT (IMPORTANT: inside onload)
+    // EXPORT
     // =========================
     const link = document.createElement("a");
     link.download = `${type}-truthndare.png`;
