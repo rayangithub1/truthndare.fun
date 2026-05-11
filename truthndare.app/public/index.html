@@ -22,23 +22,24 @@
 
 <body>
 
-<!-- =========================
-     CRT OVERLAY
-========================= -->
+<!-- ========================================
+     ATMOSPHERE
+======================================== -->
 <div class="scanlines"></div>
 
-<!-- =========================
+<!-- ========================================
      MAIN CONTAINER
-========================= -->
+======================================== -->
 <div class="container">
 
-  <!-- =========================
-       TOP HUD
-  ========================= -->
+  <!-- ========================================
+       HUD BAR
+  ======================================== -->
   <div class="hud-bar">
 
     <div class="hud-item">
-      👤 ONLINE: <span id="liveUsers">128</span>
+      👤 ONLINE USERS:
+      <span id="liveUsers">128</span>
     </div>
 
     <div class="hud-item">
@@ -47,9 +48,9 @@
 
   </div>
 
-  <!-- =========================
+  <!-- ========================================
        TITLE
-  ========================= -->
+  ======================================== -->
   <div class="title-section">
 
     <h1 class="glow-text">
@@ -57,21 +58,54 @@
     </h1>
 
     <p class="subtitle">
-      ANONYMOUS CYBER SYSTEM
+      CYBER ANONYMOUS SYSTEM
     </p>
 
   </div>
 
-  <!-- =========================
+  <!-- ========================================
        LOADING BAR
-  ========================= -->
+  ======================================== -->
   <div class="loading">
     <div></div>
   </div>
 
-  <!-- =========================
+  <!-- ========================================
+       INTRO SECTION
+  ======================================== -->
+  <div class="intro-box">
+
+    <h3>⚡ ENTER THE NETWORK</h3>
+
+    <p>
+      Truth N Dare is an anonymous
+      social system where people
+      can send truths, chaos and
+      dares directly to your inbox.
+    </p>
+
+    <p>
+      Create your profile, share
+      your personal link and start
+      receiving anonymous messages
+      from anyone instantly.
+    </p>
+
+    <div class="intro-tags">
+
+      <span>ANONYMOUS</span>
+      <span>CHAOS</span>
+      <span>DARES</span>
+      <span>TRUTHS</span>
+      <span>REAL TIME</span>
+
+    </div>
+
+  </div>
+
+  <!-- ========================================
        AUTH SWITCH
-  ========================= -->
+  ======================================== -->
   <div
     class="nav"
     style="
@@ -82,7 +116,7 @@
   >
 
     <button onclick="showSignup()">
-      NEW USER
+      CREATE ACCOUNT
     </button>
 
     <button
@@ -94,15 +128,15 @@
 
   </div>
 
-  <!-- =========================
+  <!-- ========================================
        SIGNUP BOX
-  ========================= -->
+  ======================================== -->
   <div
     id="signupBox"
     class="composer"
   >
 
-    <h2>CREATE ACCOUNT</h2>
+    <h2>INITIALIZE PROFILE</h2>
 
     <p class="subtitle">
       SAVE YOUR PASSWORD SAFELY
@@ -137,9 +171,9 @@
 
     </div>
 
-    <!-- signup button -->
+    <!-- signup -->
     <button onclick="signup()">
-      CREATE ACCOUNT
+      BOOT SYSTEM
     </button>
 
     <!-- copy credentials -->
@@ -150,26 +184,31 @@
       COPY CREDENTIALS
     </button>
 
+    <!-- saved status -->
+    <p
+      id="copyStatus"
+      class="subtitle"
+      style="margin-top:14px;"
+    ></p>
+
   </div>
 
-  <!-- =========================
+  <!-- ========================================
        LOGIN BOX
-  ========================= -->
+  ======================================== -->
   <div
     id="loginBox"
     class="composer"
     style="display:none;"
   >
 
-    <h2>LOGIN SYSTEM</h2>
+    <h2>ACCESS TERMINAL</h2>
 
-    <!-- username -->
     <input
       id="loginUsername"
       placeholder="USERNAME"
     >
 
-    <!-- password -->
     <div class="password-box">
 
       <input
@@ -192,16 +231,15 @@
 
     </div>
 
-    <!-- login button -->
     <button onclick="login()">
       ENTER WORLD
     </button>
 
   </div>
 
-  <!-- =========================
-       RESULT TEXT
-  ========================= -->
+  <!-- ========================================
+       RESULT
+  ======================================== -->
   <p
     id="result"
     class="subtitle"
@@ -210,9 +248,9 @@
 
 </div>
 
-<!-- =========================
-     FOOTER
-========================= -->
+<!-- ========================================
+     SYSTEM FOOTER
+======================================== -->
 <div class="system-footer">
 
   <div class="footer-header">
@@ -221,46 +259,53 @@
 
   <div class="footer-grid">
 
-    <!-- safety -->
     <div class="footer-box">
 
       <h4>⚠ SAFETY NOTICE</h4>
 
       <p>
-        This is an anonymous platform.
         Do not send illegal,
-        harmful or abusive content.
+        hateful or abusive content.
+        Accounts may be restricted
+        automatically.
       </p>
 
     </div>
 
-    <!-- contact -->
     <div class="footer-box">
 
-      <h4>CONTACT</h4>
+      <h4>🔐 ACCOUNT SECURITY</h4>
+
+      <p>
+        Your credentials are not
+        recoverable by default.
+      </p>
+
+      <p style="margin-top:8px;">
+        Save your username and
+        password immediately.
+      </p>
+
+    </div>
+
+    <div class="footer-box">
+
+      <h4>📡 CONTACT</h4>
 
       <p>
         support@truthndare.fun
       </p>
 
-      <p style="margin-top:8px;">
-
-        Save your credentials safely.
-        Password recovery may not
-        always be possible.
-
-      </p>
-
     </div>
 
-    <!-- creator -->
     <div class="footer-box">
 
       <h4>❤️ CREATOR NOTE</h4>
 
       <p>
         Built for chaos,
-        curiosity and expression.
+        curiosity and anonymous
+        expression.
       </p>
 
     </div>
@@ -268,15 +313,326 @@
   </div>
 
   <div class="footer-signature">
-    v1.0 • SYSTEM ACTIVE
+    v1.0 • TRUTH / CHAOS SYSTEM ACTIVE
   </div>
 
 </div>
 
-<!-- =========================
-     APP SCRIPT
-========================= -->
-<script src="app.js"></script>
+<!-- ========================================
+     SCRIPT
+======================================== -->
+<script>
+
+// ========================================
+// SWITCH UI
+// ========================================
+function showSignup() {
+
+  document.getElementById(
+    "signupBox"
+  ).style.display = "block";
+
+  document.getElementById(
+    "loginBox"
+  ).style.display = "none";
+
+}
+
+function showLogin() {
+
+  document.getElementById(
+    "signupBox"
+  ).style.display = "none";
+
+  document.getElementById(
+    "loginBox"
+  ).style.display = "block";
+
+}
+
+// ========================================
+// TOGGLE PASSWORD
+// ========================================
+function togglePassword(id, el) {
+
+  const input =
+    document.getElementById(id);
+
+  if (input.type === "password") {
+
+    input.type = "text";
+
+    el.innerText = "🙈";
+
+  } else {
+
+    input.type = "password";
+
+    el.innerText = "🙉";
+
+  }
+
+}
+
+// ========================================
+// COPY CREDENTIALS
+// ========================================
+async function copySignupCredentials() {
+
+  const username =
+    document.getElementById(
+      "signupUsername"
+    ).value.trim();
+
+  const password =
+    document.getElementById(
+      "signupPassword"
+    ).value;
+
+  const status =
+    document.getElementById(
+      "copyStatus"
+    );
+
+  // validation
+  if (!username || !password) {
+
+    status.innerText =
+      "ENTER USERNAME & PASSWORD FIRST";
+
+    return;
+
+  }
+
+  const text =
+`USERNAME: ${username}
+PASSWORD: ${password}`;
+
+  try {
+
+    // copy
+    await navigator.clipboard.writeText(
+      text
+    );
+
+    // save locally
+    localStorage.setItem(
+      "savedCredentials",
+      text
+    );
+
+    // success
+    status.innerText =
+      "✔ CREDENTIALS COPIED & SAVED";
+
+  } catch (err) {
+
+    console.log(err);
+
+    status.innerText =
+      "FAILED TO COPY";
+
+  }
+
+}
+
+// ========================================
+// SIGNUP
+// ========================================
+async function signup() {
+
+  const username =
+    document.getElementById(
+      "signupUsername"
+    ).value.trim();
+
+  const password =
+    document.getElementById(
+      "signupPassword"
+    ).value;
+
+  const result =
+    document.getElementById(
+      "result"
+    );
+
+  if (!username || !password) {
+
+    result.innerText =
+      "ENTER USERNAME & PASSWORD";
+
+    return;
+
+  }
+
+  try {
+
+    const res = await fetch(
+      "/signup",
+      {
+        method: "POST",
+
+        headers: {
+          "Content-Type":
+            "application/json"
+        },
+
+        body: JSON.stringify({
+          username,
+          password
+        })
+      }
+    );
+
+    const data =
+      await res.json();
+
+    if (data.error) {
+
+      result.innerText =
+        data.error;
+
+      return;
+
+    }
+
+    // save credentials automatically
+    const creds =
+`USERNAME: ${username}
+PASSWORD: ${password}`;
+
+    localStorage.setItem(
+      "savedCredentials",
+      creds
+    );
+
+    // auto copy
+    await navigator.clipboard.writeText(
+      creds
+    );
+
+    result.innerText =
+      "✔ ACCOUNT CREATED • CREDENTIALS SAVED";
+
+  } catch (err) {
+
+    console.log(err);
+
+    result.innerText =
+      "SIGNUP FAILED";
+
+  }
+
+}
+
+// ========================================
+// LOGIN
+// ========================================
+async function login() {
+
+  const username =
+    document.getElementById(
+      "loginUsername"
+    ).value.trim();
+
+  const password =
+    document.getElementById(
+      "loginPassword"
+    ).value;
+
+  const result =
+    document.getElementById(
+      "result"
+    );
+
+  try {
+
+    const res = await fetch(
+      "/login",
+      {
+        method: "POST",
+
+        headers: {
+          "Content-Type":
+            "application/json"
+        },
+
+        body: JSON.stringify({
+          username,
+          password
+        })
+      }
+    );
+
+    const data =
+      await res.json();
+
+    if (data.error) {
+
+      result.innerText =
+        data.error;
+
+      return;
+
+    }
+
+    localStorage.setItem(
+      "token",
+      data.token
+    );
+
+    result.innerText =
+      "✔ ACCESS GRANTED";
+
+    setTimeout(() => {
+
+      window.location.href =
+        "/inbox";
+
+    }, 700);
+
+  } catch (err) {
+
+    console.log(err);
+
+    result.innerText =
+      "LOGIN FAILED";
+
+  }
+
+}
+
+// ========================================
+// LIVE USERS
+// ========================================
+let baseUsers = 128;
+
+function updateLiveUsers() {
+
+  const el =
+    document.getElementById(
+      "liveUsers"
+    );
+
+  if (!el) return;
+
+  baseUsers +=
+    Math.floor(Math.random() * 5) - 2;
+
+  if (baseUsers < 80) {
+    baseUsers = 80;
+  }
+
+  el.innerText = baseUsers;
+
+}
+
+setInterval(
+  updateLiveUsers,
+  3000
+);
+
+</script>
 
 </body>
 </html>
