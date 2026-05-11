@@ -1,5 +1,6 @@
 /* =========================================================
-   90s INTERNET / YAHOO / WINDOWS 98 STYLE
+   CLEAN RETRO INTERNET UI (WIN98 / YAHOO ERA INSPIRED)
+   Enhanced spacing + UI consistency + better usability
 ========================================================= */
 
 * {
@@ -17,160 +18,174 @@ button {
 }
 
 :root {
-  --bg: #c0c0c0;
-  --panel: #d4d0c8;
-  --panel-dark: #808080;
+  --bg: #d6d6d6;
+
+  --panel: #e6e6e6;
+  --panel-dark: #7f7f7f;
   --panel-light: #ffffff;
 
-  --text: #000000;
-  --muted: #444444;
+  --text: #000;
+  --muted: #444;
 
   --blue: #000080;
-  --link: #0000ee;
 
-  --green: #008000;
-  --orange: #cc7a00;
-  --red: #990000;
+  --green: #1a7f1a;
+  --orange: #c77700;
+  --red: #a30000;
 
   --ui: Tahoma, Verdana, Arial, sans-serif;
 }
 
 /* =========================================================
-   BODY
+   BODY (SOFT RETRO GRID)
 ========================================================= */
 
 body {
   min-height: 100vh;
-
-  background: #c0c0c0;
-
   font-family: var(--ui);
   color: var(--text);
 
-  overflow-x: hidden;
+  background: var(--bg);
 
   background-image:
-    linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
+    linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
 
-  background-size: 6px 6px;
+  background-size: 7px 7px;
 }
 
 /* =========================================================
-   CONTAINER
+   HOME BUTTON
+========================================================= */
+
+.home-btn {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+
+  padding: 7px 10px;
+
+  background: var(--panel);
+  color: #000;
+  text-decoration: none;
+
+  font-size: 12px;
+  font-weight: bold;
+  font-family: Tahoma;
+
+  border-top: 2px solid var(--panel-light);
+  border-left: 2px solid var(--panel-light);
+  border-right: 2px solid var(--panel-dark);
+  border-bottom: 2px solid var(--panel-dark);
+
+  z-index: 999;
+}
+
+/* =========================================================
+   CONTAINER (MORE TOP BREATHING SPACE)
 ========================================================= */
 
 .container {
   width: 92%;
   max-width: 520px;
 
-  margin: 35px auto;
+  /* 🔥 more realistic page spacing */
+  margin: 70px auto 35px;
 
   background: var(--panel);
 
   padding: 18px;
 
-  border-top: 3px solid var(--panel-light);
-  border-left: 3px solid var(--panel-light);
-  border-right: 3px solid var(--panel-dark);
-  border-bottom: 3px solid var(--panel-dark);
+  border-top: 2px solid var(--panel-light);
+  border-left: 2px solid var(--panel-light);
+  border-right: 2px solid var(--panel-dark);
+  border-bottom: 2px solid var(--panel-dark);
 
-  box-shadow: 3px 3px 0 #000;
-}
-
-.container.large {
-  max-width: 900px;
+  box-shadow: 2px 2px 0 #000;
 }
 
 /* =========================================================
    HEADINGS
 ========================================================= */
 
-h1,
-h2,
-h3 {
+h1, h2, h3 {
   font-family: Verdana, Arial, sans-serif;
   color: var(--blue);
-
-  margin-bottom: 12px;
 }
 
 h1 {
-  font-size: 28px;
+  font-size: 26px;
+  padding-bottom: 6px;
   border-bottom: 2px solid var(--blue);
-  padding-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 h2 {
-  font-size: 20px;
+  font-size: 18px;
+  margin-bottom: 8px;
 }
 
 .subtitle {
   text-align: center;
-  color: var(--muted);
   font-size: 12px;
-  margin-bottom: 20px;
+  color: var(--muted);
+  margin-bottom: 18px;
 }
 
 /* =========================================================
-   INPUTS
+   INPUTS (CLASSIC FORM FEEL)
 ========================================================= */
 
 input,
 textarea,
 select {
   width: 100%;
-
-  margin-top: 12px;
+  margin-top: 10px;
   padding: 10px;
 
-  background: white;
-  color: black;
+  background: #fff;
+  color: #000;
 
   font-family: var(--ui);
 
-  border-top: 2px solid #808080;
-  border-left: 2px solid #808080;
-  border-right: 2px solid #ffffff;
-  border-bottom: 2px solid #ffffff;
+  border-top: 2px solid var(--panel-dark);
+  border-left: 2px solid var(--panel-dark);
+  border-right: 2px solid var(--panel-light);
+  border-bottom: 2px solid var(--panel-light);
 
   outline: none;
 }
 
 input:focus,
-textarea:focus,
-select:focus {
+textarea:focus {
   background: #fffff0;
 }
 
 /* =========================================================
-   BUTTONS
+   BUTTONS (RETRO PUSH BUTTONS)
 ========================================================= */
 
 button {
   width: 100%;
-
-  margin-top: 14px;
+  margin-top: 12px;
   padding: 10px;
 
-  background: var(--panel);
-
-  color: black;
-
-  font-family: Tahoma, sans-serif;
+  font-family: Tahoma;
   font-size: 13px;
   font-weight: bold;
 
-  cursor: pointer;
+  background: var(--panel);
 
   border-top: 2px solid var(--panel-light);
   border-left: 2px solid var(--panel-light);
   border-right: 2px solid var(--panel-dark);
   border-bottom: 2px solid var(--panel-dark);
+
+  cursor: pointer;
 }
 
 button:hover {
-  background: #e5e5e5;
+  background: #f0f0f0;
 }
 
 button:active {
@@ -180,13 +195,71 @@ button:active {
   border-bottom: 2px solid var(--panel-light);
 }
 
-button.secondary {
-  background: #dfdfdf;
+/* =========================================================
+   NAV / HUD BAR
+========================================================= */
+
+.nav,
+.hud-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 8px 10px;
+  margin-bottom: 18px;
+
+  background: var(--blue);
+  color: #fff;
+
+  border: 2px solid #000;
+
+  font-size: 12px;
+  font-weight: bold;
 }
 
-button.danger {
-  background: #b00000;
-  color: white;
+.nav a {
+  color: yellow;
+  text-decoration: underline;
+}
+
+/* =========================================================
+   INTRO BOX
+========================================================= */
+
+.intro-box {
+  padding: 16px;
+  margin-bottom: 20px;
+
+  background: #f3f3f3;
+
+  border: 2px ridge #999;
+}
+
+.intro-box p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* =========================================================
+   TAGS
+========================================================= */
+
+.intro-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.intro-tags span {
+  font-size: 11px;
+  padding: 5px 7px;
+
+  background: #fff;
+
+  border: 1px solid #999;
+
+  color: var(--blue);
 }
 
 /* =========================================================
@@ -199,16 +272,10 @@ button.danger {
   gap: 10px;
 }
 
-.message,
-.message-card {
-  margin-top: 10px;
-
-  background: #f3f3f3;
-
+.message {
   padding: 12px;
 
-  font-family: Arial, sans-serif;
-  color: black;
+  background: #fff;
 
   border-top: 2px solid var(--panel-light);
   border-left: 2px solid var(--panel-light);
@@ -216,28 +283,16 @@ button.danger {
   border-bottom: 2px solid var(--panel-dark);
 }
 
-.message.truth,
-.message-card.truth {
-  border-left: 6px solid var(--green);
+.message:hover {
+  background: #ffffe8;
 }
 
-.message.chaos,
-.message-card.chaos {
-  border-left: 6px solid var(--orange);
-}
-
-.message.dare,
-.message-card.dare {
-  border-left: 6px solid var(--red);
-}
-
-.message:hover,
-.message-card:hover {
-  background: #ffffdd;
-}
+.message.truth { border-left: 5px solid var(--green); }
+.message.chaos { border-left: 5px solid var(--orange); }
+.message.dare { border-left: 5px solid var(--red); }
 
 /* =========================================================
-   CARD DETAILS
+   CARD CONTENT
 ========================================================= */
 
 .card-title {
@@ -249,28 +304,28 @@ button.danger {
 .card-meta {
   font-size: 11px;
   color: #666;
-  margin-top: 6px;
-}
-
-.inbox-status {
-  font-size: 12px;
-  padding: 15px 0;
 }
 
 /* =========================================================
-   CARD ACTIONS
+   🔥 MESSAGE ACTIONS (FIXED INLINE BUTTONS)
 ========================================================= */
 
 .card-actions {
   display: flex;
+  flex-direction: row;   /* IMPORTANT: INLINE */
   gap: 8px;
+
   margin-top: 10px;
-  flex-wrap: wrap;
+  padding-top: 8px;
+
+  border-top: 1px dotted #aaa;
 }
 
 .card-actions button {
   flex: 1;
-  min-width: 120px;
+  min-width: 0;
+  margin-top: 0;
+  font-size: 12px;
 }
 
 /* =========================================================
@@ -286,62 +341,6 @@ button.danger {
 }
 
 /* =========================================================
-   NAVIGATION BAR
-========================================================= */
-
-.nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  padding: 8px 10px;
-  margin-bottom: 20px;
-
-  background: var(--blue);
-  color: white;
-
-  border: 2px solid black;
-}
-
-.nav a {
-  color: yellow;
-  text-decoration: underline;
-  font-weight: bold;
-}
-
-/* =========================================================
-   HOME BUTTON
-========================================================= */
-
-.home-btn {
-  position: fixed;
-  top: 12px;
-  left: 12px;
-
-  padding: 8px 10px;
-
-  background: var(--panel);
-
-  color: black;
-  text-decoration: none;
-
-  font-family: Tahoma, sans-serif;
-  font-size: 12px;
-  font-weight: bold;
-
-  border-top: 2px solid var(--panel-light);
-  border-left: 2px solid var(--panel-light);
-  border-right: 2px solid var(--panel-dark);
-  border-bottom: 2px solid var(--panel-dark);
-
-  z-index: 999;
-}
-
-.home-btn:hover {
-  background: #e4e4e4;
-}
-
-/* =========================================================
    FOOTER
 ========================================================= */
 
@@ -353,68 +352,10 @@ button.danger {
   background: #dfdfdf;
 
   border: 2px ridge #999;
-}
-
-.footer-header {
-  text-align: center;
-
-  font-weight: bold;
-  color: var(--blue);
-
-  margin-bottom: 15px;
-}
-
-.footer-grid {
-  display: grid;
-  gap: 10px;
-}
-
-.footer-box {
-  background: white;
-
-  border: 1px solid #999;
-
-  padding: 10px;
-
-  font-size: 12px;
-}
-
-.footer-box h4 {
-  color: var(--blue);
-  margin-bottom: 5px;
-}
-
-.footer-signature {
-  margin-top: 12px;
 
   text-align: center;
-
   font-size: 11px;
-  color: #666;
-}
-
-/* =========================================================
-   HUD BAR
-========================================================= */
-
-.hud-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  margin: 10px 0 20px;
-
-  padding: 8px 10px;
-
-  background: var(--blue);
-  color: white;
-
-  border: 2px solid black;
-}
-
-.hud-item {
-  font-size: 12px;
-  font-weight: bold;
+  color: #555;
 }
 
 /* =========================================================
@@ -423,7 +364,6 @@ button.danger {
 
 .password-box {
   position: relative;
-  width: 100%;
 }
 
 .password-box input {
@@ -432,70 +372,11 @@ button.danger {
 
 .eye-btn {
   position: absolute;
-
   top: 57%;
   right: 15px;
-
   transform: translateY(-50%);
-
   cursor: pointer;
-
-  font-size: 16px;
-
   opacity: 0.7;
-}
-
-.eye-btn:hover {
-  opacity: 1;
-}
-
-/* =========================================================
-   INTRO BOX
-========================================================= */
-
-.intro-box {
-  margin-bottom: 24px;
-
-  padding: 18px;
-
-  background: #efefef;
-
-  border: 2px ridge #999;
-}
-
-.intro-box h3 {
-  margin-bottom: 12px;
-
-  color: var(--blue);
-
-  font-size: 16px;
-}
-
-.intro-box p {
-  font-size: 13px;
-  line-height: 1.7;
-
-  color: #333;
-
-  margin-bottom: 12px;
-}
-
-.intro-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.intro-tags span {
-  padding: 6px 8px;
-
-  background: white;
-
-  border: 1px solid #999;
-
-  font-size: 11px;
-
-  color: #000080;
 }
 
 /* =========================================================
@@ -510,10 +391,7 @@ button.danger {
 
   .container {
     width: 100%;
-    max-width: 100%;
-
-    margin: 30px 0 20px;
-
+    margin: 60px 0 20px;
     padding: 14px;
   }
 
@@ -521,16 +399,12 @@ button.danger {
     font-size: 22px;
   }
 
-  h2 {
-    font-size: 18px;
-  }
-
   button {
     font-size: 12px;
   }
 
   .card-actions {
-    flex-direction: column;
+    flex-direction: column; /* stack buttons on mobile */
   }
 
   .home-btn {
