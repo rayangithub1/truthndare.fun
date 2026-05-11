@@ -1,725 +1,340 @@
-/* =========================================
-   GLOBAL RESET
-========================================= */
+/* =========================================================
+   CLASSIC EARLY INTERNET / YAHOO / WIN98 HYBRID (REFINED)
+========================================================= */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html,
+:root {
+  --bg: #d6d6d6;
+  --panel: #e6e6e6;
+  --panel-dark: #7f7f7f;
+  --panel-light: #ffffff;
+
+  --text: #000;
+  --muted: #444;
+
+  --blue: #000080;
+  --link: #0000ee;
+
+  --green: #1a7f1a;
+  --orange: #c77700;
+  --red: #a30000;
+
+  --ui: Tahoma, Verdana, Arial, sans-serif;
+}
+
+/* =========================================================
+   BODY (SOFTER OLD WEB FEEL)
+========================================================= */
+
 body {
-  min-height: 100%;
+  min-height: 100vh;
+  font-family: var(--ui);
+  color: var(--text);
+
+  background: var(--bg);
+
+  /* subtle old CRT-ish noise grid */
+  background-image:
+    linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+  background-size: 7px 7px;
 }
 
-body {
-  background: #c0c0c0;
+/* =========================================================
+   CONTAINER (REAL WINDOW LOOK)
+========================================================= */
 
-  font-family:
-    Tahoma,
-    Verdana,
-    Arial,
-    sans-serif;
+.container {
+  width: 92%;
+  max-width: 520px;
+  margin: 35px auto;
 
-  color: #000;
-
-  overflow-x: hidden;
-}
-
-/* =========================================
-   OLD SCHOOL LINKS
-========================================= */
-a {
-  color: #0000cc;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-/* =========================================
-   TOPBAR
-========================================= */
-.topbar {
-  background: navy;
-
-  color: white;
-
-  border-bottom: 3px solid black;
-
-  padding: 10px 16px;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.logo {
-  font-size: 22px;
-  font-weight: bold;
-
-  letter-spacing: 1px;
-}
-
-.nav-links {
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-}
-
-.nav-links a {
-  color: white;
-
-  font-size: 13px;
-
-  font-weight: bold;
-}
-
-/* =========================================
-   MAIN LAYOUT
-========================================= */
-.main-layout {
-  display: grid;
-
-  grid-template-columns:
-    250px
-    1fr
-    250px;
-
-  gap: 18px;
-
-  max-width: 1500px;
-
-  margin: auto;
+  background: var(--panel);
 
   padding: 18px;
+
+  border-top: 2px solid var(--panel-light);
+  border-left: 2px solid var(--panel-light);
+  border-right: 2px solid var(--panel-dark);
+  border-bottom: 2px solid var(--panel-dark);
+
+  box-shadow: 2px 2px 0 #000;
 }
 
-/* =========================================
-   SIDEBARS
-========================================= */
-.sidebar {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+/* =========================================================
+   HEADINGS (OLD WEB STYLE CLEAN BLUE)
+========================================================= */
+
+h1, h2, h3 {
+  font-family: Verdana, Arial, sans-serif;
+  color: var(--blue);
 }
 
-/* =========================================
-   RETRO PANEL
-========================================= */
-.retro-box {
-  background: #d4d0c8;
-
-  border-top: 2px solid #ffffff;
-  border-left: 2px solid #ffffff;
-
-  border-right: 2px solid #808080;
-  border-bottom: 2px solid #808080;
-
-  padding: 12px;
-
-  font-size: 13px;
-
-  line-height: 1.6;
-}
-
-.retro-box h3 {
-  margin-bottom: 10px;
-
-  font-size: 14px;
-
-  color: navy;
-
-  border-bottom: 1px solid #808080;
-
+h1 {
+  font-size: 26px;
   padding-bottom: 6px;
+  border-bottom: 2px solid var(--blue);
 }
 
-.retro-box p {
+h2 {
+  font-size: 18px;
   margin-bottom: 8px;
 }
 
-/* =========================================
-   MAIN PANEL
-========================================= */
-.main-panel {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-/* =========================================
-   WINDOW
-========================================= */
-.window {
-  width: 100%;
-  max-width: 560px;
-
-  background: #d4d0c8;
-
-  border-top: 2px solid #ffffff;
-  border-left: 2px solid #ffffff;
-
-  border-right: 2px solid #808080;
-  border-bottom: 2px solid #808080;
-}
-
-/* =========================================
-   WINDOW TITLE BAR
-========================================= */
-.window-title {
-  background: linear-gradient(
-    90deg,
-    #000080,
-    #1084d0
-  );
-
-  color: white;
-
-  padding: 8px 10px;
-
-  font-size: 13px;
-  font-weight: bold;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-/* =========================================
-   WINDOW CONTENT
-========================================= */
-.window-content {
-  padding: 20px;
-}
-
-/* =========================================
-   TITLES
-========================================= */
-h1,
-h2,
-h3,
-h4 {
-  font-weight: bold;
-}
-
 .subtitle {
-  margin-top: 8px;
-
   font-size: 12px;
-
-  color: #444;
+  color: var(--muted);
+  text-align: center;
+  margin-bottom: 18px;
 }
 
-/* =========================================
-   INPUTS
-========================================= */
+/* =========================================================
+   INPUTS (CLASSIC FORM STYLE)
+========================================================= */
+
 input,
 textarea,
 select {
   width: 100%;
-
-  background: white;
-
-  border-top: 2px solid #808080;
-  border-left: 2px solid #808080;
-
-  border-right: 2px solid #ffffff;
-  border-bottom: 2px solid #ffffff;
-
+  margin-top: 10px;
   padding: 10px;
 
-  margin-top: 10px;
+  font-family: var(--ui);
 
-  font-size: 14px;
+  background: #fff;
+  color: #000;
+
+  border-top: 2px solid var(--panel-dark);
+  border-left: 2px solid var(--panel-dark);
+  border-right: 2px solid var(--panel-light);
+  border-bottom: 2px solid var(--panel-light);
 
   outline: none;
 }
 
-textarea {
-  resize: vertical;
-  min-height: 120px;
+input:focus,
+textarea:focus {
+  background: #fffff0;
 }
 
-/* =========================================
-   PASSWORD BOX
-========================================= */
-.password-box {
-  position: relative;
-  width: 100%;
-}
+/* =========================================================
+   BUTTONS (REAL CLICKABLE 90s FEEL)
+========================================================= */
 
-.password-box input {
-  padding-right: 50px;
-}
-
-.eye-btn {
-  position: absolute;
-
-  right: 14px;
-  top: 56%;
-
-  transform: translateY(-50%);
-
-  cursor: pointer;
-
-  font-size: 18px;
-
-  user-select: none;
-}
-
-/* =========================================
-   BUTTONS
-========================================= */
 button {
   width: 100%;
-
   margin-top: 12px;
-
   padding: 10px;
 
-  background: #d4d0c8;
-
-  border-top: 2px solid #ffffff;
-  border-left: 2px solid #ffffff;
-
-  border-right: 2px solid #808080;
-  border-bottom: 2px solid #808080;
-
-  cursor: pointer;
-
+  font-family: Tahoma, sans-serif;
   font-size: 13px;
   font-weight: bold;
 
-  color: black;
+  background: var(--panel);
+
+  color: #000;
+
+  border-top: 2px solid var(--panel-light);
+  border-left: 2px solid var(--panel-light);
+  border-right: 2px solid var(--panel-dark);
+  border-bottom: 2px solid var(--panel-dark);
+
+  cursor: pointer;
 }
 
 button:hover {
-  background: #e4e4e4;
+  background: #f0f0f0;
 }
 
 button:active {
-  border-top: 2px solid #808080;
-  border-left: 2px solid #808080;
-
-  border-right: 2px solid #ffffff;
-  border-bottom: 2px solid #ffffff;
+  border-top: 2px solid var(--panel-dark);
+  border-left: 2px solid var(--panel-dark);
+  border-right: 2px solid var(--panel-light);
+  border-bottom: 2px solid var(--panel-light);
 }
 
 button.secondary {
-  background: #bfbfbf;
+  background: #dcdcdc;
 }
 
 button.danger {
-  background: #ffb0b0;
+  background: #c00000;
+  color: #fff;
 }
 
-/* =========================================
-   AUTH NAV
-========================================= */
-.auth-switch {
+/* =========================================================
+   NAV / HUD (OLD INTERNET HEADER BAR)
+========================================================= */
+
+.nav,
+.hud-bar {
   display: flex;
-  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
 
-  margin-top: 18px;
-}
-
-/* =========================================
-   INTRO BOX
-========================================= */
-.intro-box {
-  background: #ffffcc;
-
-  border: 1px solid #999;
-
-  padding: 12px;
-
+  padding: 8px 10px;
   margin-bottom: 18px;
 
-  font-size: 13px;
+  background: var(--blue);
+  color: #fff;
 
-  line-height: 1.7;
+  border: 2px solid #000;
+
+  font-size: 12px;
 }
+
+.nav a {
+  color: yellow;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+/* =========================================================
+   HOME BUTTON (KEEP SIMPLE AND OLD SCHOOL)
+========================================================= */
+
+.home-btn {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+
+  padding: 7px 10px;
+
+  background: var(--panel);
+
+  font-size: 12px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #000;
+
+  border-top: 2px solid var(--panel-light);
+  border-left: 2px solid var(--panel-light);
+  border-right: 2px solid var(--panel-dark);
+  border-bottom: 2px solid var(--panel-dark);
+}
+
+/* =========================================================
+   INTRO BOX
+========================================================= */
+
+.intro-box {
+  padding: 16px;
+  margin-bottom: 20px;
+
+  background: #f3f3f3;
+
+  border: 2px ridge #999;
+}
+
+.intro-box p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* =========================================================
+   TAGS (SIMPLE LABEL STYLE)
+========================================================= */
 
 .intro-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-
-  margin-top: 12px;
+  gap: 6px;
 }
 
 .intro-tags span {
-  background: navy;
-
-  color: white;
-
-  padding: 4px 8px;
-
   font-size: 11px;
+  padding: 5px 7px;
+
+  background: #fff;
+
+  border: 1px solid #999;
+
+  color: var(--blue);
 }
 
-/* =========================================
-   MARQUEE
-========================================= */
-marquee {
-  background: black;
+/* =========================================================
+   MESSAGES (WEB FORUM STYLE CARDS)
+========================================================= */
 
-  color: lime;
-
-  padding: 6px;
-
-  font-size: 12px;
-}
-
-/* =========================================
-   MESSAGE LIST
-========================================= */
-.card-container,
 .inbox {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 10px;
 }
 
-/* =========================================
-   MESSAGE CARD
-========================================= */
-.message-card,
 .message {
-  background: white;
-
-  border-top: 2px solid #ffffff;
-  border-left: 2px solid #ffffff;
-
-  border-right: 2px solid #808080;
-  border-bottom: 2px solid #808080;
-
-  padding: 14px;
-
-  font-size: 14px;
-
-  line-height: 1.7;
-}
-
-/* =========================================
-   MESSAGE TYPES
-========================================= */
-.message-card.truth,
-.message.truth {
-  border-left: 6px solid green;
-}
-
-.message-card.chaos,
-.message.chaos {
-  border-left: 6px solid orange;
-}
-
-.message-card.dare,
-.message.dare {
-  border-left: 6px solid red;
-}
-
-/* =========================================
-   CARD TITLE
-========================================= */
-.card-title {
-  font-weight: bold;
-
-  margin-bottom: 10px;
-
-  color: navy;
-}
-
-/* =========================================
-   CARD META
-========================================= */
-.card-meta {
-  margin-top: 12px;
-
-  font-size: 12px;
-
-  color: #444;
-}
-
-/* =========================================
-   CARD ACTIONS
-========================================= */
-.card-actions {
-  display: flex;
-  gap: 10px;
-
-  margin-top: 14px;
-
-  flex-wrap: wrap;
-}
-
-.card-actions button {
-  flex: 1;
-  min-width: 120px;
-}
-
-/* =========================================
-   LOADING BAR
-========================================= */
-.loading {
-  width: 100%;
-  height: 18px;
-
-  background: white;
-
-  border-top: 2px solid #808080;
-  border-left: 2px solid #808080;
-
-  border-right: 2px solid #ffffff;
-  border-bottom: 2px solid #ffffff;
-
-  overflow: hidden;
-
-  margin: 16px 0;
-}
-
-.loading div {
-  height: 100%;
-
-  width: 40%;
-
-  background: navy;
-
-  animation: loadingMove 2s infinite;
-}
-
-@keyframes loadingMove {
-  0% {
-    margin-left: -40%;
-  }
-
-  100% {
-    margin-left: 100%;
-  }
-}
-
-/* =========================================
-   HUD BAR
-========================================= */
-.hud-bar {
-  background: #d4d0c8;
-
-  border-top: 2px solid #ffffff;
-  border-left: 2px solid #ffffff;
-
-  border-right: 2px solid #808080;
-  border-bottom: 2px solid #808080;
-
-  padding: 10px;
-
-  display: flex;
-  justify-content: space-between;
-
-  font-size: 12px;
-
-  margin-bottom: 14px;
-
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.hud-item {
-  font-weight: bold;
-}
-
-/* =========================================
-   FOOTER
-========================================= */
-.system-footer {
-  background: #bdbdbd;
-
-  border-top: 3px solid #808080;
-
-  margin-top: 30px;
-
-  padding: 20px;
-}
-
-.footer-header {
-  font-size: 16px;
-  font-weight: bold;
-
-  margin-bottom: 16px;
-
-  color: navy;
-}
-
-.footer-grid {
-  display: grid;
-
-  grid-template-columns:
-    repeat(auto-fit, minmax(220px, 1fr));
-
-  gap: 16px;
-}
-
-.footer-box {
-  background: #d4d0c8;
-
-  border-top: 2px solid #ffffff;
-  border-left: 2px solid #ffffff;
-
-  border-right: 2px solid #808080;
-  border-bottom: 2px solid #808080;
-
   padding: 12px;
 
-  font-size: 13px;
+  background: #fff;
 
-  line-height: 1.7;
+  border-top: 2px solid var(--panel-light);
+  border-left: 2px solid var(--panel-light);
+  border-right: 2px solid var(--panel-dark);
+  border-bottom: 2px solid var(--panel-dark);
 }
 
-.footer-box h4 {
-  margin-bottom: 10px;
-
-  color: navy;
+.message:hover {
+  background: #ffffe8;
 }
 
-.footer-signature {
-  margin-top: 20px;
+.message.truth { border-left: 5px solid var(--green); }
+.message.chaos { border-left: 5px solid var(--orange); }
+.message.dare { border-left: 5px solid var(--red); }
+
+/* =========================================================
+   CARD TEXT
+========================================================= */
+
+.card-title {
+  font-weight: bold;
+  color: var(--blue);
+  margin-bottom: 6px;
+}
+
+.card-meta {
+  font-size: 11px;
+  color: #666;
+}
+
+/* =========================================================
+   FOOTER (OLD WEB SIMPLE BLOCK)
+========================================================= */
+
+.system-footer {
+  margin-top: 25px;
+  padding: 14px;
+
+  background: #e0e0e0;
+
+  border: 2px ridge #999;
 
   text-align: center;
-
-  font-size: 12px;
-
-  color: #333;
+  font-size: 11px;
+  color: #555;
 }
 
-/* =========================================
-   STATUS TEXT
-========================================= */
-#result,
-#copyStatus,
-.inbox-status {
-  margin-top: 14px;
+/* =========================================================
+   MOBILE CLEANUP
+========================================================= */
 
-  font-size: 13px;
-
-  color: navy;
-
-  font-weight: bold;
-}
-
-/* =========================================
-   HOME BUTTON
-========================================= */
-.home-btn {
-  display: inline-block;
-
-  background: #d4d0c8;
-
-  border-top: 2px solid #ffffff;
-  border-left: 2px solid #ffffff;
-
-  border-right: 2px solid #808080;
-  border-bottom: 2px solid #808080;
-
-  padding: 8px 12px;
-
-  color: black;
-
-  font-size: 13px;
-
-  text-decoration: none;
-}
-
-.home-btn:active {
-  border-top: 2px solid #808080;
-  border-left: 2px solid #808080;
-
-  border-right: 2px solid #ffffff;
-  border-bottom: 2px solid #ffffff;
-}
-
-/* =========================================
-   TABLE STYLE
-========================================= */
-table {
-  width: 100%;
-
-  border-collapse: collapse;
-
-  margin-top: 12px;
-}
-
-table td,
-table th {
-  border: 1px solid #808080;
-
-  padding: 8px;
-
-  font-size: 13px;
-}
-
-table th {
-  background: navy;
-  color: white;
-}
-
-/* =========================================
-   RETRO SCROLLBAR
-========================================= */
-::-webkit-scrollbar {
-  width: 14px;
-}
-
-::-webkit-scrollbar-track {
-  background: #c0c0c0;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #808080;
-
-  border: 2px solid #c0c0c0;
-}
-
-/* =========================================
-   MOBILE
-========================================= */
-@media (max-width: 1000px) {
-
-  .main-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .sidebar {
+@media (max-width: 600px) {
+  .container {
     width: 100%;
+    margin: 20px 0;
+    padding: 14px;
   }
 
-}
-
-@media (max-width: 700px) {
-
-  .topbar {
-    flex-direction: column;
-    align-items: flex-start;
+  h1 {
+    font-size: 20px;
   }
 
-  .nav-links {
-    width: 100%;
-    justify-content: flex-start;
+  button {
+    font-size: 12px;
   }
-
-  .window {
-    max-width: 100%;
-  }
-
-  .card-actions {
-    flex-direction: column;
-  }
-
-  .hud-bar {
-    flex-direction: column;
-  }
-
 }
