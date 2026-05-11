@@ -24,7 +24,7 @@ function togglePassword(id, el) {
   if (input.type === "password") {
 
     input.type = "text";
-    el.innerText = "👁️‍🗨️";
+    el.innerText = "🙈";
 
   } else {
 
