@@ -1,253 +1,426 @@
-/* =========================================
-   GLOBAL RESET
-========================================= */
+/* =========================================================
+   90s INTERNET / YAHOO / WINDOWS 98 STYLE
+========================================================= */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html,
-body {
-  min-height: 100%;
+input,
+textarea,
+select,
+button {
+  font-size: 16px;
+  -webkit-appearance: none;
 }
 
+:root {
+  --bg: #c0c0c0;
+  --panel: #d4d0c8;
+  --panel-dark: #808080;
+  --panel-light: #ffffff;
+
+  --text: #000000;
+  --muted: #444444;
+
+  --blue: #000080;
+  --link: #0000ee;
+
+  --green: #008000;
+  --orange: #cc7a00;
+  --red: #990000;
+
+  --ui: Tahoma, Verdana, Arial, sans-serif;
+}
+
+/* =========================================================
+   BODY
+========================================================= */
+
 body {
+  min-height: 100vh;
+
   background: #c0c0c0;
 
-  font-family:
-    Tahoma,
-    Verdana,
-    Arial,
-    sans-serif;
-
-  color: #000;
+  font-family: var(--ui);
+  color: var(--text);
 
   overflow-x: hidden;
+
+  background-image:
+    linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
+
+  background-size: 6px 6px;
 }
 
-/* =========================================
-   OLD SCHOOL LINKS
-========================================= */
-a {
-  color: #0000cc;
-  text-decoration: none;
-}
+/* =========================================================
+   CONTAINER
+========================================================= */
 
-a:hover {
-  text-decoration: underline;
-}
+.container {
+  width: 92%;
+  max-width: 520px;
 
-/* =========================================
-   TOPBAR
-========================================= */
-.topbar {
-  background: navy;
+  margin: 35px auto;
 
-  color: white;
-
-  border-bottom: 3px solid black;
-
-  padding: 10px 16px;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.logo {
-  font-size: 22px;
-  font-weight: bold;
-
-  letter-spacing: 1px;
-}
-
-.nav-links {
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-}
-
-.nav-links a {
-  color: white;
-
-  font-size: 13px;
-
-  font-weight: bold;
-}
-
-/* =========================================
-   MAIN LAYOUT
-========================================= */
-.main-layout {
-  display: grid;
-
-  grid-template-columns:
-    250px
-    1fr
-    250px;
-
-  gap: 18px;
-
-  max-width: 1500px;
-
-  margin: auto;
+  background: var(--panel);
 
   padding: 18px;
+
+  border-top: 3px solid var(--panel-light);
+  border-left: 3px solid var(--panel-light);
+  border-right: 3px solid var(--panel-dark);
+  border-bottom: 3px solid var(--panel-dark);
+
+  box-shadow: 3px 3px 0 #000;
 }
 
-/* =========================================
-   SIDEBARS
-========================================= */
-.sidebar {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+.container.large {
+  max-width: 900px;
 }
 
-/* =========================================
-   RETRO PANEL
-========================================= */
-.retro-box {
-  background: #d4d0c8;
+/* =========================================================
+   HEADINGS
+========================================================= */
 
-  border-top: 2px solid #ffffff;
-  border-left: 2px solid #ffffff;
-
-  border-right: 2px solid #808080;
-  border-bottom: 2px solid #808080;
-
-  padding: 12px;
-
-  font-size: 13px;
-
-  line-height: 1.6;
-}
-
-.retro-box h3 {
-  margin-bottom: 10px;
-
-  font-size: 14px;
-
-  color: navy;
-
-  border-bottom: 1px solid #808080;
-
-  padding-bottom: 6px;
-}
-
-.retro-box p {
-  margin-bottom: 8px;
-}
-
-/* =========================================
-   MAIN PANEL
-========================================= */
-.main-panel {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-/* =========================================
-   WINDOW
-========================================= */
-.window {
-  width: 100%;
-  max-width: 560px;
-
-  background: #d4d0c8;
-
-  border-top: 2px solid #ffffff;
-  border-left: 2px solid #ffffff;
-
-  border-right: 2px solid #808080;
-  border-bottom: 2px solid #808080;
-}
-
-/* =========================================
-   WINDOW TITLE BAR
-========================================= */
-.window-title {
-  background: linear-gradient(
-    90deg,
-    #000080,
-    #1084d0
-  );
-
-  color: white;
-
-  padding: 8px 10px;
-
-  font-size: 13px;
-  font-weight: bold;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-/* =========================================
-   WINDOW CONTENT
-========================================= */
-.window-content {
-  padding: 20px;
-}
-
-/* =========================================
-   TITLES
-========================================= */
 h1,
 h2,
-h3,
-h4 {
-  font-weight: bold;
+h3 {
+  font-family: Verdana, Arial, sans-serif;
+  color: var(--blue);
+
+  margin-bottom: 12px;
+}
+
+h1 {
+  font-size: 28px;
+  border-bottom: 2px solid var(--blue);
+  padding-bottom: 8px;
+}
+
+h2 {
+  font-size: 20px;
 }
 
 .subtitle {
-  margin-top: 8px;
-
+  text-align: center;
+  color: var(--muted);
   font-size: 12px;
-
-  color: #444;
+  margin-bottom: 20px;
 }
 
-/* =========================================
+/* =========================================================
    INPUTS
-========================================= */
+========================================================= */
+
 input,
 textarea,
 select {
   width: 100%;
 
+  margin-top: 12px;
+  padding: 10px;
+
   background: white;
+  color: black;
+
+  font-family: var(--ui);
 
   border-top: 2px solid #808080;
   border-left: 2px solid #808080;
-
   border-right: 2px solid #ffffff;
   border-bottom: 2px solid #ffffff;
-
-  padding: 10px;
-
-  margin-top: 10px;
-
-  font-size: 14px;
 
   outline: none;
 }
 
-textarea {
-  resize: vertical;
-  min-height: 120px;
+input:focus,
+textarea:focus,
+select:focus {
+  background: #fffff0;
 }
 
-/* =========================================
-   PASSWORD BOX
-========================================= */
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+button {
+  width: 100%;
+
+  margin-top: 14px;
+  padding: 10px;
+
+  background: var(--panel);
+
+  color: black;
+
+  font-family: Tahoma, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  border-top: 2px solid var(--panel-light);
+  border-left: 2px solid var(--panel-light);
+  border-right: 2px solid var(--panel-dark);
+  border-bottom: 2px solid var(--panel-dark);
+}
+
+button:hover {
+  background: #e5e5e5;
+}
+
+button:active {
+  border-top: 2px solid var(--panel-dark);
+  border-left: 2px solid var(--panel-dark);
+  border-right: 2px solid var(--panel-light);
+  border-bottom: 2px solid var(--panel-light);
+}
+
+button.secondary {
+  background: #dfdfdf;
+}
+
+button.danger {
+  background: #b00000;
+  color: white;
+}
+
+/* =========================================================
+   MESSAGE SYSTEM
+========================================================= */
+
+.inbox {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.message,
+.message-card {
+  margin-top: 10px;
+
+  background: #f3f3f3;
+
+  padding: 12px;
+
+  font-family: Arial, sans-serif;
+  color: black;
+
+  border-top: 2px solid var(--panel-light);
+  border-left: 2px solid var(--panel-light);
+  border-right: 2px solid var(--panel-dark);
+  border-bottom: 2px solid var(--panel-dark);
+}
+
+.message.truth,
+.message-card.truth {
+  border-left: 6px solid var(--green);
+}
+
+.message.chaos,
+.message-card.chaos {
+  border-left: 6px solid var(--orange);
+}
+
+.message.dare,
+.message-card.dare {
+  border-left: 6px solid var(--red);
+}
+
+.message:hover,
+.message-card:hover {
+  background: #ffffdd;
+}
+
+/* =========================================================
+   CARD DETAILS
+========================================================= */
+
+.card-title {
+  font-weight: bold;
+  color: var(--blue);
+  margin-bottom: 6px;
+}
+
+.card-meta {
+  font-size: 11px;
+  color: #666;
+  margin-top: 6px;
+}
+
+.inbox-status {
+  font-size: 12px;
+  padding: 15px 0;
+}
+
+/* =========================================================
+   CARD ACTIONS
+========================================================= */
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.card-actions button {
+  flex: 1;
+  min-width: 120px;
+}
+
+/* =========================================================
+   COMPOSER
+========================================================= */
+
+.composer {
+  background: #efefef;
+
+  border: 2px groove #999;
+
+  padding: 15px;
+}
+
+/* =========================================================
+   NAVIGATION BAR
+========================================================= */
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 8px 10px;
+  margin-bottom: 20px;
+
+  background: var(--blue);
+  color: white;
+
+  border: 2px solid black;
+}
+
+.nav a {
+  color: yellow;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+/* =========================================================
+   HOME BUTTON
+========================================================= */
+
+.home-btn {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+
+  padding: 8px 10px;
+
+  background: var(--panel);
+
+  color: black;
+  text-decoration: none;
+
+  font-family: Tahoma, sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+
+  border-top: 2px solid var(--panel-light);
+  border-left: 2px solid var(--panel-light);
+  border-right: 2px solid var(--panel-dark);
+  border-bottom: 2px solid var(--panel-dark);
+
+  z-index: 999;
+}
+
+.home-btn:hover {
+  background: #e4e4e4;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.system-footer {
+  margin-top: 30px;
+
+  padding: 15px;
+
+  background: #dfdfdf;
+
+  border: 2px ridge #999;
+}
+
+.footer-header {
+  text-align: center;
+
+  font-weight: bold;
+  color: var(--blue);
+
+  margin-bottom: 15px;
+}
+
+.footer-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.footer-box {
+  background: white;
+
+  border: 1px solid #999;
+
+  padding: 10px;
+
+  font-size: 12px;
+}
+
+.footer-box h4 {
+  color: var(--blue);
+  margin-bottom: 5px;
+}
+
+.footer-signature {
+  margin-top: 12px;
+
+  text-align: center;
+
+  font-size: 11px;
+  color: #666;
+}
+
+/* =========================================================
+   HUD BAR
+========================================================= */
+
+.hud-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin: 10px 0 20px;
+
+  padding: 8px 10px;
+
+  background: var(--blue);
+  color: white;
+
+  border: 2px solid black;
+}
+
+.hud-item {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* =========================================================
+   PASSWORD FIELD
+========================================================= */
+
 .password-box {
   position: relative;
   width: 100%;
@@ -260,466 +433,108 @@ textarea {
 .eye-btn {
   position: absolute;
 
-  right: 14px;
-  top: 56%;
+  top: 57%;
+  right: 15px;
 
   transform: translateY(-50%);
 
   cursor: pointer;
 
-  font-size: 18px;
+  font-size: 16px;
 
-  user-select: none;
+  opacity: 0.7;
 }
 
-/* =========================================
-   BUTTONS
-========================================= */
-button {
-  width: 100%;
-
-  margin-top: 12px;
-
-  padding: 10px;
-
-  background: #d4d0c8;
-
-  border-top: 2px solid #ffffff;
-  border-left: 2px solid #ffffff;
-
-  border-right: 2px solid #808080;
-  border-bottom: 2px solid #808080;
-
-  cursor: pointer;
-
-  font-size: 13px;
-  font-weight: bold;
-
-  color: black;
+.eye-btn:hover {
+  opacity: 1;
 }
 
-button:hover {
-  background: #e4e4e4;
-}
-
-button:active {
-  border-top: 2px solid #808080;
-  border-left: 2px solid #808080;
-
-  border-right: 2px solid #ffffff;
-  border-bottom: 2px solid #ffffff;
-}
-
-button.secondary {
-  background: #bfbfbf;
-}
-
-button.danger {
-  background: #ffb0b0;
-}
-
-/* =========================================
-   AUTH NAV
-========================================= */
-.auth-switch {
-  display: flex;
-  gap: 10px;
-
-  margin-top: 18px;
-}
-
-/* =========================================
+/* =========================================================
    INTRO BOX
-========================================= */
+========================================================= */
+
 .intro-box {
-  background: #ffffcc;
+  margin-bottom: 24px;
 
-  border: 1px solid #999;
+  padding: 18px;
 
-  padding: 12px;
+  background: #efefef;
 
-  margin-bottom: 18px;
+  border: 2px ridge #999;
+}
 
+.intro-box h3 {
+  margin-bottom: 12px;
+
+  color: var(--blue);
+
+  font-size: 16px;
+}
+
+.intro-box p {
   font-size: 13px;
-
   line-height: 1.7;
+
+  color: #333;
+
+  margin-bottom: 12px;
 }
 
 .intro-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-
-  margin-top: 12px;
 }
 
 .intro-tags span {
-  background: navy;
+  padding: 6px 8px;
 
-  color: white;
+  background: white;
 
-  padding: 4px 8px;
+  border: 1px solid #999;
 
   font-size: 11px;
+
+  color: #000080;
 }
 
-/* =========================================
-   MARQUEE
-========================================= */
-marquee {
-  background: black;
-
-  color: lime;
-
-  padding: 6px;
-
-  font-size: 12px;
-}
-
-/* =========================================
-   MESSAGE LIST
-========================================= */
-.card-container,
-.inbox {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-/* =========================================
-   MESSAGE CARD
-========================================= */
-.message-card,
-.message {
-  background: white;
-
-  border-top: 2px solid #ffffff;
-  border-left: 2px solid #ffffff;
-
-  border-right: 2px solid #808080;
-  border-bottom: 2px solid #808080;
-
-  padding: 14px;
-
-  font-size: 14px;
-
-  line-height: 1.7;
-}
-
-/* =========================================
-   MESSAGE TYPES
-========================================= */
-.message-card.truth,
-.message.truth {
-  border-left: 6px solid green;
-}
-
-.message-card.chaos,
-.message.chaos {
-  border-left: 6px solid orange;
-}
-
-.message-card.dare,
-.message.dare {
-  border-left: 6px solid red;
-}
-
-/* =========================================
-   CARD TITLE
-========================================= */
-.card-title {
-  font-weight: bold;
-
-  margin-bottom: 10px;
-
-  color: navy;
-}
-
-/* =========================================
-   CARD META
-========================================= */
-.card-meta {
-  margin-top: 12px;
-
-  font-size: 12px;
-
-  color: #444;
-}
-
-/* =========================================
-   CARD ACTIONS
-========================================= */
-.card-actions {
-  display: flex;
-  gap: 10px;
-
-  margin-top: 14px;
-
-  flex-wrap: wrap;
-}
-
-.card-actions button {
-  flex: 1;
-  min-width: 120px;
-}
-
-/* =========================================
-   LOADING BAR
-========================================= */
-.loading {
-  width: 100%;
-  height: 18px;
-
-  background: white;
-
-  border-top: 2px solid #808080;
-  border-left: 2px solid #808080;
-
-  border-right: 2px solid #ffffff;
-  border-bottom: 2px solid #ffffff;
-
-  overflow: hidden;
-
-  margin: 16px 0;
-}
-
-.loading div {
-  height: 100%;
-
-  width: 40%;
-
-  background: navy;
-
-  animation: loadingMove 2s infinite;
-}
-
-@keyframes loadingMove {
-  0% {
-    margin-left: -40%;
-  }
-
-  100% {
-    margin-left: 100%;
-  }
-}
-
-/* =========================================
-   HUD BAR
-========================================= */
-.hud-bar {
-  background: #d4d0c8;
-
-  border-top: 2px solid #ffffff;
-  border-left: 2px solid #ffffff;
-
-  border-right: 2px solid #808080;
-  border-bottom: 2px solid #808080;
-
-  padding: 10px;
-
-  display: flex;
-  justify-content: space-between;
-
-  font-size: 12px;
-
-  margin-bottom: 14px;
-
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.hud-item {
-  font-weight: bold;
-}
-
-/* =========================================
-   FOOTER
-========================================= */
-.system-footer {
-  background: #bdbdbd;
-
-  border-top: 3px solid #808080;
-
-  margin-top: 30px;
-
-  padding: 20px;
-}
-
-.footer-header {
-  font-size: 16px;
-  font-weight: bold;
-
-  margin-bottom: 16px;
-
-  color: navy;
-}
-
-.footer-grid {
-  display: grid;
-
-  grid-template-columns:
-    repeat(auto-fit, minmax(220px, 1fr));
-
-  gap: 16px;
-}
-
-.footer-box {
-  background: #d4d0c8;
-
-  border-top: 2px solid #ffffff;
-  border-left: 2px solid #ffffff;
-
-  border-right: 2px solid #808080;
-  border-bottom: 2px solid #808080;
-
-  padding: 12px;
-
-  font-size: 13px;
-
-  line-height: 1.7;
-}
-
-.footer-box h4 {
-  margin-bottom: 10px;
-
-  color: navy;
-}
-
-.footer-signature {
-  margin-top: 20px;
-
-  text-align: center;
-
-  font-size: 12px;
-
-  color: #333;
-}
-
-/* =========================================
-   STATUS TEXT
-========================================= */
-#result,
-#copyStatus,
-.inbox-status {
-  margin-top: 14px;
-
-  font-size: 13px;
-
-  color: navy;
-
-  font-weight: bold;
-}
-
-/* =========================================
-   HOME BUTTON
-========================================= */
-.home-btn {
-  display: inline-block;
-
-  background: #d4d0c8;
-
-  border-top: 2px solid #ffffff;
-  border-left: 2px solid #ffffff;
-
-  border-right: 2px solid #808080;
-  border-bottom: 2px solid #808080;
-
-  padding: 8px 12px;
-
-  color: black;
-
-  font-size: 13px;
-
-  text-decoration: none;
-}
-
-.home-btn:active {
-  border-top: 2px solid #808080;
-  border-left: 2px solid #808080;
-
-  border-right: 2px solid #ffffff;
-  border-bottom: 2px solid #ffffff;
-}
-
-/* =========================================
-   TABLE STYLE
-========================================= */
-table {
-  width: 100%;
-
-  border-collapse: collapse;
-
-  margin-top: 12px;
-}
-
-table td,
-table th {
-  border: 1px solid #808080;
-
-  padding: 8px;
-
-  font-size: 13px;
-}
-
-table th {
-  background: navy;
-  color: white;
-}
-
-/* =========================================
-   RETRO SCROLLBAR
-========================================= */
-::-webkit-scrollbar {
-  width: 14px;
-}
-
-::-webkit-scrollbar-track {
-  background: #c0c0c0;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #808080;
-
-  border: 2px solid #c0c0c0;
-}
-
-/* =========================================
+/* =========================================================
    MOBILE
-========================================= */
-@media (max-width: 1000px) {
+========================================================= */
 
-  .main-layout {
-    grid-template-columns: 1fr;
+@media (max-width: 600px) {
+
+  body {
+    padding: 10px;
   }
 
-  .sidebar {
+  .container {
     width: 100%;
-  }
-
-}
-
-@media (max-width: 700px) {
-
-  .topbar {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .nav-links {
-    width: 100%;
-    justify-content: flex-start;
-  }
-
-  .window {
     max-width: 100%;
+
+    margin: 30px 0 20px;
+
+    padding: 14px;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  button {
+    font-size: 12px;
   }
 
   .card-actions {
     flex-direction: column;
   }
 
-  .hud-bar {
-    flex-direction: column;
+  .home-btn {
+    top: 8px;
+    left: 8px;
   }
-
 }
