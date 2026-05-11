@@ -176,30 +176,138 @@ body{
 
 .hud-bar{
 
+  position:relative;
+
   display:flex;
 
   justify-content:space-between;
 
   align-items:center;
 
-  background:#f8fafc;
+  gap:12px;
 
-  border:1px solid var(--border);
+  background:
+  linear-gradient(
+    to bottom,
+    #ffffff,
+    #f3f6fa
+  );
 
-  border-radius:12px;
+  border:1px solid #cfd8e3;
 
-  padding:12px 14px;
+  border-radius:0;
 
-  margin-bottom:24px;
+  padding:14px 16px;
+
+  margin-bottom:26px;
+
+  box-shadow:
+  4px 4px 0 rgba(15,23,42,0.08);
+
+  overflow:hidden;
 }
+
+/* TOP SHINE */
+
+.hud-bar::before{
+
+  content:"";
+
+  position:absolute;
+
+  top:0;
+  left:0;
+
+  width:100%;
+  height:1px;
+
+  background:#ffffff;
+}
+
+/* BOTTOM DEPTH */
+
+.hud-bar::after{
+
+  content:"";
+
+  position:absolute;
+
+  bottom:0;
+  left:0;
+
+  width:100%;
+  height:2px;
+
+  background:#d5dde7;
+}
+
+/* =========================================================
+   HUD ITEM
+========================================================= */
 
 .hud-item{
 
+  display:flex;
+
+  align-items:center;
+
+  gap:6px;
+
+  background:#ffffff;
+
+  border:1px solid #dbe3ec;
+
+  padding:10px 12px;
+
+  min-height:42px;
+
+  flex:1;
+
   font-size:12px;
 
-  font-weight:600;
+  font-weight:700;
 
-  color:#475569;
+  letter-spacing:0.2px;
+
+  color:#334155;
+
+  box-shadow:
+  inset 0 1px 0 #ffffff;
+}
+
+/* =========================================================
+   ONLINE NUMBER
+========================================================= */
+
+#liveUsers{
+
+  color:#2563eb;
+
+  font-weight:800;
+
+  margin-left:2px;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:600px){
+
+  .hud-bar{
+
+    flex-direction:column;
+
+    align-items:stretch;
+
+    padding:12px;
+  }
+
+  .hud-item{
+
+    width:100%;
+  }
+
 }
 
 /* =========================================================
