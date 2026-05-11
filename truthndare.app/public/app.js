@@ -453,119 +453,84 @@ function downloadImage(id, type, message) {
   const ctx = canvas.getContext("2d");
 
   // =========================
-  // SIZE (kept clean portrait)
+  // INSTAGRAM STORY SIZE
   // =========================
   canvas.width = 1080;
-  canvas.height = 1350;
+  canvas.height = 1920;
 
   // =========================
-  // PALETTE (OLD WEB)
+  // SIMPLE BACKGROUND (clean)
   // =========================
-  const bg = "#f4f1e8";        // beige paper
-  const border = "#000000";    // harsh black
-  const accent = "#333333";    // dark gray text
-
-  // type stamp colors (muted)
-  let tagColor = "#444";
-
-  if (type === "truth") tagColor = "#2f6f3e";
-  if (type === "chaos") tagColor = "#7a5a00";
-  if (type === "dare") tagColor = "#7a1f1f";
-
-  // =========================
-  // BACKGROUND
-  // =========================
+  const bg = "#f6f3ea";
   ctx.fillStyle = bg;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   // =========================
-  // OUTER BORDER (old web box)
+  // BORDER (old print feel)
   // =========================
-  ctx.strokeStyle = border;
+  ctx.strokeStyle = "#000";
   ctx.lineWidth = 6;
-  ctx.strokeRect(30, 30, canvas.width - 60, canvas.height - 60);
+  ctx.strokeRect(40, 40, canvas.width - 80, canvas.height - 80);
 
-  // inner thin border
+  // inner border
   ctx.lineWidth = 2;
-  ctx.strokeRect(50, 50, canvas.width - 100, canvas.height - 100);
+  ctx.strokeRect(70, 70, canvas.width - 140, canvas.height - 140);
 
   // =========================
-  // HEADER (VERY 90s WEB)
+  // TYPE LABEL (top badge)
   // =========================
-  ctx.fillStyle = "#000";
-  ctx.textAlign = "center";
-  ctx.font = "bold 42px Times New Roman";
-  ctx.fillText("TRUTH N DARE SYSTEM", canvas.width / 2, 140);
+  let color = "#333";
 
-  ctx.font = "20px Courier New";
-  ctx.fillText("anonymous message archive", canvas.width / 2, 180);
+  if (type === "truth") color = "#1f7a3a";
+  if (type === "chaos") color = "#8a6a00";
+  if (type === "dare") color = "#8a1f1f";
 
-  // dotted separator
-  ctx.fillText("----------------------------------------", canvas.width / 2, 220);
-
-  // =========================
-  // TYPE LABEL (ugly stamp style)
-  // =========================
-  ctx.fillStyle = tagColor;
-  ctx.fillRect(80, 260, 200, 50);
+  ctx.fillStyle = color;
+  ctx.fillRect(80, 100, 220, 70);
 
   ctx.fillStyle = "#fff";
-  ctx.font = "bold 24px Courier New";
+  ctx.font = "bold 34px Courier New";
   ctx.textAlign = "center";
-  ctx.fillText(type.toUpperCase(), 180, 295);
+  ctx.fillText(type.toUpperCase(), 190, 145);
 
   // =========================
-  // MESSAGE BOX (plain text block)
+  // MAIN MESSAGE (BIG + CENTER FOCUS)
   // =========================
   ctx.fillStyle = "#000";
   ctx.textAlign = "left";
-  ctx.font = "26px Courier New";
+
+  // dynamic big font for readability
+  ctx.font = "bold 64px Arial";
 
   wrapText(
     ctx,
     message,
-    80,
-    380,
-    920,
-    40
+    90,
+    500,
+    900,
+    85
   );
 
   // =========================
-  // META INFO (old internet vibe)
-  // =========================
-  ctx.font = "20px Courier New";
-  ctx.fillStyle = "#333";
-
-  ctx.fillText("FROM: anonymous user", 80, 980);
-  ctx.fillText("TIME: just now", 80, 1010);
-  ctx.fillText("STATUS: unread", 80, 1040);
-
-  // divider
-  ctx.fillText("----------------------------------------", 80, 1080);
-
-  // =========================
-  // FOOTER (VERY OLD WEB)
+  // BRAND ONLY (NO EXTRA INFO)
   // =========================
   ctx.textAlign = "center";
   ctx.fillStyle = "#000";
+  ctx.font = "bold 40px Times New Roman";
 
-  ctx.font = "bold 28px Times New Roman";
-  ctx.fillText("truthndare.fun", canvas.width / 2, 1150);
+  ctx.fillText("truthndare.fun", canvas.width / 2, 1750);
 
-  ctx.font = "18px Courier New";
-  ctx.fillText("best viewed on Netscape Navigator", canvas.width / 2, 1190);
-
-  ctx.fillText("© anonymous system 2001-style UI", canvas.width / 2, 1230);
+  ctx.font = "20px Courier New";
+  ctx.fillText("anonymous messages", canvas.width / 2, 1800);
 
   // =========================
   // DOWNLOAD
   // =========================
   const link = document.createElement("a");
-  link.download = `${type}-truthndare.png`;
+  link.download = `${type}-story.png`;
   link.href = canvas.toDataURL("image/png");
   link.click();
 }
-
 // ==========================
 // MODE COLORS
 // ==========================
