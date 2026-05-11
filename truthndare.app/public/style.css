@@ -1,5 +1,5 @@
 /* =========================================================
-   RETRO WINDOWS / Y2K STYLE
+   MODERN SIMPLE STYLE
 ========================================================= */
 
 *{
@@ -10,55 +10,35 @@
 
 :root{
 
-  --bg:#bdbdbd;
-  --panel:#d4d0c8;
+  --bg:#0f1115;
 
-  --light:#ffffff;
-  --dark:#6f6f6f;
+  --card:#181b22;
 
-  --blue:#000080;
+  --border:#262b35;
 
-  --text:#111;
-  --muted:#555;
+  --primary:#5b7cff;
 
-  --green:#0d8f0d;
-  --red:#a10000;
-  --orange:#d17d00;
+  --text:#f1f3f5;
+
+  --muted:#9ca3af;
+
+  --green:#16a34a;
+  --red:#dc2626;
+  --orange:#f59e0b;
 }
 
 body{
 
-  background:
-  linear-gradient(
-    rgba(255,255,255,0.03),
-    rgba(0,0,0,0.03)
-  ),
-  linear-gradient(
-    to right,
-    rgba(0,0,0,0.04) 1px,
-    transparent 1px
-  ),
-  linear-gradient(
-    to bottom,
-    rgba(0,0,0,0.04) 1px,
-    transparent 1px
-  ),
-  var(--bg);
-
-  background-size:
-  auto,
-  6px 6px,
-  6px 6px,
-  auto;
-
-  font-family:
-  Tahoma,
-  Verdana,
-  sans-serif;
+  background:var(--bg);
 
   color:var(--text);
 
-  padding:18px;
+  font-family:
+  Inter,
+  Arial,
+  sans-serif;
+
+  padding:20px;
 
   overflow-x:hidden;
 }
@@ -70,50 +50,44 @@ body{
 .app{
 
   width:100%;
-  max-width:560px;
+  max-width:520px;
 
   margin:auto;
 }
 
 /* =========================================================
-   WINDOW BAR
+   TOP BAR
 ========================================================= */
 
 .window-bar{
 
-  background:
-  linear-gradient(
-    to right,
-    #000080,
-    #2d5bff
-  );
+  background:var(--card);
 
-  color:white;
+  border:1px solid var(--border);
 
-  padding:10px 12px;
+  padding:16px;
 
-  border:2px solid black;
+  border-radius:16px;
 
-  font-size:12px;
-  font-weight:bold;
+  margin-bottom:14px;
 
-  box-shadow:4px 4px 0 black;
+  font-size:14px;
+  font-weight:600;
 }
+
+/* =========================================================
+   PANEL
+========================================================= */
 
 .panel{
 
-  margin-top:10px;
+  background:var(--card);
 
-  background:var(--panel);
+  border:1px solid var(--border);
 
-  padding:18px;
+  border-radius:20px;
 
-  border-top:3px solid white;
-  border-left:3px solid white;
-  border-right:3px solid var(--dark);
-  border-bottom:3px solid var(--dark);
-
-  box-shadow:4px 4px 0 black;
+  padding:20px;
 }
 
 /* =========================================================
@@ -124,42 +98,32 @@ body{
 
   text-align:center;
 
-  margin-bottom:24px;
+  margin-bottom:28px;
 }
 
 .logo{
 
-  width:90px;
+  width:84px;
 
   margin:auto;
-
-  image-rendering:pixelated;
 }
 
 .logo-title{
 
   margin-top:16px;
 
-  font-family:
-  'Press Start 2P',
-  cursive;
+  font-size:28px;
 
-  font-size:22px;
-
-  line-height:1.6;
-
-  color:#000080;
+  font-weight:700;
 }
 
 .logo-sub{
 
-  margin-top:10px;
+  margin-top:8px;
 
-  color:#555;
+  color:var(--muted);
 
-  font-size:11px;
-
-  letter-spacing:1px;
+  font-size:13px;
 }
 
 /* =========================================================
@@ -171,9 +135,15 @@ body{
 
   display:flex;
 
-  gap:8px;
+  background:#11151b;
 
-  margin-bottom:18px;
+  border-radius:14px;
+
+  padding:4px;
+
+  gap:4px;
+
+  margin-bottom:20px;
 }
 
 .auth-tab,
@@ -181,25 +151,24 @@ body{
 
   flex:1;
 
-  padding:13px;
+  padding:12px;
 
-  background:#d4d0c8;
+  border-radius:10px;
 
   text-align:center;
 
-  font-size:12px;
-  font-weight:bold;
+  font-size:13px;
+  font-weight:600;
 
-  border-top:2px solid white;
-  border-left:2px solid white;
-  border-right:2px solid #666;
-  border-bottom:2px solid #666;
+  color:var(--muted);
+
+  transition:0.2s;
 }
 
 .auth-tab.active,
 .screen-tab.active{
 
-  background:#000080;
+  background:var(--primary);
 
   color:white;
 }
@@ -212,18 +181,17 @@ body{
 
   width:100%;
 
-  background:white;
+  background:#10131a;
 
-  padding:13px;
+  border:1px solid var(--border);
 
-  color:black;
+  border-radius:14px;
+
+  padding:14px;
+
+  color:white;
 
   font-size:14px;
-
-  border-top:2px solid #666;
-  border-left:2px solid #666;
-  border-right:2px solid white;
-  border-bottom:2px solid white;
 }
 
 .password-box{
@@ -240,7 +208,7 @@ body{
 
   position:absolute;
 
-  right:14px;
+  right:16px;
   top:50%;
 
   transform:translateY(-50%);
@@ -256,50 +224,42 @@ button{
 
   width:100%;
 
+  border:none;
+
+  border-radius:14px;
+
+  padding:14px;
+
+  background:var(--primary);
+
+  color:white;
+
+  font-size:14px;
+  font-weight:600;
+
   margin-top:12px;
 
-  padding:12px;
-
-  background:#d4d0c8;
-
-  color:black;
-
-  font-size:12px;
-  font-weight:bold;
-
-  border-top:2px solid white;
-  border-left:2px solid white;
-  border-right:2px solid #666;
-  border-bottom:2px solid #666;
+  transition:0.2s;
 }
 
 button:hover{
 
-  background:#ececec;
-}
-
-button:active{
-
-  border-top:2px solid #666;
-  border-left:2px solid #666;
-  border-right:2px solid white;
-  border-bottom:2px solid white;
+  opacity:0.9;
 }
 
 /* =========================================================
-   SHARE PAGE
+   SHARE
 ========================================================= */
 
 .share-card{
 
-  background:#efefef;
+  background:#11151b;
+
+  border:1px solid var(--border);
+
+  border-radius:18px;
 
   padding:18px;
-
-  border-top:2px solid white;
-  border-left:2px solid white;
-  border-right:2px solid #777;
-  border-bottom:2px solid #777;
 }
 
 .share-buttons{
@@ -308,7 +268,7 @@ button:active{
 
   gap:10px;
 
-  margin-top:12px;
+  margin-top:14px;
 }
 
 /* =========================================================
@@ -337,7 +297,7 @@ button:active{
 }
 
 /* =========================================================
-   MESSAGE CARDS
+   MESSAGES
 ========================================================= */
 
 .inbox{
@@ -346,16 +306,18 @@ button:active{
 
   flex-direction:column;
 
-  gap:10px;
+  gap:12px;
 }
 
 .message-card{
 
-  background:#f8f8f8;
+  background:#11151b;
 
-  padding:12px;
+  border:1px solid var(--border);
 
-  border:1px solid #888;
+  border-radius:16px;
+
+  padding:14px;
 }
 
 .message-card.truth{
@@ -372,18 +334,18 @@ button:active{
 
 .message-type{
 
-  font-size:10px;
+  font-size:11px;
 
-  font-weight:bold;
-
-  color:#000080;
+  font-weight:700;
 
   margin-bottom:8px;
+
+  color:var(--muted);
 }
 
 .message-text{
 
-  font-size:13px;
+  font-size:14px;
 
   line-height:1.7;
 }
@@ -392,9 +354,9 @@ button:active{
 
   display:flex;
 
-  gap:6px;
+  gap:8px;
 
-  margin-top:12px;
+  margin-top:14px;
 }
 
 .message-actions button{
@@ -409,16 +371,15 @@ button:active{
 @media(max-width:600px){
 
   body{
-    padding:10px;
+    padding:12px;
   }
 
   .panel{
-    padding:14px;
+    padding:16px;
   }
 
   .logo-title{
-
-    font-size:18px;
+    font-size:22px;
   }
 
   .share-buttons,
