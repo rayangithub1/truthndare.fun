@@ -29,7 +29,7 @@ function togglePassword(id, el) {
   } else {
 
     input.type = "password";
-    el.innerText = "👁";
+    el.innerText = "🙉";
 
   }
 
