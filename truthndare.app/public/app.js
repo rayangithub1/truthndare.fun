@@ -482,16 +482,22 @@ function downloadImage(id, type, message) {
     // RIGHT SIDE WATERMARK LOGO
     // =========================
     ctx.save();
-    ctx.globalAlpha = 0.08; // faint watermark
 
-    const logoSize = 450;
+// soft glow effect behind logo
+ctx.shadowColor = "rgba(0,0,0,0.15)";
+ctx.shadowBlur = 25;
 
-    const x = canvas.width - logoSize - 40;
-    const y = canvas.height / 2 - logoSize / 2;
+// slightly higher visibility
+ctx.globalAlpha = 0.16;
 
-    ctx.drawImage(logo, x, y, logoSize, logoSize);
+const logoSize = 540;
 
-    ctx.restore();
+const x = canvas.width - logoSize - 10;
+const y = canvas.height / 2 - logoSize / 2;
+
+ctx.drawImage(logo, x, y, logoSize, logoSize);
+
+ctx.restore();
 
     // =========================
     // LEFT SIDE CONTENT
