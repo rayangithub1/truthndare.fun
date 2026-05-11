@@ -298,14 +298,6 @@ function renderMessage(msg) {
         Download
       </button>
 
-      <button onclick="
-        navigator.clipboard.writeText(
-          ${JSON.stringify(msg.message)}
-        )
-      ">
-        Copy
-      </button>
-
     </div>
 
     <canvas
