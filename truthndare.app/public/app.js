@@ -271,37 +271,33 @@ function renderMessage(msg) {
       .replace(/>/g, "&gt;");
 
   card.innerHTML = `
-    <div class="card-title">
-      ${msg.type.toUpperCase()}
+    <div class="message-top">
+      <div class="message-type">${msg.type}</div>
+      <div class="message-time">${time}</div>
     </div>
 
-    <div class="card-body">
+    <div class="message-text">
       ${safeText}
     </div>
 
-    <div class="card-meta">
-      FROM: ${msg.hint || "unknown"} <br>
-      🕒 ${time}
+    <div class="message-meta">
+      FROM: ${msg.hint || "unknown"}
     </div>
 
-    <div class="card-actions">
-      <button onclick='downloadImage(
-  "${msg._id}",
-  "${msg.type}",
-  ${JSON.stringify(msg.message)}
-)'>
+    <div class="message-actions">
+      <button onclick='downloadImage("${msg._id}", "${msg.type}", ${JSON.stringify(msg.message)})'>
         Download
+      </button>
+
+      <button onclick="navigator.clipboard.writeText(${JSON.stringify(msg.message)})">
+        Copy
       </button>
     </div>
 
-    <canvas
-      id="canvas-${msg._id}"
-      style="display:none;">
-    </canvas>
+    <canvas id="canvas-${msg._id}" style="display:none;"></canvas>
   `;
 
   container.prepend(card);
-
 }
 
 // ==========================
