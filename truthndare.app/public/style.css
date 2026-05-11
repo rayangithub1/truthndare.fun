@@ -1,5 +1,5 @@
 /* =========================================================
-   WINDOWS XP NOSTALGIC CLEAN UI (MODERN IMPLEMENTATION)
+   90s INTERNET / YAHOO / WINDOWS 98 STYLE
 ========================================================= */
 
 * {
@@ -8,260 +8,189 @@
   box-sizing: border-box;
 }
 
+input,
+textarea,
+select,
+button {
+  font-size: 16px;
+  -webkit-appearance: none;
+}
+
 :root {
-  --xp-blue: #3a6ea5;
-  --xp-blue-dark: #2b5797;
-  --xp-bg: #d4e5f7;
-  --xp-panel: #f5f5f5;
-  --xp-border: #a6a6a6;
+  --bg: #c0c0c0;
+  --panel: #d4d0c8;
+  --panel-dark: #808080;
+  --panel-light: #ffffff;
 
-  --text: #1a1a1a;
-  --muted: #555;
+  --text: #000000;
+  --muted: #444444;
 
-  --font: "Tahoma", "Segoe UI", Arial, sans-serif;
+  --blue: #000080;
+  --link: #0000ee;
+
+  --green: #008000;
+  --orange: #cc7a00;
+  --red: #990000;
+
+  --ui: Tahoma, Verdana, Arial, sans-serif;
 }
 
 /* =========================================================
-   BODY (CLEAN XP DESKTOP FEEL)
+   BODY
 ========================================================= */
 
 body {
-  font-family: var(--font);
-  color: var(--text);
-
   min-height: 100vh;
 
-  background:
-    linear-gradient(180deg, #eaf3ff, var(--xp-bg));
+  background: #c0c0c0;
 
-  padding: 20px;
-}
+  font-family: var(--ui);
+  color: var(--text);
 
-/* subtle XP-style soft highlight */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(circle at top, rgba(255,255,255,0.6), transparent 60%);
-  pointer-events: none;
-}
+  overflow-x: hidden;
 
-/* =========================================================
-   LOGO AREA (CLEAN HEADER BAR STYLE)
-========================================================= */
+  background-image:
+    linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
 
-.site-header {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.logo {
-  display: inline-block;
-  padding: 10px 18px;
-
-  font-size: 26px;
-  font-weight: bold;
-  color: #fff;
-
-  background: linear-gradient(to bottom, var(--xp-blue), var(--xp-blue-dark));
-
-  border: 1px solid #1e3d6b;
-  border-radius: 6px;
-
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.4),
-    0 2px 6px rgba(0,0,0,0.2);
-}
-
-.logo small {
-  display: block;
-  font-size: 11px;
-  font-weight: normal;
-  opacity: 0.9;
-  margin-top: 4px;
+  background-size: 6px 6px;
 }
 
 /* =========================================================
-   MAIN CONTAINER (XP WINDOW STYLE)
+   CONTAINER
 ========================================================= */
 
 .container {
   width: 92%;
-  max-width: 560px;
-  margin: 0 auto;
+  max-width: 520px;
 
-  background: var(--xp-panel);
+  margin: 35px auto;
 
-  border: 1px solid var(--xp-border);
-  border-radius: 8px;
-
-  box-shadow:
-    0 6px 18px rgba(0,0,0,0.15);
+  background: var(--panel);
 
   padding: 18px;
+
+  border-top: 3px solid var(--panel-light);
+  border-left: 3px solid var(--panel-light);
+  border-right: 3px solid var(--panel-dark);
+  border-bottom: 3px solid var(--panel-dark);
+
+  box-shadow: 3px 3px 0 #000;
+}
+
+.container.large {
+  max-width: 900px;
 }
 
 /* =========================================================
    HEADINGS
 ========================================================= */
 
+h1,
+h2,
+h3 {
+  font-family: Verdana, Arial, sans-serif;
+  color: var(--blue);
+
+  margin-bottom: 12px;
+}
+
 h1 {
-  font-size: 22px;
-  color: var(--xp-blue-dark);
-  margin-bottom: 10px;
+  font-size: 28px;
+  border-bottom: 2px solid var(--blue);
+  padding-bottom: 8px;
 }
 
 h2 {
-  font-size: 18px;
-  color: var(--xp-blue);
-  margin-bottom: 8px;
+  font-size: 20px;
 }
 
 .subtitle {
-  font-size: 12px;
+  text-align: center;
   color: var(--muted);
-  margin-bottom: 18px;
+  font-size: 12px;
+  margin-bottom: 20px;
 }
 
 /* =========================================================
-   INPUTS (XP STYLE FIELDS)
+   INPUTS
 ========================================================= */
 
 input,
 textarea,
 select {
   width: 100%;
-  margin-top: 10px;
+
+  margin-top: 12px;
   padding: 10px;
 
-  font-family: var(--font);
-  font-size: 14px;
+  background: white;
+  color: black;
 
-  background: #fff;
+  font-family: var(--ui);
 
-  border: 1px solid #7f9db9;
-  border-radius: 3px;
+  border-top: 2px solid #808080;
+  border-left: 2px solid #808080;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
 
   outline: none;
 }
 
 input:focus,
-textarea:focus {
-  border-color: var(--xp-blue);
-  box-shadow: 0 0 3px rgba(58,110,165,0.5);
+textarea:focus,
+select:focus {
+  background: #fffff0;
 }
 
 /* =========================================================
-   BUTTONS (TRUE XP PUSH BUTTON LOOK)
+   BUTTONS
 ========================================================= */
 
 button {
   width: 100%;
-  margin-top: 12px;
+
+  margin-top: 14px;
   padding: 10px;
 
-  font-family: var(--font);
-  font-size: 14px;
-  font-weight: 500;
+  background: var(--panel);
 
-  color: #000;
+  color: black;
 
-  background: linear-gradient(to bottom, #ffffff, #dcdcdc);
-
-  border: 1px solid #7f7f7f;
-  border-radius: 4px;
+  font-family: Tahoma, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
 
   cursor: pointer;
 
-  box-shadow:
-    inset 0 1px 0 #ffffff,
-    inset 0 -1px 0 #bcbcbc;
-}
-
-/* XP click animation feel */
-button:active {
-  background: linear-gradient(to bottom, #dcdcdc, #ffffff);
-  transform: translateY(1px);
+  border-top: 2px solid var(--panel-light);
+  border-left: 2px solid var(--panel-light);
+  border-right: 2px solid var(--panel-dark);
+  border-bottom: 2px solid var(--panel-dark);
 }
 
 button:hover {
-  border-color: var(--xp-blue);
+  background: #e5e5e5;
 }
 
-button.primary {
-  background: linear-gradient(to bottom, #4f8edc, #2f66b3);
-  color: #fff;
-  border: 1px solid #1e4f8a;
+button:active {
+  border-top: 2px solid var(--panel-dark);
+  border-left: 2px solid var(--panel-dark);
+  border-right: 2px solid var(--panel-light);
+  border-bottom: 2px solid var(--panel-light);
+}
+
+button.secondary {
+  background: #dfdfdf;
 }
 
 button.danger {
-  background: linear-gradient(to bottom, #e57373, #c62828);
-  color: #fff;
+  background: #b00000;
+  color: white;
 }
 
 /* =========================================================
-   HUD BAR (XP BLUE STATUS STRIP)
-========================================================= */
-
-.hud-bar {
-  display: flex;
-  justify-content: space-between;
-
-  padding: 8px 10px;
-  margin-bottom: 15px;
-
-  background: linear-gradient(to bottom, var(--xp-blue), var(--xp-blue-dark));
-  color: #fff;
-
-  border-radius: 4px;
-
-  font-size: 12px;
-}
-
-/* =========================================================
-   INTRO BOX
-========================================================= */
-
-.intro-box {
-  padding: 14px;
-  margin-bottom: 15px;
-
-  background: #ffffff;
-
-  border: 1px solid #c8c8c8;
-  border-radius: 6px;
-}
-
-.intro-box p {
-  font-size: 13px;
-  color: #333;
-  line-height: 1.5;
-}
-
-/* =========================================================
-   TAGS (XP LABEL STYLE)
-========================================================= */
-
-.intro-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 10px;
-}
-
-.intro-tags span {
-  font-size: 11px;
-  padding: 4px 8px;
-
-  background: #e9f1fb;
-  border: 1px solid #b7c9e2;
-  border-radius: 3px;
-
-  color: var(--xp-blue-dark);
-}
-
-/* =========================================================
-   MESSAGE BOXES
+   MESSAGE SYSTEM
 ========================================================= */
 
 .inbox {
@@ -270,38 +199,146 @@ button.danger {
   gap: 10px;
 }
 
-.message {
+.message,
+.message-card {
+  margin-top: 10px;
+
+  background: #f3f3f3;
+
   padding: 12px;
 
-  background: #fff;
-  border: 1px solid #cfcfcf;
-  border-radius: 6px;
+  font-family: Arial, sans-serif;
+  color: black;
 
-  transition: 0.15s ease;
+  border-top: 2px solid var(--panel-light);
+  border-left: 2px solid var(--panel-light);
+  border-right: 2px solid var(--panel-dark);
+  border-bottom: 2px solid var(--panel-dark);
 }
 
-.message:hover {
-  background: #f7fbff;
-  border-color: var(--xp-blue);
+.message.truth,
+.message-card.truth {
+  border-left: 6px solid var(--green);
 }
 
-.message.truth { border-left: 4px solid #3cb371; }
-.message.chaos { border-left: 4px solid #f0ad4e; }
-.message.dare { border-left: 4px solid #d9534f; }
+.message.chaos,
+.message-card.chaos {
+  border-left: 6px solid var(--orange);
+}
+
+.message.dare,
+.message-card.dare {
+  border-left: 6px solid var(--red);
+}
+
+.message:hover,
+.message-card:hover {
+  background: #ffffdd;
+}
 
 /* =========================================================
-   CARD TEXT
+   CARD DETAILS
 ========================================================= */
 
 .card-title {
   font-weight: bold;
-  color: var(--xp-blue-dark);
-  margin-bottom: 5px;
+  color: var(--blue);
+  margin-bottom: 6px;
 }
 
 .card-meta {
   font-size: 11px;
   color: #666;
+  margin-top: 6px;
+}
+
+.inbox-status {
+  font-size: 12px;
+  padding: 15px 0;
+}
+
+/* =========================================================
+   CARD ACTIONS
+========================================================= */
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.card-actions button {
+  flex: 1;
+  min-width: 120px;
+}
+
+/* =========================================================
+   COMPOSER
+========================================================= */
+
+.composer {
+  background: #efefef;
+
+  border: 2px groove #999;
+
+  padding: 15px;
+}
+
+/* =========================================================
+   NAVIGATION BAR
+========================================================= */
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 8px 10px;
+  margin-bottom: 20px;
+
+  background: var(--blue);
+  color: white;
+
+  border: 2px solid black;
+}
+
+.nav a {
+  color: yellow;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+/* =========================================================
+   HOME BUTTON
+========================================================= */
+
+.home-btn {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+
+  padding: 8px 10px;
+
+  background: var(--panel);
+
+  color: black;
+  text-decoration: none;
+
+  font-family: Tahoma, sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+
+  border-top: 2px solid var(--panel-light);
+  border-left: 2px solid var(--panel-light);
+  border-right: 2px solid var(--panel-dark);
+  border-bottom: 2px solid var(--panel-dark);
+
+  z-index: 999;
+}
+
+.home-btn:hover {
+  background: #e4e4e4;
 }
 
 /* =========================================================
@@ -309,17 +346,156 @@ button.danger {
 ========================================================= */
 
 .system-footer {
-  margin-top: 25px;
-  padding: 14px;
+  margin-top: 30px;
 
-  background: #f3f3f3;
+  padding: 15px;
 
-  border: 1px solid #cfcfcf;
-  border-radius: 6px;
+  background: #dfdfdf;
+
+  border: 2px ridge #999;
+}
+
+.footer-header {
+  text-align: center;
+
+  font-weight: bold;
+  color: var(--blue);
+
+  margin-bottom: 15px;
+}
+
+.footer-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.footer-box {
+  background: white;
+
+  border: 1px solid #999;
+
+  padding: 10px;
+
+  font-size: 12px;
+}
+
+.footer-box h4 {
+  color: var(--blue);
+  margin-bottom: 5px;
+}
+
+.footer-signature {
+  margin-top: 12px;
 
   text-align: center;
+
   font-size: 11px;
-  color: #555;
+  color: #666;
+}
+
+/* =========================================================
+   HUD BAR
+========================================================= */
+
+.hud-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin: 10px 0 20px;
+
+  padding: 8px 10px;
+
+  background: var(--blue);
+  color: white;
+
+  border: 2px solid black;
+}
+
+.hud-item {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* =========================================================
+   PASSWORD FIELD
+========================================================= */
+
+.password-box {
+  position: relative;
+  width: 100%;
+}
+
+.password-box input {
+  padding-right: 50px;
+}
+
+.eye-btn {
+  position: absolute;
+
+  top: 57%;
+  right: 15px;
+
+  transform: translateY(-50%);
+
+  cursor: pointer;
+
+  font-size: 16px;
+
+  opacity: 0.7;
+}
+
+.eye-btn:hover {
+  opacity: 1;
+}
+
+/* =========================================================
+   INTRO BOX
+========================================================= */
+
+.intro-box {
+  margin-bottom: 24px;
+
+  padding: 18px;
+
+  background: #efefef;
+
+  border: 2px ridge #999;
+}
+
+.intro-box h3 {
+  margin-bottom: 12px;
+
+  color: var(--blue);
+
+  font-size: 16px;
+}
+
+.intro-box p {
+  font-size: 13px;
+  line-height: 1.7;
+
+  color: #333;
+
+  margin-bottom: 12px;
+}
+
+.intro-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.intro-tags span {
+  padding: 6px 8px;
+
+  background: white;
+
+  border: 1px solid #999;
+
+  font-size: 11px;
+
+  color: #000080;
 }
 
 /* =========================================================
@@ -327,16 +503,38 @@ button.danger {
 ========================================================= */
 
 @media (max-width: 600px) {
+
+  body {
+    padding: 10px;
+  }
+
   .container {
     width: 100%;
+    max-width: 100%;
+
+    margin: 30px 0 20px;
+
     padding: 14px;
   }
 
-  .logo {
-    font-size: 20px;
+  h1 {
+    font-size: 22px;
+  }
+
+  h2 {
+    font-size: 18px;
   }
 
   button {
-    font-size: 13px;
+    font-size: 12px;
+  }
+
+  .card-actions {
+    flex-direction: column;
+  }
+
+  .home-btn {
+    top: 8px;
+    left: 8px;
   }
 }
