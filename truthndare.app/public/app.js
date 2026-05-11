@@ -485,7 +485,7 @@ function downloadImage(id, type, message) {
   ctx.fillStyle = "#111827";
   ctx.font = "bold 42px Arial";
   ctx.textAlign = "center";
-  ctx.fillText("TRUTH N DARE", canvas.width / 2, 140);
+  ctx.fillText("truthndare.fun", canvas.width / 2, 140);
 
   ctx.fillStyle = "#6b7280";
   ctx.font = "20px Arial";
@@ -544,7 +544,7 @@ function downloadImage(id, type, message) {
   // EXPORT
   // =========================
   const link = document.createElement("a");
-  link.download = `${type}-truthndare.png`;
+  link.download = `${type}attruthndare.fun`;
   link.href = canvas.toDataURL("image/png");
   link.click();
 }
