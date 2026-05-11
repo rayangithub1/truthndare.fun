@@ -364,18 +364,54 @@ body{
    INTRO
 ========================================================= */
 
+/* =========================================================
+   INTRO BOX (IMPROVED BOXY / CLEAN CARD STYLE)
+========================================================= */
+
 .intro-box{
 
-  background:#f8fafc;
+  position:relative;
 
-  border:1px solid var(--border);
+  background:
+  linear-gradient(
+    to bottom,
+    #ffffff,
+    #f6f9fc
+  );
 
-  border-radius:14px;
+  border:1px solid #d7e0ea;
 
-  padding:18px;
+  border-radius:10px;
 
-  margin-bottom:22px;
+  padding:20px;
+
+  margin-bottom:24px;
+
+  box-shadow:
+  5px 5px 0 rgba(15,23,42,0.08);
+
+  overflow:hidden;
 }
+
+/* subtle top highlight line */
+.intro-box::before{
+
+  content:"";
+
+  position:absolute;
+
+  top:0;
+  left:0;
+
+  width:100%;
+  height:2px;
+
+  background:#ffffff;
+}
+
+/* =========================================================
+   TITLE
+========================================================= */
 
 .intro-box h3{
 
@@ -383,22 +419,34 @@ body{
   "Space Grotesk",
   sans-serif;
 
-  font-size:20px;
+  font-size:18px;
+
+  font-weight:700;
+
+  letter-spacing:-0.5px;
+
+  color:#0f172a;
 
   margin-bottom:12px;
 }
+
+/* =========================================================
+   PARAGRAPH
+========================================================= */
 
 .intro-box p{
 
   color:#64748b;
 
-  font-size:14px;
+  font-size:13.5px;
 
   line-height:1.8;
+
+  margin-bottom:10px;
 }
 
 /* =========================================================
-   TAGS
+   TAGS WRAPPER
 ========================================================= */
 
 .intro-tags{
@@ -409,26 +457,66 @@ body{
 
   gap:8px;
 
-  margin-top:16px;
+  margin-top:14px;
 }
+
+/* =========================================================
+   TAGS (MORE BUTTON-LIKE / BOXY)
+========================================================= */
 
 .intro-tags span{
 
-  background:white;
+  background:#ffffff;
 
-  border:1px solid var(--border);
+  border:1px solid #d7e0ea;
 
-  padding:8px 12px;
+  padding:7px 10px;
 
-  border-radius:999px;
+  border-radius:6px;
 
-  font-size:11px;
+  font-size:10.5px;
 
   font-weight:700;
 
-  color:#475569;
+  letter-spacing:0.6px;
+
+  color:#334155;
+
+  text-transform:uppercase;
+
+  box-shadow:
+  inset 0 1px 0 #ffffff;
 }
 
+/* hover feel (subtle, not flashy) */
+.intro-tags span:hover{
+
+  background:#f1f5f9;
+
+  border-color:#cbd5e1;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:600px){
+
+  .intro-box{
+
+    padding:16px;
+  }
+
+  .intro-box h3{
+
+    font-size:17px;
+  }
+
+  .intro-box p{
+
+    font-size:13px;
+  }
+}
 /* =========================================================
    TABS
 ========================================================= */
