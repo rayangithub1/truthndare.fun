@@ -850,31 +850,28 @@ button{
   margin-top:0;
 }
 
-/* =========================================================
-   SCREEN SYSTEM
-========================================================= */
-
 .screen-wrapper{
-
   width:100%;
-
   overflow:hidden;
+
+  position:relative;
 }
 
 .screen-slider{
-
   display:flex;
-
   width:200%;
 
-  transition:0.35s ease;
+  transform:translateX(0%);
+  transition:transform 0.35s ease;
+
+  will-change:transform;
 }
 
 .screen-page{
-
   width:50%;
-
   flex-shrink:0;
+
+  min-height:100%;
 }
 
 /* =========================================================
