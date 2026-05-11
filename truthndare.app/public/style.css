@@ -889,7 +889,7 @@ button{
 }
 
 /* =========================================================
-   MESSAGE CARD (REFINED FEED + TOOLBAR STYLE)
+   MESSAGE CARD (ULTRA CLEAN FEED STYLE)
 ========================================================= */
 
 .message-card{
@@ -901,94 +901,76 @@ button{
   flex-direction:column;
   gap:6px;
   transition:0.15s ease;
+  position:relative;
 }
 
-/* hover (clean, no movement) */
+/* hover */
 .message-card:hover{
   border-color:#cbd5e1;
 }
 
-/* left accent */
+/* type accent */
 .message-card.truth{ border-left:3px solid var(--green); }
 .message-card.dare{ border-left:3px solid var(--red); }
 .message-card.chaos{ border-left:3px solid var(--orange); }
 
 /* =========================================================
-   HEADER LINE (TYPE + META INLINE)
+   TOP ROW (TYPE + TIME INLINE)
 ========================================================= */
+
+.message-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
 
 .message-type{
   font-size:10px;
   font-weight:800;
-  text-transform:uppercase;
   letter-spacing:0.8px;
-  color:#64748b;
+  text-transform:uppercase;
+  color:#475569;
+}
+
+.message-time{
+  font-size:10px;
+  font-weight:700;
+  color:#94a3b8;
 }
 
 /* =========================================================
-   MESSAGE TEXT (IMPROVED READABILITY)
+   MAIN TEXT
 ========================================================= */
 
 .message-text{
-  font-size:13.5px;
-  line-height:1.55;
+  font-size:13px;
+  line-height:1.5;
   color:#0f172a;
   word-break:break-word;
 }
 
-/* optional emphasis inside message text */
-.message-text strong{
-  font-weight:700;
-  color:#111827;
-}
-
-.message-text em{
-  font-style:normal;
-  color:#475569;
-}
-
 /* =========================================================
-   META ROW (INLINE, NOT STACKED)
+   META
 ========================================================= */
 
 .message-meta{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
   font-size:11px;
-  color:#94a3b8;
-  margin-top:2px;
-}
-
-/* left meta */
-.message-meta .meta-left{
-  display:flex;
-  gap:6px;
-  align-items:center;
-}
-
-/* right meta (time etc.) */
-.message-meta .meta-right{
-  font-weight:600;
+  color:#64748b;
 }
 
 /* =========================================================
-   ACTION BAR (INLINE TOOLBAR STYLE)
+   ACTION BUTTONS (INLINE PERFECT ROW)
 ========================================================= */
 
 .message-actions{
   display:flex;
-  align-items:center;
   gap:6px;
   margin-top:6px;
-  padding-top:6px;
-  border-top:1px solid #eef2f7;
 }
 
-/* all buttons become compact inline tools */
 .message-actions button{
-  flex:0;
-  padding:6px 10px;
+  flex:1;
+  padding:7px 8px;
   font-size:11px;
   font-weight:700;
   border-radius:8px;
@@ -997,14 +979,10 @@ button{
   color:#111827;
   cursor:pointer;
   transition:0.15s ease;
-  white-space:nowrap;
-}
 
-/* primary action style (first button) */
-.message-actions button:first-child{
-  background:#eef2ff;
-  border-color:#c7d2fe;
-  color:#1e3a8a;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
 /* hover */
@@ -1018,10 +996,7 @@ button{
   transform:scale(0.97);
 }
 
-/* =========================================================
-   CLEAN RESET
-========================================================= */
-
+/* safety reset */
 .message-card *{
   margin:0;
 }
