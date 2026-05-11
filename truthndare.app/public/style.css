@@ -534,3 +534,74 @@ button.danger {
     left: 8px;
   }
 }
+/* =========================================================
+   RETRO INTERNET TOP BAR (YAHOO / GEOCITIES STYLE)
+========================================================= */
+
+.retro-bar {
+  width: 100%;
+  background: #000080;
+  color: #fff;
+  font-family: Tahoma, Arial, sans-serif;
+  border-bottom: 3px solid #000;
+  box-shadow: 0 2px 0 #808080;
+}
+
+/* scrolling marquee effect */
+.retro-marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  border-bottom: 1px solid #ffffff33;
+}
+
+.retro-marquee span {
+  display: inline-block;
+  padding: 6px 0;
+  padding-left: 100%;
+  animation: marquee 18s linear infinite;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+@keyframes marquee {
+  0%   { transform: translateX(0%); }
+  100% { transform: translateX(-100%); }
+}
+
+/* =========================================================
+   ROTATING INTERNET THOUGHTS (CSS ONLY)
+========================================================= */
+
+.retro-thought {
+  position: relative;
+  height: 28px;
+  overflow: hidden;
+  font-size: 12px;
+  text-align: center;
+  background: #000060;
+}
+
+.retro-thought span {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: thoughtCycle 25s infinite;
+}
+
+/* staggered timing */
+.retro-thought .t1 { animation-delay: 0s; }
+.retro-thought .t2 { animation-delay: 5s; }
+.retro-thought .t3 { animation-delay: 10s; }
+.retro-thought .t4 { animation-delay: 15s; }
+.retro-thought .t5 { animation-delay: 20s; }
+
+@keyframes thoughtCycle {
+  0%   { opacity: 0; transform: translateY(10px); }
+  5%   { opacity: 1; transform: translateY(0px); }
+  18%  { opacity: 1; }
+  25%  { opacity: 0; transform: translateY(-10px); }
+  100% { opacity: 0; }
+}
