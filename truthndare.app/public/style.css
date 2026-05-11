@@ -1,1117 +1,707 @@
 /* =========================================================
    TRUTHNDARE.FUN
-   RETRO INTERNET + MODERN APP UI
-   WINDOWS 98 + YAHOO + MOBILE APP FEEL
+   RETRO CYBER UI
 ========================================================= */
 
 /* =========================================================
    RESET
 ========================================================= */
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
 html,
-body {
-  overflow-x: hidden;
-  scroll-behavior: smooth;
+body{
+  overflow-x:hidden;
+  scroll-behavior:smooth;
 }
 
-img {
-  max-width: 100%;
-  display: block;
-}
+body{
 
-button,
-input,
-textarea {
-  outline: none;
-  border: none;
-  font-family: inherit;
-}
+  min-height:100vh;
 
-button {
-  cursor: pointer;
-}
-
-/* =========================================================
-   ROOT
-========================================================= */
-
-:root {
-
-  --bg:
-    #bdbdbd;
-
-  --panel:
-    #d4d0c8;
-
-  --panel-light:
-    #ffffff;
-
-  --panel-dark:
-    #7b7b7b;
-
-  --panel-deep:
-    #3a3a3a;
-
-  --blue:
-    #000080;
-
-  --blue2:
-    #1d39c4;
-
-  --yellow:
-    #fff3a0;
-
-  --green:
-    #0f8d0f;
-
-  --red:
-    #9d1010;
-
-  --orange:
-    #d17c00;
-
-  --text:
-    #111;
-
-  --muted:
-    #5f5f5f;
-
-  --shadow:
-    4px 4px 0 #000;
-
-  --ui:
-    Tahoma,
-    Verdana,
-    Arial,
-    sans-serif;
-}
-
-/* =========================================================
-   BODY
-========================================================= */
-
-body {
-
-  min-height: 100vh;
-
-  background:
-    linear-gradient(
-      rgba(255,255,255,0.05),
-      rgba(0,0,0,0.05)
-    ),
-    var(--bg);
+  background:#bdbdbd;
 
   background-image:
-    linear-gradient(to right,
+  linear-gradient(
+    rgba(255,255,255,0.03),
+    rgba(0,0,0,0.03)
+  ),
+  linear-gradient(
+    to right,
     rgba(0,0,0,0.04) 1px,
-    transparent 1px),
-
-    linear-gradient(to bottom,
+    transparent 1px
+  ),
+  linear-gradient(
+    to bottom,
     rgba(0,0,0,0.04) 1px,
-    transparent 1px);
+    transparent 1px
+  );
 
   background-size:
-    6px 6px;
+  auto,
+  6px 6px,
+  6px 6px;
+
+  color:#111;
 
   font-family:
-    var(--ui);
+  Tahoma,
+  Verdana,
+  sans-serif;
 
-  color:
-    var(--text);
-
-  padding:
-    20px;
+  padding:18px;
 }
 
 /* =========================================================
-   APP WRAPPER
+   SCANLINES
 ========================================================= */
 
-.app {
+.scanlines{
 
-  width:
-    100%;
+  pointer-events:none;
 
-  max-width:
-    560px;
+  position:fixed;
 
-  margin:
-    auto;
+  inset:0;
+
+  z-index:9999;
+
+  background:
+  repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.03),
+    rgba(255,255,255,0.03) 1px,
+    transparent 1px,
+    transparent 3px
+  );
 }
 
 /* =========================================================
-   WINDOWS TITLE BAR
+   APP
 ========================================================= */
 
-.window-bar {
+.app{
 
-  display:
-    flex;
+  width:100%;
+  max-width:560px;
 
-  align-items:
-    center;
+  margin:auto;
+}
 
-  justify-content:
-    space-between;
+/* =========================================================
+   WINDOW BAR
+========================================================= */
+
+.window-bar{
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 
   background:
-    linear-gradient(
-      to right,
-      #000080,
-      #1a46ff
-    );
+  linear-gradient(
+    to right,
+    #000080,
+    #2452ff
+  );
 
-  color:
-    white;
+  color:white;
 
-  padding:
-    8px 10px;
+  padding:8px 10px;
 
-  border:
-    2px solid black;
+  border:2px solid black;
 
-  margin-bottom:
-    10px;
-
-  box-shadow:
-    var(--shadow);
+  box-shadow:4px 4px 0 black;
 }
 
-.window-title {
+.window-title{
 
-  font-size:
-    13px;
+  font-size:12px;
+  font-weight:bold;
 
-  font-weight:
-    bold;
-
-  letter-spacing:
-    0.5px;
+  letter-spacing:0.5px;
 }
 
-.window-actions {
+.window-actions{
 
-  display:
-    flex;
-
-  gap:
-    5px;
+  display:flex;
+  gap:5px;
 }
 
-.window-dot {
+.window-dot{
 
-  width:
-    16px;
+  width:15px;
+  height:15px;
 
-  height:
-    16px;
+  background:#d4d0c8;
 
-  background:
-    #c0c0c0;
-
-  border-top:
-    2px solid white;
-
-  border-left:
-    2px solid white;
-
-  border-right:
-    2px solid #666;
-
-  border-bottom:
-    2px solid #666;
+  border-top:2px solid white;
+  border-left:2px solid white;
+  border-right:2px solid #666;
+  border-bottom:2px solid #666;
 }
 
 /* =========================================================
    MAIN PANEL
 ========================================================= */
 
-.panel {
+.panel{
 
-  background:
-    var(--panel);
+  margin-top:10px;
 
-  padding:
-    18px;
+  background:#d4d0c8;
 
-  border-top:
-    3px solid var(--panel-light);
+  padding:18px;
 
-  border-left:
-    3px solid var(--panel-light);
+  border-top:3px solid white;
+  border-left:3px solid white;
+  border-right:3px solid #777;
+  border-bottom:3px solid #777;
 
-  border-right:
-    3px solid var(--panel-dark);
+  box-shadow:4px 4px 0 black;
+}
 
-  border-bottom:
-    3px solid var(--panel-dark);
+/* =========================================================
+   HUD
+========================================================= */
 
-  box-shadow:
-    var(--shadow);
+.hud-bar{
 
-  position:
-    relative;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 
-  overflow:
-    hidden;
+  gap:10px;
+
+  padding:10px;
+
+  background:#000080;
+
+  color:white;
+
+  border:2px solid black;
+
+  margin-bottom:18px;
+
+  flex-wrap:wrap;
+}
+
+.hud-item{
+
+  font-size:11px;
+  font-weight:bold;
 }
 
 /* =========================================================
    LOGO
 ========================================================= */
 
-.logo-area {
+.logo-area{
 
-  text-align:
-    center;
+  text-align:center;
 
-  margin-bottom:
-    25px;
+  margin-bottom:22px;
 }
 
-.logo {
+.logo{
 
-  width:
-    110px;
+  width:100px;
 
-  margin:
-    auto;
+  margin:auto;
 
-  image-rendering:
-    pixelated;
+  image-rendering:pixelated;
 
   filter:
-    drop-shadow(3px 3px 0 #000);
+  drop-shadow(3px 3px 0 black);
 }
 
-.logo-title {
+.logo-title{
 
-  margin-top:
-    12px;
+  margin-top:15px;
 
-  font-size:
-    28px;
+  font-size:26px;
 
-  font-weight:
-    bold;
+  color:#000080;
 
-  color:
-    var(--blue);
+  line-height:1.4;
 
-  text-shadow:
-    2px 2px 0 white;
+  font-family:
+  'Press Start 2P',
+  cursive;
 }
 
-.logo-sub {
+.logo-sub{
 
-  margin-top:
-    6px;
+  margin-top:10px;
 
-  font-size:
-    12px;
+  color:#555;
 
-  color:
-    var(--muted);
+  font-size:11px;
+
+  letter-spacing:1px;
 }
 
 /* =========================================================
-   AUTH
+   INTRO
 ========================================================= */
 
-.auth-tabs {
+.intro-box{
 
-  display:
-    flex;
+  background:#efefef;
 
-  margin-bottom:
-    18px;
+  padding:18px;
 
-  background:
-    #bcbcbc;
+  border-top:2px solid white;
+  border-left:2px solid white;
+  border-right:2px solid #777;
+  border-bottom:2px solid #777;
 
-  border:
-    2px inset #999;
-
-  overflow:
-    hidden;
+  margin-bottom:22px;
 }
 
-.auth-tab {
+.intro-box h3{
 
-  flex:
-    1;
+  margin-bottom:14px;
 
-  padding:
-    12px;
+  color:#000080;
 
-  text-align:
-    center;
-
-  font-size:
-    13px;
-
-  font-weight:
-    bold;
-
-  transition:
-    0.2s;
+  font-size:15px;
 }
 
-.auth-tab.active {
+.intro-box p{
 
-  background:
-    var(--blue);
+  font-size:13px;
 
-  color:
-    white;
+  line-height:1.8;
+
+  color:#333;
+}
+
+.intro-tags{
+
+  display:flex;
+  flex-wrap:wrap;
+
+  gap:8px;
+
+  margin-top:16px;
+}
+
+.intro-tags span{
+
+  background:white;
+
+  padding:6px 10px;
+
+  border:1px solid #888;
+
+  font-size:10px;
+
+  font-weight:bold;
+
+  color:#000080;
+}
+
+/* =========================================================
+   AUTH TABS
+========================================================= */
+
+.auth-tabs{
+
+  display:flex;
+
+  margin-bottom:18px;
+
+  border:2px inset #999;
+
+  overflow:hidden;
+}
+
+.auth-tab{
+
+  flex:1;
+
+  text-align:center;
+
+  padding:12px;
+
+  background:#c0c0c0;
+
+  font-size:12px;
+  font-weight:bold;
+
+  cursor:pointer;
+
+  transition:0.2s;
+}
+
+.auth-tab.active{
+
+  background:#000080;
+
+  color:white;
+}
+
+/* =========================================================
+   AUTH BOX
+========================================================= */
+
+.auth-box{
+
+  background:#efefef;
+
+  padding:18px;
+
+  border-top:2px solid white;
+  border-left:2px solid white;
+  border-right:2px solid #777;
+  border-bottom:2px solid #777;
 }
 
 /* =========================================================
    INPUTS
 ========================================================= */
 
-.input-group {
+.input-group{
 
-  margin-bottom:
-    14px;
+  margin-bottom:15px;
 }
 
-.input-label {
+.input-label{
 
-  display:
-    block;
+  display:block;
 
-  margin-bottom:
-    6px;
+  margin-bottom:7px;
 
-  font-size:
-    12px;
+  color:#000080;
 
-  font-weight:
-    bold;
-
-  color:
-    var(--blue);
+  font-size:11px;
+  font-weight:bold;
 }
 
-.input {
+.input{
 
-  width:
-    100%;
+  width:100%;
 
-  padding:
-    12px;
+  padding:12px;
 
-  background:
-    white;
+  padding-right:48px;
 
-  font-size:
-    14px;
+  background:white;
 
-  color:
-    black;
+  border-top:2px solid #666;
+  border-left:2px solid #666;
+  border-right:2px solid white;
+  border-bottom:2px solid white;
 
-  border-top:
-    2px solid #777;
+  font-size:14px;
 
-  border-left:
-    2px solid #777;
-
-  border-right:
-    2px solid white;
-
-  border-bottom:
-    2px solid white;
+  color:black;
 }
 
-.input:focus {
+.input:focus{
 
-  background:
-    #ffffe7;
+  background:#ffffe7;
+}
+
+/* =========================================================
+   PASSWORD BOX FIX
+========================================================= */
+
+.password-box{
+
+  position:relative;
+
+  width:100%;
+}
+
+.password-box .input{
+
+  padding-right:50px;
+}
+
+.eye-btn{
+
+  position:absolute;
+
+  right:14px;
+
+  top:50%;
+
+  transform:translateY(-50%);
+
+  z-index:10;
+
+  cursor:pointer;
+
+  font-size:18px;
+
+  user-select:none;
+
+  line-height:1;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  height:20px;
 }
 
 /* =========================================================
    BUTTONS
 ========================================================= */
 
-.btn {
+.btn{
 
-  width:
-    100%;
+  width:100%;
 
-  padding:
-    12px;
+  margin-top:12px;
 
-  margin-top:
-    12px;
+  padding:12px;
 
-  background:
-    var(--panel);
+  background:#d4d0c8;
 
-  color:
-    black;
+  color:black;
 
-  font-weight:
-    bold;
+  font-size:12px;
+  font-weight:bold;
 
-  font-size:
-    13px;
+  border-top:2px solid white;
+  border-left:2px solid white;
+  border-right:2px solid #666;
+  border-bottom:2px solid #666;
 
-  border-top:
-    2px solid white;
-
-  border-left:
-    2px solid white;
-
-  border-right:
-    2px solid #666;
-
-  border-bottom:
-    2px solid #666;
-
-  transition:
-    0.15s;
+  transition:0.15s;
 }
 
-.btn:hover {
+.btn:hover{
 
-  background:
-    #ececec;
+  background:#ececec;
 }
 
-.btn:active {
+.btn:active{
 
-  border-top:
-    2px solid #666;
-
-  border-left:
-    2px solid #666;
-
-  border-right:
-    2px solid white;
-
-  border-bottom:
-    2px solid white;
+  border-top:2px solid #666;
+  border-left:2px solid #666;
+  border-right:2px solid white;
+  border-bottom:2px solid white;
 }
 
-.btn.primary {
+.btn.primary{
 
-  background:
-    var(--blue);
+  background:#000080;
 
-  color:
-    white;
-}
-
-.btn.green {
-
-  background:
-    var(--green);
-
-  color:
-    white;
-}
-
-.btn.red {
-
-  background:
-    var(--red);
-
-  color:
-    white;
+  color:white;
 }
 
 /* =========================================================
-   SWIPE SYSTEM
+   STATUS TEXT
 ========================================================= */
 
-.swipe-container {
+.status-text{
 
-  overflow:
-    hidden;
+  margin-top:14px;
 
-  width:
-    100%;
-}
+  text-align:center;
 
-.swipe-wrapper {
+  font-size:12px;
 
-  display:
-    flex;
+  color:#444;
 
-  width:
-    200%;
-
-  transition:
-    transform 0.45s ease;
-}
-
-.swipe-wrapper.show-messages {
-
-  transform:
-    translateX(-50%);
-}
-
-.swipe-page {
-
-  width:
-    50%;
-
-  padding:
-    5px;
-}
-
-/* =========================================================
-   SHARE PAGE
-========================================================= */
-
-.share-page {
-
-  display:
-    flex;
-
-  flex-direction:
-    column;
-
-  align-items:
-    center;
-}
-
-.share-card {
-
-  width:
-    100%;
-
-  background:
-    #ededed;
-
-  padding:
-    22px;
-
-  text-align:
-    center;
-
-  border-top:
-    3px solid white;
-
-  border-left:
-    3px solid white;
-
-  border-right:
-    3px solid #666;
-
-  border-bottom:
-    3px solid #666;
-
-  box-shadow:
-    3px 3px 0 black;
-}
-
-.profile-pic {
-
-  width:
-    100px;
-
-  height:
-    100px;
-
-  object-fit:
-    cover;
-
-  margin:
-    auto;
-
-  border:
-    3px solid black;
-}
-
-.username {
-
-  margin-top:
-    15px;
-
-  font-size:
-    24px;
-
-  font-weight:
-    bold;
-
-  color:
-    var(--blue);
-}
-
-.user-link {
-
-  margin-top:
-    12px;
-
-  background:
-    white;
-
-  padding:
-    10px;
-
-  border:
-    2px inset #999;
-
-  word-break:
-    break-word;
-
-  font-size:
-    13px;
-}
-
-.share-grid {
-
-  display:
-    grid;
-
-  grid-template-columns:
-    1fr 1fr;
-
-  gap:
-    10px;
-
-  margin-top:
-    18px;
-}
-
-/* =========================================================
-   MESSAGE AREA
-========================================================= */
-
-.messages-page {
-
-  padding-bottom:
-    120px;
-}
-
-.messages-title {
-
-  font-size:
-    20px;
-
-  color:
-    var(--blue);
-
-  margin-bottom:
-    16px;
-
-  border-bottom:
-    2px solid var(--blue);
-
-  padding-bottom:
-    8px;
-}
-
-.inbox {
-
-  display:
-    flex;
-
-  flex-direction:
-    column;
-
-  gap:
-    12px;
-}
-
-/* =========================================================
-   MESSAGE CARD
-========================================================= */
-
-.message-card {
-
-  position:
-    relative;
-
-  background:
-    #f3f3f3;
-
-  padding:
-    14px;
-
-  overflow:
-    hidden;
-
-  border-top:
-    2px solid white;
-
-  border-left:
-    2px solid white;
-
-  border-right:
-    2px solid #666;
-
-  border-bottom:
-    2px solid #666;
-
-  transition:
-    transform 0.2s,
-    background 0.2s;
-}
-
-.message-card:hover {
-
-  transform:
-    translateY(-2px);
-
-  background:
-    #ffffdd;
-}
-
-.message-card.truth::before,
-.message-card.dare::before,
-.message-card.chaos::before {
-
-  content:
-    "";
-
-  position:
-    absolute;
-
-  left:
-    0;
-
-  top:
-    0;
-
-  bottom:
-    0;
-
-  width:
-    6px;
-}
-
-.message-card.truth::before {
-  background: var(--green);
-}
-
-.message-card.dare::before {
-  background: var(--red);
-}
-
-.message-card.chaos::before {
-  background: var(--orange);
-}
-
-.message-type {
-
-  display:
-    inline-block;
-
-  margin-bottom:
-    8px;
-
-  font-size:
-    11px;
-
-  font-weight:
-    bold;
-
-  background:
-    var(--blue);
-
-  color:
-    white;
-
-  padding:
-    4px 8px;
-}
-
-.message-text {
-
-  font-size:
-    14px;
-
-  line-height:
-    1.7;
-
-  word-break:
-    break-word;
-}
-
-.message-meta {
-
-  margin-top:
-    10px;
-
-  font-size:
-    11px;
-
-  color:
-    #666;
-}
-
-/* =========================================================
-   MESSAGE ACTIONS
-========================================================= */
-
-.message-actions {
-
-  display:
-    flex;
-
-  gap:
-    8px;
-
-  flex-wrap:
-    wrap;
-
-  margin-top:
-    14px;
-}
-
-.message-actions .btn {
-
-  flex:
-    1;
-
-  min-width:
-    120px;
-
-  margin:
-    0;
-}
-
-/* =========================================================
-   BOTTOM TAB SWITCHER
-========================================================= */
-
-.bottom-tabs {
-
-  position:
-    fixed;
-
-  left:
-    50%;
-
-  bottom:
-    14px;
-
-  transform:
-    translateX(-50%);
-
-  width:
-    calc(100% - 30px);
-
-  max-width:
-    500px;
-
-  display:
-    flex;
-
-  overflow:
-    hidden;
-
-  background:
-    var(--panel);
-
-  border-top:
-    3px solid white;
-
-  border-left:
-    3px solid white;
-
-  border-right:
-    3px solid #666;
-
-  border-bottom:
-    3px solid #666;
-
-  box-shadow:
-    4px 4px 0 black;
-
-  z-index:
-    999;
-}
-
-.bottom-tab {
-
-  flex:
-    1;
-
-  padding:
-    15px;
-
-  background:
-    transparent;
-
-  font-size:
-    13px;
-
-  font-weight:
-    bold;
-
-  transition:
-    0.2s;
-}
-
-.bottom-tab.active {
-
-  background:
-    var(--blue);
-
-  color:
-    white;
-}
-
-/* =========================================================
-   POPUP
-========================================================= */
-
-.popup {
-
-  position:
-    fixed;
-
-  top:
-    20px;
-
-  left:
-    50%;
-
-  transform:
-    translateX(-50%);
-
-  background:
-    var(--blue);
-
-  color:
-    white;
-
-  padding:
-    12px 18px;
-
-  font-size:
-    12px;
-
-  font-weight:
-    bold;
-
-  border:
-    2px solid white;
-
-  box-shadow:
-    3px 3px 0 black;
-
-  z-index:
-    9999;
-
-  animation:
-    popupAnim 2s forwards;
-}
-
-@keyframes popupAnim {
-
-  0% {
-    opacity: 0;
-    transform:
-      translateX(-50%)
-      translateY(-10px);
-  }
-
-  10% {
-    opacity: 1;
-    transform:
-      translateX(-50%)
-      translateY(0);
-  }
-
-  80% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-  }
+  line-height:1.6;
 }
 
 /* =========================================================
    FOOTER
 ========================================================= */
 
-.footer {
+.footer{
 
-  margin-top:
-    30px;
+  margin-top:18px;
 
-  text-align:
-    center;
+  padding:14px;
 
-  font-size:
-    11px;
+  text-align:center;
 
-  color:
-    #555;
+  background:#d4d0c8;
+
+  border-top:2px solid white;
+  border-left:2px solid white;
+  border-right:2px solid #777;
+  border-bottom:2px solid #777;
+
+  box-shadow:4px 4px 0 black;
+
+  font-size:11px;
+
+  color:#444;
+}
+
+/* =========================================================
+   INBOX PAGE FIXES
+========================================================= */
+
+.inbox{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:14px;
+
+  width:100%;
+}
+
+.message-card{
+
+  width:100%;
+
+  background:#f1f1f1;
+
+  padding:14px;
+
+  overflow:hidden;
+
+  border-top:2px solid white;
+  border-left:2px solid white;
+  border-right:2px solid #777;
+  border-bottom:2px solid #777;
+
+  position:relative;
+}
+
+.message-card.truth{
+  border-left:6px solid #0f8d0f;
+}
+
+.message-card.dare{
+  border-left:6px solid #9d1010;
+}
+
+.message-card.chaos{
+  border-left:6px solid #d17c00;
+}
+
+.message-type{
+
+  display:inline-block;
+
+  margin-bottom:10px;
+
+  background:#000080;
+
+  color:white;
+
+  padding:4px 8px;
+
+  font-size:10px;
+  font-weight:bold;
+}
+
+.message-text{
+
+  font-size:14px;
+
+  line-height:1.8;
+
+  word-break:break-word;
+
+  color:#111;
+}
+
+.message-actions{
+
+  display:flex;
+
+  gap:8px;
+
+  flex-wrap:wrap;
+
+  margin-top:14px;
+}
+
+.message-actions button{
+
+  flex:1;
+
+  min-width:120px;
+}
+
+/* =========================================================
+   SHARE PAGE
+========================================================= */
+
+.share-card{
+
+  background:#efefef;
+
+  padding:18px;
+
+  border-top:2px solid white;
+  border-left:2px solid white;
+  border-right:2px solid #777;
+  border-bottom:2px solid #777;
+}
+
+.user-link{
+
+  margin-top:12px;
+
+  background:white;
+
+  padding:10px;
+
+  border:2px inset #999;
+
+  word-break:break-word;
+
+  font-size:12px;
 }
 
 /* =========================================================
    MOBILE
 ========================================================= */
 
-@media (max-width: 600px) {
+@media (max-width:600px){
 
-  body {
-
-    padding:
-      12px;
+  body{
+    padding:10px;
   }
 
-  .panel {
-
-    padding:
-      14px;
+  .panel{
+    padding:14px;
   }
 
-  .logo-title {
+  .logo-title{
 
-    font-size:
-      23px;
+    font-size:20px;
+
+    line-height:1.7;
   }
 
-  .username {
+  .intro-box p{
 
-    font-size:
-      20px;
+    font-size:12px;
   }
 
-  .message-text {
+  .message-actions{
 
-    font-size:
-      13px;
+    flex-direction:column;
   }
 
-  .share-grid {
+  .message-actions button{
 
-    grid-template-columns:
-      1fr;
+    width:100%;
   }
 
-  .bottom-tab {
+  .hud-bar{
 
-    padding:
-      13px 10px;
-
-    font-size:
-      12px;
+    flex-direction:column;
+    align-items:flex-start;
   }
 
-  .message-actions {
-
-    flex-direction:
-      column;
-  }
-
-  .message-actions .btn {
-
-    width:
-      100%;
-  }
 }
