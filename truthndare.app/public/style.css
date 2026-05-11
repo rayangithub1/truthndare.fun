@@ -529,10 +529,6 @@ button.danger {
     font-size: 12px;
   }
 
-  .card-actions {
-    flex-direction: column;
-  }
-
   .home-btn {
     top: 8px;
     left: 8px;
