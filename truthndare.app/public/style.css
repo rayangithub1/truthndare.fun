@@ -1,5 +1,5 @@
 /* =========================================================
-   90s INTERNET / YAHOO / WINDOWS 98 STYLE
+   CLEAN 90s INTERNET / WINDOWS 98 / YAHOO STYLE UI
 ========================================================= */
 
 * {
@@ -17,13 +17,13 @@ button {
 }
 
 :root {
-  --bg: #c0c0c0;
-  --panel: #d4d0c8;
+  --bg: #bfbfbf;
+  --panel: #dcdad5;
   --panel-dark: #808080;
   --panel-light: #ffffff;
 
   --text: #000000;
-  --muted: #444444;
+  --muted: #333333;
 
   --blue: #000080;
   --link: #0000ee;
@@ -41,23 +41,21 @@ button {
 
 body {
   min-height: 100vh;
-
-  background: #c0c0c0;
-
+  background: var(--bg);
   font-family: var(--ui);
   color: var(--text);
 
   overflow-x: hidden;
 
   background-image:
-    linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
+    linear-gradient(to right, rgba(0,0,0,0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.04) 1px, transparent 1px);
 
-  background-size: 6px 6px;
+  background-size: 7px 7px;
 }
 
 /* =========================================================
-   CONTAINER
+   MAIN CONTAINER
 ========================================================= */
 
 .container {
@@ -75,11 +73,7 @@ body {
   border-right: 3px solid var(--panel-dark);
   border-bottom: 3px solid var(--panel-dark);
 
-  box-shadow: 3px 3px 0 #000;
-}
-
-.container.large {
-  max-width: 900px;
+  box-shadow: 4px 4px 0 #000;
 }
 
 /* =========================================================
@@ -91,24 +85,27 @@ h2,
 h3 {
   font-family: Verdana, Arial, sans-serif;
   color: var(--blue);
-
   margin-bottom: 12px;
 }
 
 h1 {
-  font-size: 28px;
+  font-size: 30px;
   border-bottom: 2px solid var(--blue);
   padding-bottom: 8px;
+  text-shadow: 1px 1px 0 #fff;
 }
 
 h2 {
   font-size: 20px;
+  border-bottom: 1px dashed #808080;
+  padding-bottom: 5px;
 }
 
 .subtitle {
   text-align: center;
+  font-size: 13px;
   color: var(--muted);
-  font-size: 12px;
+  font-weight: bold;
   margin-bottom: 20px;
 }
 
@@ -120,19 +117,15 @@ input,
 textarea,
 select {
   width: 100%;
-
   margin-top: 12px;
   padding: 10px;
 
-  background: white;
-  color: black;
+  background: #fff;
+  color: #000;
 
   font-family: var(--ui);
 
-  border-top: 2px solid #808080;
-  border-left: 2px solid #808080;
-  border-right: 2px solid #ffffff;
-  border-bottom: 2px solid #ffffff;
+  border: 2px inset #c0c0c0;
 
   outline: none;
 }
@@ -149,44 +142,120 @@ select:focus {
 
 button {
   width: 100%;
-
   margin-top: 14px;
   padding: 10px;
 
-  background: var(--panel);
+  background: linear-gradient(#e6e6e6, #cfcfcf);
 
-  color: black;
+  color: #000;
 
   font-family: Tahoma, sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: bold;
 
   cursor: pointer;
 
-  border-top: 2px solid var(--panel-light);
-  border-left: 2px solid var(--panel-light);
-  border-right: 2px solid var(--panel-dark);
-  border-bottom: 2px solid var(--panel-dark);
+  border: 2px outset #ffffff;
 }
 
 button:hover {
-  background: #e5e5e5;
+  background: #f2f2f2;
 }
 
 button:active {
-  border-top: 2px solid var(--panel-dark);
-  border-left: 2px solid var(--panel-dark);
-  border-right: 2px solid var(--panel-light);
-  border-bottom: 2px solid var(--panel-light);
+  border: 2px inset #c0c0c0;
 }
 
 button.secondary {
-  background: #dfdfdf;
+  background: #e0e0e0;
 }
 
 button.danger {
   background: #b00000;
-  color: white;
+  color: #fff;
+}
+
+/* =========================================================
+   HUD BAR
+========================================================= */
+
+.hud-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin: 10px 0 20px;
+  padding: 10px;
+
+  background: var(--blue);
+  color: #fff;
+
+  border: 2px solid #000;
+}
+
+.hud-item {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* =========================================================
+   INTRO BOX
+========================================================= */
+
+.intro-box {
+  margin-bottom: 24px;
+  padding: 18px;
+
+  background: #f2f2f2;
+
+  border: 2px solid #808080;
+
+  box-shadow: inset 1px 1px 0 #fff;
+}
+
+.intro-box h3 {
+  color: var(--blue);
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.intro-box p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* =========================================================
+   TAGS
+========================================================= */
+
+.intro-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.intro-tags span {
+  padding: 6px 8px;
+
+  background: #fff;
+  border: 1px solid #808080;
+
+  font-size: 11px;
+  font-weight: bold;
+
+  color: #000080;
+}
+
+/* =========================================================
+   COMPOSER
+========================================================= */
+
+.composer {
+  background: #efefef;
+  border: 2px groove #999;
+  padding: 15px;
 }
 
 /* =========================================================
@@ -202,42 +271,33 @@ button.danger {
 .message,
 .message-card {
   margin-top: 10px;
-
-  background: #f3f3f3;
+  background: #fff;
 
   padding: 12px;
 
-  font-family: Arial, sans-serif;
-  color: black;
+  border: 2px solid #808080;
 
-  border-top: 2px solid var(--panel-light);
-  border-left: 2px solid var(--panel-light);
-  border-right: 2px solid var(--panel-dark);
-  border-bottom: 2px solid var(--panel-dark);
+  font-family: Arial, sans-serif;
 }
 
-.message.truth,
-.message-card.truth {
+.message:hover {
+  background: #ffffe0;
+}
+
+.message.truth {
   border-left: 6px solid var(--green);
 }
 
-.message.chaos,
-.message-card.chaos {
+.message.chaos {
   border-left: 6px solid var(--orange);
 }
 
-.message.dare,
-.message-card.dare {
+.message.dare {
   border-left: 6px solid var(--red);
 }
 
-.message:hover,
-.message-card:hover {
-  background: #ffffdd;
-}
-
 /* =========================================================
-   CARD DETAILS
+   CARD CONTENT
 ========================================================= */
 
 .card-title {
@@ -249,12 +309,6 @@ button.danger {
 .card-meta {
   font-size: 11px;
   color: #666;
-  margin-top: 6px;
-}
-
-.inbox-status {
-  font-size: 12px;
-  padding: 15px 0;
 }
 
 /* =========================================================
@@ -274,93 +328,22 @@ button.danger {
 }
 
 /* =========================================================
-   COMPOSER
-========================================================= */
-
-.composer {
-  background: #efefef;
-
-  border: 2px groove #999;
-
-  padding: 15px;
-}
-
-/* =========================================================
-   NAVIGATION BAR
-========================================================= */
-
-.nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  padding: 8px 10px;
-  margin-bottom: 20px;
-
-  background: var(--blue);
-  color: white;
-
-  border: 2px solid black;
-}
-
-.nav a {
-  color: yellow;
-  text-decoration: underline;
-  font-weight: bold;
-}
-
-/* =========================================================
-   HOME BUTTON
-========================================================= */
-
-.home-btn {
-  position: fixed;
-  top: 12px;
-  left: 12px;
-
-  padding: 8px 10px;
-
-  background: var(--panel);
-
-  color: black;
-  text-decoration: none;
-
-  font-family: Tahoma, sans-serif;
-  font-size: 12px;
-  font-weight: bold;
-
-  border-top: 2px solid var(--panel-light);
-  border-left: 2px solid var(--panel-light);
-  border-right: 2px solid var(--panel-dark);
-  border-bottom: 2px solid var(--panel-dark);
-
-  z-index: 999;
-}
-
-.home-btn:hover {
-  background: #e4e4e4;
-}
-
-/* =========================================================
    FOOTER
 ========================================================= */
 
 .system-footer {
   margin-top: 30px;
-
   padding: 15px;
 
-  background: #dfdfdf;
+  background: #e0e0e0;
 
-  border: 2px ridge #999;
+  border: 2px solid #808080;
 }
 
 .footer-header {
   text-align: center;
-
   font-weight: bold;
   color: var(--blue);
-
   margin-bottom: 15px;
 }
 
@@ -370,12 +353,9 @@ button.danger {
 }
 
 .footer-box {
-  background: white;
-
+  background: #fff;
   border: 1px solid #999;
-
   padding: 10px;
-
   font-size: 12px;
 }
 
@@ -386,35 +366,9 @@ button.danger {
 
 .footer-signature {
   margin-top: 12px;
-
   text-align: center;
-
   font-size: 11px;
   color: #666;
-}
-
-/* =========================================================
-   HUD BAR
-========================================================= */
-
-.hud-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  margin: 10px 0 20px;
-
-  padding: 8px 10px;
-
-  background: var(--blue);
-  color: white;
-
-  border: 2px solid black;
-}
-
-.hud-item {
-  font-size: 12px;
-  font-weight: bold;
 }
 
 /* =========================================================
@@ -432,70 +386,12 @@ button.danger {
 
 .eye-btn {
   position: absolute;
-
-  top: 57%;
+  top: 55%;
   right: 15px;
-
   transform: translateY(-50%);
-
   cursor: pointer;
-
   font-size: 16px;
-
-  opacity: 0.7;
-}
-
-.eye-btn:hover {
-  opacity: 1;
-}
-
-/* =========================================================
-   INTRO BOX
-========================================================= */
-
-.intro-box {
-  margin-bottom: 24px;
-
-  padding: 18px;
-
-  background: #efefef;
-
-  border: 2px ridge #999;
-}
-
-.intro-box h3 {
-  margin-bottom: 12px;
-
-  color: var(--blue);
-
-  font-size: 16px;
-}
-
-.intro-box p {
-  font-size: 13px;
-  line-height: 1.7;
-
-  color: #333;
-
-  margin-bottom: 12px;
-}
-
-.intro-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.intro-tags span {
-  padding: 6px 8px;
-
-  background: white;
-
-  border: 1px solid #999;
-
-  font-size: 11px;
-
-  color: #000080;
+  opacity: 0.8;
 }
 
 /* =========================================================
@@ -510,10 +406,7 @@ button.danger {
 
   .container {
     width: 100%;
-    max-width: 100%;
-
-    margin: 40px 0 20px;
-
+    margin: 20px 0;
     padding: 14px;
   }
 
@@ -528,81 +421,4 @@ button.danger {
   button {
     font-size: 12px;
   }
-
-  .home-btn {
-    top: 8px;
-    left: 8px;
-  }
-}
-/* =========================================================
-   RETRO INTERNET TOP BAR (YAHOO / GEOCITIES STYLE)
-========================================================= */
-
-.retro-bar {
-  width: 100%;
-  background: #000080;
-  color: #fff;
-  font-family: Tahoma, Arial, sans-serif;
-  border-bottom: 3px solid #000;
-  box-shadow: 0 2px 0 #808080;
-}
-
-/* scrolling marquee effect */
-.retro-marquee {
-  overflow: hidden;
-  white-space: nowrap;
-  border-bottom: 1px solid #ffffff33;
-}
-
-.retro-marquee span {
-  display: inline-block;
-  padding: 6px 0;
-  padding-left: 100%;
-  animation: marquee 18s linear infinite;
-  font-size: 12px;
-  font-weight: bold;
-  letter-spacing: 1px;
-}
-
-@keyframes marquee {
-  0%   { transform: translateX(0%); }
-  100% { transform: translateX(-100%); }
-}
-
-/* =========================================================
-   ROTATING INTERNET THOUGHTS (CSS ONLY)
-========================================================= */
-
-.retro-thought {
-  position: relative;
-  height: 28px;
-  overflow: hidden;
-  font-size: 12px;
-  text-align: center;
-  background: #000060;
-}
-
-.retro-thought span {
-  position: absolute;
-  width: 100%;
-  left: 0;
-  top: 10px;
-  opacity: 0;
-  transform: translateY(10px);
-  animation: thoughtCycle 25s infinite;
-}
-
-/* staggered timing */
-.retro-thought .t1 { animation-delay: 0s; }
-.retro-thought .t2 { animation-delay: 5s; }
-.retro-thought .t3 { animation-delay: 10s; }
-.retro-thought .t4 { animation-delay: 15s; }
-.retro-thought .t5 { animation-delay: 20s; }
-
-@keyframes thoughtCycle {
-  0%   { opacity: 0; transform: translateY(10px); }
-  5%   { opacity: 1; transform: translateY(0px); }
-  18%  { opacity: 1; }
-  25%  { opacity: 0; transform: translateY(-10px); }
-  100% { opacity: 0; }
 }
