@@ -6,6 +6,7 @@ const path = require("path");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const rateLimit = require("express-rate-limit");
+const socketIo = require("socket.io");
 const http = require("http");
 const onlineUsers = new Map(); // socket.id → username
 
