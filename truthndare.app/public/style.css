@@ -1,6 +1,5 @@
 /* =========================================================
-   FUNKY RETRO 90s x MODERN NEON UI SYSTEM
-   (clean, bold, “wow effect” design)
+   WINDOWS XP NOSTALGIC CLEAN UI (MODERN IMPLEMENTATION)
 ========================================================= */
 
 * {
@@ -10,238 +9,213 @@
 }
 
 :root {
-  --bg1: #0b0c10;
-  --bg2: #11131a;
+  --xp-blue: #3a6ea5;
+  --xp-blue-dark: #2b5797;
+  --xp-bg: #d4e5f7;
+  --xp-panel: #f5f5f5;
+  --xp-border: #a6a6a6;
 
-  --card: rgba(255, 255, 255, 0.06);
-  --card-border: rgba(255, 255, 255, 0.12);
+  --text: #1a1a1a;
+  --muted: #555;
 
-  --text: #eaeaea;
-  --muted: #9aa0a6;
-
-  --neon-pink: #ff3cac;
-  --neon-blue: #2b86ff;
-  --neon-green: #2dff88;
-  --neon-yellow: #ffe66d;
-
-  --radius: 18px;
-  --font: "Trebuchet MS", Arial, sans-serif;
+  --font: "Tahoma", "Segoe UI", Arial, sans-serif;
 }
 
 /* =========================================================
-   BODY (NEON GRID + GLOW ATMOSPHERE)
+   BODY (CLEAN XP DESKTOP FEEL)
 ========================================================= */
 
 body {
-  min-height: 100vh;
   font-family: var(--font);
   color: var(--text);
 
-  background:
-    radial-gradient(circle at top, #1b1f2a, #0b0c10 60%),
-    linear-gradient(120deg, var(--bg1), var(--bg2));
+  min-height: 100vh;
 
-  overflow-x: hidden;
+  background:
+    linear-gradient(180deg, #eaf3ff, var(--xp-bg));
+
+  padding: 20px;
 }
 
-/* animated subtle grid */
+/* subtle XP-style soft highlight */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background:
-    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
-  background-size: 40px 40px;
+  background: radial-gradient(circle at top, rgba(255,255,255,0.6), transparent 60%);
   pointer-events: none;
-  opacity: 0.3;
 }
 
 /* =========================================================
-   LOGO (BRAND HERO MOMENT)
+   LOGO AREA (CLEAN HEADER BAR STYLE)
 ========================================================= */
 
 .site-header {
   text-align: center;
-  padding: 35px 10px 10px;
+  margin-bottom: 20px;
 }
 
 .logo {
   display: inline-block;
-  padding: 14px 26px;
+  padding: 10px 18px;
 
-  font-size: 34px;
-  font-weight: 900;
-  letter-spacing: 2px;
-
+  font-size: 26px;
+  font-weight: bold;
   color: #fff;
 
-  background: linear-gradient(135deg, var(--neon-pink), var(--neon-blue));
-  border-radius: var(--radius);
+  background: linear-gradient(to bottom, var(--xp-blue), var(--xp-blue-dark));
+
+  border: 1px solid #1e3d6b;
+  border-radius: 6px;
 
   box-shadow:
-    0 0 20px rgba(255, 60, 172, 0.4),
-    0 0 40px rgba(43, 134, 255, 0.25);
-
-  text-transform: uppercase;
-
-  transform: perspective(600px) rotateX(5deg);
+    inset 0 1px 0 rgba(255,255,255,0.4),
+    0 2px 6px rgba(0,0,0,0.2);
 }
 
 .logo small {
   display: block;
   font-size: 11px;
-  opacity: 0.8;
-  letter-spacing: 3px;
-  margin-top: 6px;
+  font-weight: normal;
+  opacity: 0.9;
+  margin-top: 4px;
 }
 
 /* =========================================================
-   MAIN CONTAINER (GLASS NEON CARD)
+   MAIN CONTAINER (XP WINDOW STYLE)
 ========================================================= */
 
 .container {
   width: 92%;
   max-width: 560px;
-  margin: 30px auto;
+  margin: 0 auto;
 
-  background: var(--card);
-  backdrop-filter: blur(14px);
+  background: var(--xp-panel);
 
-  border: 1px solid var(--card-border);
-  border-radius: var(--radius);
-
-  padding: 20px;
+  border: 1px solid var(--xp-border);
+  border-radius: 8px;
 
   box-shadow:
-    0 10px 40px rgba(0,0,0,0.6),
-    inset 0 1px 0 rgba(255,255,255,0.08);
+    0 6px 18px rgba(0,0,0,0.15);
+
+  padding: 18px;
 }
 
 /* =========================================================
-   HEADINGS (NEON ENERGY STYLE)
+   HEADINGS
 ========================================================= */
 
-h1, h2, h3 {
-  font-weight: 800;
-}
-
 h1 {
-  font-size: 28px;
-  background: linear-gradient(90deg, var(--neon-pink), var(--neon-blue));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-
+  font-size: 22px;
+  color: var(--xp-blue-dark);
   margin-bottom: 10px;
 }
 
 h2 {
-  font-size: 20px;
-  color: var(--text);
-  margin-bottom: 10px;
+  font-size: 18px;
+  color: var(--xp-blue);
+  margin-bottom: 8px;
 }
 
 .subtitle {
-  text-align: center;
-  font-size: 13px;
+  font-size: 12px;
   color: var(--muted);
   margin-bottom: 18px;
 }
 
 /* =========================================================
-   INPUTS (MODERN RETRO HYBRID)
+   INPUTS (XP STYLE FIELDS)
 ========================================================= */
 
 input,
 textarea,
 select {
   width: 100%;
-  margin-top: 12px;
-  padding: 12px 14px;
+  margin-top: 10px;
+  padding: 10px;
 
-  border-radius: 12px;
+  font-family: var(--font);
+  font-size: 14px;
 
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.15);
+  background: #fff;
 
-  color: #fff;
+  border: 1px solid #7f9db9;
+  border-radius: 3px;
 
   outline: none;
-
-  transition: 0.2s ease;
 }
 
 input:focus,
 textarea:focus {
-  border-color: var(--neon-blue);
-  box-shadow: 0 0 12px rgba(43,134,255,0.4);
+  border-color: var(--xp-blue);
+  box-shadow: 0 0 3px rgba(58,110,165,0.5);
 }
 
 /* =========================================================
-   BUTTONS (NEON PULSE STYLE)
+   BUTTONS (TRUE XP PUSH BUTTON LOOK)
 ========================================================= */
 
 button {
   width: 100%;
-  margin-top: 14px;
-  padding: 12px;
+  margin-top: 12px;
+  padding: 10px;
 
-  font-weight: bold;
-  letter-spacing: 0.5px;
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 500;
 
-  border: none;
-  border-radius: 14px;
+  color: #000;
+
+  background: linear-gradient(to bottom, #ffffff, #dcdcdc);
+
+  border: 1px solid #7f7f7f;
+  border-radius: 4px;
 
   cursor: pointer;
 
-  color: #fff;
-
-  background: linear-gradient(135deg, var(--neon-pink), var(--neon-blue));
-
   box-shadow:
-    0 8px 20px rgba(255, 60, 172, 0.25);
+    inset 0 1px 0 #ffffff,
+    inset 0 -1px 0 #bcbcbc;
+}
 
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+/* XP click animation feel */
+button:active {
+  background: linear-gradient(to bottom, #dcdcdc, #ffffff);
+  transform: translateY(1px);
 }
 
 button:hover {
-  transform: translateY(-2px);
-  box-shadow:
-    0 12px 30px rgba(43, 134, 255, 0.35);
+  border-color: var(--xp-blue);
 }
 
-button:active {
-  transform: scale(0.98);
-}
-
-button.secondary {
-  background: rgba(255,255,255,0.1);
+button.primary {
+  background: linear-gradient(to bottom, #4f8edc, #2f66b3);
+  color: #fff;
+  border: 1px solid #1e4f8a;
 }
 
 button.danger {
-  background: linear-gradient(135deg, #ff3b3b, #ff7a18);
+  background: linear-gradient(to bottom, #e57373, #c62828);
+  color: #fff;
 }
 
 /* =========================================================
-   HUD BAR (FUTURISTIC STATUS STRIP)
+   HUD BAR (XP BLUE STATUS STRIP)
 ========================================================= */
 
 .hud-bar {
   display: flex;
   justify-content: space-between;
 
-  padding: 10px 14px;
-  margin: 12px 0 18px;
+  padding: 8px 10px;
+  margin-bottom: 15px;
 
-  border-radius: 14px;
+  background: linear-gradient(to bottom, var(--xp-blue), var(--xp-blue-dark));
+  color: #fff;
 
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
-}
+  border-radius: 4px;
 
-.hud-item {
   font-size: 12px;
-  color: var(--muted);
 }
 
 /* =========================================================
@@ -249,86 +223,85 @@ button.danger {
 ========================================================= */
 
 .intro-box {
-  padding: 16px;
-  margin-bottom: 18px;
+  padding: 14px;
+  margin-bottom: 15px;
 
-  border-radius: var(--radius);
+  background: #ffffff;
 
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid #c8c8c8;
+  border-radius: 6px;
 }
 
 .intro-box p {
   font-size: 13px;
-  line-height: 1.6;
-  color: var(--muted);
+  color: #333;
+  line-height: 1.5;
 }
 
 /* =========================================================
-   TAGS (NEON PILLS)
+   TAGS (XP LABEL STYLE)
 ========================================================= */
 
 .intro-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 6px;
   margin-top: 10px;
 }
 
 .intro-tags span {
   font-size: 11px;
-  padding: 6px 10px;
+  padding: 4px 8px;
 
-  border-radius: 999px;
+  background: #e9f1fb;
+  border: 1px solid #b7c9e2;
+  border-radius: 3px;
 
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.15);
-
-  color: #fff;
+  color: var(--xp-blue-dark);
 }
 
 /* =========================================================
-   MESSAGES (CARD SYSTEM)
+   MESSAGE BOXES
 ========================================================= */
 
 .inbox {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .message {
-  padding: 14px;
-  border-radius: 16px;
+  padding: 12px;
 
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.12);
+  background: #fff;
+  border: 1px solid #cfcfcf;
+  border-radius: 6px;
 
-  transition: 0.2s ease;
+  transition: 0.15s ease;
 }
 
 .message:hover {
-  transform: translateY(-2px);
-  border-color: var(--neon-blue);
+  background: #f7fbff;
+  border-color: var(--xp-blue);
 }
 
-.message.truth { border-left: 4px solid var(--neon-green); }
-.message.chaos { border-left: 4px solid var(--neon-yellow); }
-.message.dare { border-left: 4px solid var(--neon-pink); }
+.message.truth { border-left: 4px solid #3cb371; }
+.message.chaos { border-left: 4px solid #f0ad4e; }
+.message.dare { border-left: 4px solid #d9534f; }
 
 /* =========================================================
    CARD TEXT
 ========================================================= */
 
 .card-title {
-  font-weight: 800;
-  margin-bottom: 6px;
-  color: #fff;
+  font-weight: bold;
+  color: var(--xp-blue-dark);
+  margin-bottom: 5px;
 }
 
 .card-meta {
   font-size: 11px;
-  color: var(--muted);
+  color: #666;
 }
 
 /* =========================================================
@@ -336,19 +309,17 @@ button.danger {
 ========================================================= */
 
 .system-footer {
-  margin-top: 30px;
-  padding: 16px;
+  margin-top: 25px;
+  padding: 14px;
 
-  border-radius: var(--radius);
+  background: #f3f3f3;
 
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
-}
+  border: 1px solid #cfcfcf;
+  border-radius: 6px;
 
-.footer-signature {
   text-align: center;
   font-size: 11px;
-  color: var(--muted);
+  color: #555;
 }
 
 /* =========================================================
@@ -358,16 +329,14 @@ button.danger {
 @media (max-width: 600px) {
   .container {
     width: 100%;
-    margin: 15px 0;
     padding: 14px;
   }
 
   .logo {
-    font-size: 24px;
-    padding: 12px 18px;
+    font-size: 20px;
   }
 
-  h1 {
-    font-size: 22px;
+  button {
+    font-size: 13px;
   }
 }
