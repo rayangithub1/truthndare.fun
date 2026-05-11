@@ -889,7 +889,7 @@ button{
 }
 
 /* =========================================================
-   MESSAGE CARD (CLEAN FEED STYLE)
+   MESSAGE CARD (REFINED FEED + TOOLBAR STYLE)
 ========================================================= */
 
 .message-card{
@@ -901,29 +901,20 @@ button{
   flex-direction:column;
   gap:6px;
   transition:0.15s ease;
-  position:relative;
 }
 
-/* subtle hover (no jumpy movement) */
+/* hover (clean, no movement) */
 .message-card:hover{
   border-color:#cbd5e1;
 }
 
-/* left accent strip (cleaner than thick border) */
-.message-card.truth{
-  border-left:3px solid var(--green);
-}
-
-.message-card.dare{
-  border-left:3px solid var(--red);
-}
-
-.message-card.chaos{
-  border-left:3px solid var(--orange);
-}
+/* left accent */
+.message-card.truth{ border-left:3px solid var(--green); }
+.message-card.dare{ border-left:3px solid var(--red); }
+.message-card.chaos{ border-left:3px solid var(--orange); }
 
 /* =========================================================
-   MESSAGE TYPE (SMALL LABEL)
+   HEADER LINE (TYPE + META INLINE)
 ========================================================= */
 
 .message-type{
@@ -932,55 +923,88 @@ button{
   text-transform:uppercase;
   letter-spacing:0.8px;
   color:#64748b;
-  margin-bottom:2px;
 }
 
 /* =========================================================
-   MESSAGE TEXT (MAIN CONTENT)
+   MESSAGE TEXT (IMPROVED READABILITY)
 ========================================================= */
 
 .message-text{
-  font-size:13px;
-  line-height:1.5;
+  font-size:13.5px;
+  line-height:1.55;
   color:#0f172a;
   word-break:break-word;
 }
 
-/* =========================================================
-   META INFO (COMPACT FOOTER TEXT)
-========================================================= */
+/* optional emphasis inside message text */
+.message-text strong{
+  font-weight:700;
+  color:#111827;
+}
 
-.message-meta{
-  margin-top:4px;
-  font-size:11px;
-  color:#94a3b8;
-  display:flex;
-  flex-direction:column;
-  gap:2px;
+.message-text em{
+  font-style:normal;
+  color:#475569;
 }
 
 /* =========================================================
-   ACTIONS (MINIMAL BUTTON ROW)
+   META ROW (INLINE, NOT STACKED)
+========================================================= */
+
+.message-meta{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:11px;
+  color:#94a3b8;
+  margin-top:2px;
+}
+
+/* left meta */
+.message-meta .meta-left{
+  display:flex;
+  gap:6px;
+  align-items:center;
+}
+
+/* right meta (time etc.) */
+.message-meta .meta-right{
+  font-weight:600;
+}
+
+/* =========================================================
+   ACTION BAR (INLINE TOOLBAR STYLE)
 ========================================================= */
 
 .message-actions{
   display:flex;
+  align-items:center;
   gap:6px;
   margin-top:6px;
+  padding-top:6px;
+  border-top:1px solid #eef2f7;
 }
 
-/* buttons inside card */
+/* all buttons become compact inline tools */
 .message-actions button{
-  flex:1;
-  min-width:0;
-  padding:7px 8px;
+  flex:0;
+  padding:6px 10px;
   font-size:11px;
   font-weight:700;
   border-radius:8px;
   border:1px solid #e2e8f0;
   background:#f8fafc;
   color:#111827;
+  cursor:pointer;
   transition:0.15s ease;
+  white-space:nowrap;
+}
+
+/* primary action style (first button) */
+.message-actions button:first-child{
+  background:#eef2ff;
+  border-color:#c7d2fe;
+  color:#1e3a8a;
 }
 
 /* hover */
@@ -989,8 +1013,13 @@ button{
   border-color:#cbd5e1;
 }
 
+/* active click feel */
+.message-actions button:active{
+  transform:scale(0.97);
+}
+
 /* =========================================================
-   SAFETY RESET (prevents weird spacing bugs)
+   CLEAN RESET
 ========================================================= */
 
 .message-card *{
