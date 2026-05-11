@@ -456,99 +456,97 @@ function downloadImage(id, type, message) {
 
   const ctx = canvas.getContext("2d");
 
-  // ======================================================
-  // HORIZONTAL SHARE FORMAT (SOCIAL MEDIA OPTIMIZED)
-  // ======================================================
   canvas.width = 1200;
   canvas.height = 630;
 
-  // ======================================================
-  // BACKGROUND (PURE CLEAN WHITE = MODERN RETRO MIX)
-  // ======================================================
+  // background
   ctx.fillStyle = "#ffffff";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  // soft border (minimal elegance)
+  // border
   ctx.strokeStyle = "#e5e7eb";
   ctx.lineWidth = 2;
   ctx.strokeRect(30, 30, canvas.width - 60, canvas.height - 60);
 
-  // ======================================================
-  // TOP BRAND SECTION
-  // ======================================================
-  ctx.fillStyle = "#111827";
-  ctx.font = "bold 40px Arial";
-  ctx.textAlign = "center";
-  ctx.fillText("truthndare.fun", canvas.width / 2, 120);
+  // =========================
+  // LOAD LOGO (IMPORTANT PART)
+  // =========================
+  const logo = new Image();
+  logo.src = "/logo.png"; // <-- your logo path
 
-  ctx.fillStyle = "#6b7280";
-  ctx.font = "20px Arial";
-  ctx.fillText("anonymous truth • dare • chaos messages", canvas.width / 2, 160);
+  logo.onload = function () {
 
-  // thin divider
-  ctx.strokeStyle = "#e5e7eb";
-  ctx.lineWidth = 2;
-  ctx.beginPath();
-  ctx.moveTo(200, 200);
-  ctx.lineTo(1000, 200);
-  ctx.stroke();
+    // =========================
+    // DRAW LOGO (TOP LEFT)
+    // =========================
+    ctx.drawImage(logo, 70, 60, 60, 60);
 
-  // ======================================================
-  // TYPE LABEL (SMALL CLEAN BADGE)
-  // ======================================================
-  let color = "#111827";
+    // =========================
+    // BRAND TEXT (next to logo)
+    // =========================
+    ctx.fillStyle = "#111827";
+    ctx.font = "bold 36px Arial";
+    ctx.textAlign = "left";
+    ctx.fillText("truthndare.fun", 150, 100);
 
-  if (type === "truth") color = "#16a34a";
-  if (type === "chaos") color = "#ca8a04";
-  if (type === "dare") color = "#dc2626";
+    ctx.fillStyle = "#6b7280";
+    ctx.font = "18px Arial";
+    ctx.fillText("anonymous truth • dare • chaos messages", 150, 130);
 
-  ctx.fillStyle = color;
-  ctx.font = "bold 22px Arial";
-  ctx.textAlign = "left";
-  ctx.fillText(type.toUpperCase(), 140, 270);
+    // divider
+    ctx.strokeStyle = "#e5e7eb";
+    ctx.beginPath();
+    ctx.moveTo(200, 180);
+    ctx.lineTo(1000, 180);
+    ctx.stroke();
 
-  // ======================================================
-  // MAIN MESSAGE (CENTER FOCUS)
-  // ======================================================
-  ctx.fillStyle = "#111827";
-  ctx.font = "bold 48px Arial";
+    // =========================
+    // TYPE LABEL
+    // =========================
+    let color = "#111827";
+    if (type === "truth") color = "#16a34a";
+    if (type === "chaos") color = "#ca8a04";
+    if (type === "dare") color = "#dc2626";
 
-  wrapText(
-    ctx,
-    message,
-    140,
-    340,
-    920,
-    65
-  );
+    ctx.fillStyle = color;
+    ctx.font = "bold 22px Arial";
+    ctx.fillText(type.toUpperCase(), 140, 250);
 
-  // ======================================================
-  // BOTTOM SECTION (LINK + PRIVACY)
-  // ======================================================
+    // =========================
+    // MESSAGE
+    // =========================
+    ctx.fillStyle = "#111827";
+    ctx.font = "bold 46px Arial";
 
-  // link
-  ctx.fillStyle = "#2563eb";
-  ctx.font = "bold 22px Arial";
-  ctx.textAlign = "center";
-  ctx.fillText("truthndare.fun", canvas.width / 2, 520);
+    wrapText(
+      ctx,
+      message,
+      140,
+      320,
+      920,
+      60
+    );
 
-  // privacy note
-  ctx.fillStyle = "#9ca3af";
-  ctx.font = "16px Arial";
-  ctx.fillText("messages are anonymous • no identity stored", canvas.width / 2, 555);
+    // =========================
+    // FOOTER
+    // =========================
+    ctx.fillStyle = "#2563eb";
+    ctx.font = "bold 20px Arial";
+    ctx.textAlign = "center";
+    ctx.fillText("truthndare.fun", canvas.width / 2, 520);
 
-  // small footer line
-  ctx.fillStyle = "#d1d5db";
-  ctx.font = "14px Arial";
-  ctx.fillText("share responsibly", canvas.width / 2, 585);
+    ctx.fillStyle = "#9ca3af";
+    ctx.font = "16px Arial";
+    ctx.fillText("messages are anonymous • no identity stored", canvas.width / 2, 555);
 
-  // ======================================================
-  // EXPORT
-  // ======================================================
-  const link = document.createElement("a");
-  link.download = `${type}-truthndare.png`;
-  link.href = canvas.toDataURL("image/png");
-  link.click();
+    // =========================
+    // EXPORT (IMPORTANT: inside onload)
+    // =========================
+    const link = document.createElement("a");
+    link.download = `${type}-truthndare.png`;
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+  };
 }
 // ==========================
 // MODE COLORS
