@@ -1,58 +1,243 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
   <title>Inbox</title>
 
-  <link rel="stylesheet" href="/style.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link
+    rel="stylesheet"
+    href="/style.css"
+  >
 
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+    rel="stylesheet"
+  >
+
 </head>
 
 <body>
 
-<!-- HOME -->
-<a href="index.html" class="home-btn">⌂ HOME</a>
-
-<!-- BACKGROUND EFFECT -->
+<!-- =========================================
+     SCANLINES
+========================================= -->
 <div class="scanlines"></div>
 
-<!-- MAIN CONTAINER -->
-<div class="container large">
+<!-- =========================================
+     APP
+========================================= -->
+<div class="app">
 
-  <!-- HEADER -->
-  <h1 class="glow-text">INBOX SYSTEM</h1>
-  <p class="subtitle">ANONYMOUS MESSAGE VAULT</p>
+  <!-- =========================================
+       WINDOW BAR
+  ========================================= -->
+  <div class="window-bar">
 
-  <!-- =========================
-       LINK MODULE
-  ========================== -->
-  <div class="composer">
-
-    <h2>YOUR SIGNAL LINK</h2>
-
-    <input id="userLink" class="input" readonly placeholder="GENERATING NODE LINK...">
-
-    <div style="display:flex; gap:10px;">
-      <button onclick="copyLink()">COPY</button>
-      <button class="secondary" onclick="shareWhatsApp()">SHARE</button>
+    <div class="window-title">
+      inbox://truthndare.fun
     </div>
 
   </div>
 
-  <!-- =========================
-       STATUS BAR
-  ========================== -->
-  <div class="inbox-status">
-    ⚡ REFRESH THIS PAGE TO SEE NEWER MESSAGES
+  <!-- =========================================
+       PANEL
+  ========================================= -->
+  <div class="panel">
+
+    <!-- =========================================
+         HOME
+    ========================================= -->
+    <a
+      href="/"
+      class="home-btn"
+    >
+      ⌂ HOME
+    </a>
+
+    <!-- =========================================
+         HEADER
+    ========================================= -->
+    <div class="logo-area">
+
+      <img
+        src="/logo.png"
+        class="logo"
+        alt="logo"
+      >
+
+      <div class="logo-title">
+        INBOX SYSTEM
+      </div>
+
+      <div class="logo-sub">
+        ANONYMOUS MESSAGE VAULT
+      </div>
+
+    </div>
+
+    <!-- =========================================
+         SCREEN SWITCHER
+    ========================================= -->
+    <div class="screen-tabs">
+
+      <button
+        class="screen-tab active"
+        id="linkTab"
+      >
+        SHARE
+      </button>
+
+      <button
+        class="screen-tab"
+        id="messageTab"
+      >
+        MESSAGES
+      </button>
+
+    </div>
+
+    <!-- =========================================
+         SWIPE AREA
+    ========================================= -->
+    <div class="screen-wrapper">
+
+      <div
+        class="screen-slider"
+        id="screenSlider"
+      >
+
+        <!-- =========================================
+             SCREEN 1
+        ========================================= -->
+        <div class="screen-page">
+
+          <div class="share-card">
+
+            <div class="share-header">
+              YOUR SIGNAL LINK
+            </div>
+
+            <div class="share-sub">
+              SHARE THIS LINK TO RECEIVE
+              ANONYMOUS TRUTHS & DARES
+            </div>
+
+            <input
+              id="userLink"
+              class="input"
+              readonly
+              placeholder="GENERATING LINK..."
+            >
+
+            <div class="share-buttons">
+
+              <button onclick="copyLink()">
+                COPY LINK
+              </button>
+
+              <button
+                class="secondary"
+                onclick="shareWhatsApp()"
+              >
+                SHARE
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- =========================================
+             SCREEN 2
+        ========================================= -->
+        <div class="screen-page">
+
+          <div class="messages-section">
+
+            <div class="vault-status">
+              ⚡ REFRESH PAGE FOR NEW MESSAGES
+            </div>
+
+            <div
+              id="messages"
+              class="inbox"
+            ></div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
   </div>
 
-  <!-- =========================
-       MESSAGES VAULT (CARD SYSTEM)
-  ========================== -->
-  <div id="messages" class="card-container inbox-vault"></div>
-
 </div>
+
+<script>
+
+// =========================================
+// SCREEN SYSTEM
+// =========================================
+
+const slider =
+document.getElementById(
+  "screenSlider"
+);
+
+const linkTab =
+document.getElementById(
+  "linkTab"
+);
+
+const messageTab =
+document.getElementById(
+  "messageTab"
+);
+
+// SHARE TAB
+linkTab.onclick = () => {
+
+  slider.style.transform =
+    "translateX(0%)";
+
+  linkTab.classList.add(
+    "active"
+  );
+
+  messageTab.classList.remove(
+    "active"
+  );
+
+};
+
+// MESSAGE TAB
+messageTab.onclick = () => {
+
+  slider.style.transform =
+    "translateX(-50%)";
+
+  messageTab.classList.add(
+    "active"
+  );
+
+  linkTab.classList.remove(
+    "active"
+  );
+
+};
+
+</script>
 
 <script src="/app.js"></script>
 
