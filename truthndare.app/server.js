@@ -387,6 +387,35 @@ app.get("/inbox", (req, res) => {
   res.sendFile(path.join(__dirname, "public/inbox.html"));
 });
 
+io.on("connection", (socket) => {
+
+  console.log("🔌 New connection:", socket.id);
+
+  // user joins after login
+  socket.on("user-online", (username) => {
+
+    onlineUsers.set(socket.id, username);
+
+    console.log(`🟢 ONLINE: ${username}`);
+
+    io.emit("online-count", onlineUsers.size);
+
+  });
+
+  socket.on("disconnect", () => {
+
+    const username = onlineUsers.get(socket.id);
+
+    onlineUsers.delete(socket.id);
+
+    console.log(`🔴 OFFLINE: ${username}`);
+
+    io.emit("online-count", onlineUsers.size);
+
+  });
+
+});
+
 // ==========================
 // CLEAN USER PROFILE LINK
 // ==========================
