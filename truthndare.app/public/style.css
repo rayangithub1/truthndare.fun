@@ -261,3 +261,202 @@ button{
   }
 
 }
+
+/* =========================================================
+   FINAL TYPOGRAPHY OVERRIDE
+========================================================= */
+
+body,
+input,
+button,
+textarea{
+
+  font-family:
+  "Inter",
+  sans-serif !important;
+
+  -webkit-font-smoothing:antialiased;
+
+  text-rendering:optimizeLegibility;
+}
+
+/* =========================================================
+   MAIN TITLE
+========================================================= */
+
+.logo-title{
+
+  font-family:
+  "Space Grotesk",
+  sans-serif !important;
+
+  font-size:34px !important;
+
+  font-weight:700 !important;
+
+  letter-spacing:-2px !important;
+
+  line-height:1 !important;
+
+  color:#111827;
+}
+
+/* =========================================================
+   SUBTITLE
+========================================================= */
+
+.logo-sub{
+
+  font-size:13px !important;
+
+  font-weight:500 !important;
+
+  color:#6b7280 !important;
+
+  letter-spacing:0.2px;
+}
+
+/* =========================================================
+   WINDOW BAR
+========================================================= */
+
+.window-title{
+
+  font-size:13px !important;
+
+  font-weight:600 !important;
+}
+
+/* =========================================================
+   HEADINGS
+========================================================= */
+
+.share-header,
+.auth-title,
+.section-title,
+h1,
+h2,
+h3{
+
+  font-family:
+  "Space Grotesk",
+  sans-serif !important;
+
+  letter-spacing:-1px !important;
+
+  color:#111827;
+}
+
+/* =========================================================
+   PARAGRAPHS
+========================================================= */
+
+.share-sub,
+.subtitle,
+.status-text,
+.vault-status,
+p{
+
+  font-size:13px !important;
+
+  line-height:1.8 !important;
+
+  color:#6b7280;
+}
+
+/* =========================================================
+   INPUTS
+========================================================= */
+
+.input{
+
+  font-size:14px !important;
+
+  font-weight:500 !important;
+
+  letter-spacing:-0.2px;
+}
+
+.input::placeholder{
+
+  color:#9ca3af !important;
+}
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+button{
+
+  font-size:13px !important;
+
+  font-weight:600 !important;
+
+  letter-spacing:-0.2px;
+}
+
+/* =========================================================
+   TABS
+========================================================= */
+
+.auth-tab,
+.screen-tab{
+
+  font-size:13px !important;
+
+  font-weight:600 !important;
+}
+
+/* =========================================================
+   MESSAGE TYPE
+========================================================= */
+
+.message-type{
+
+  text-transform:uppercase;
+
+  letter-spacing:1px;
+
+  font-size:10px !important;
+
+  font-weight:700 !important;
+}
+
+/* =========================================================
+   MESSAGE TEXT
+========================================================= */
+
+.message-text{
+
+  font-size:14px !important;
+
+  line-height:1.8 !important;
+
+  font-weight:500 !important;
+
+  color:#111827 !important;
+}
+
+/* =========================================================
+   MESSAGE META
+========================================================= */
+
+.message-meta{
+
+  font-size:11px !important;
+
+  color:#9ca3af !important;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:600px){
+
+  .logo-title{
+
+    font-size:28px !important;
+  }
+
+}
