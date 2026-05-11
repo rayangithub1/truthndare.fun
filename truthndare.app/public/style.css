@@ -890,126 +890,89 @@ button{
 
 
 /* =========================================================
-   MESSAGE CARD (COMPACT / MINIMAL)
+   MESSAGE CARD (MINIMAL FEED STYLE)
 ========================================================= */
 
 .message-card{
-
   background:#ffffff;
-
-  border:1px solid var(--border);
-
+  border:1px solid #e2e8f0;
   border-radius:10px;
-
   padding:10px 12px;
-
-  transition:0.15s ease;
-
   display:flex;
   flex-direction:column;
   gap:6px;
+  transition:0.15s ease;
 }
 
-/* subtle hover (no jumpy feel) */
 .message-card:hover{
-  transform:translateY(-1px);
   border-color:#cbd5e1;
 }
 
-/* =========================================================
-   TYPE ACCENT (LEFT BAR)
-========================================================= */
+/* TYPE (SMALL BADGE FEEL) */
+.message-type{
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:0.8px;
+  text-transform:uppercase;
+  color:#64748b;
+}
 
+/* TYPE COLORS (SUBTLE LEFT ACCENT INSTEAD OF HEAVY BORDER) */
 .message-card.truth{
-  border-left:3px solid var(--green);
+  border-left:3px solid #16a34a;
 }
 
 .message-card.dare{
-  border-left:3px solid var(--red);
+  border-left:3px solid #dc2626;
 }
 
 .message-card.chaos{
-  border-left:3px solid var(--orange);
+  border-left:3px solid #f59e0b;
 }
 
-/* =========================================================
-   MESSAGE TYPE (SMALL LABEL)
-========================================================= */
-
-.message-type{
-
-  font-size:9px;
-
-  font-weight:700;
-
-  letter-spacing:1.2px;
-
-  text-transform:uppercase;
-
-  color:#94a3b8;
-
-  margin:0;
-}
-
-/* =========================================================
-   MESSAGE TEXT (COMPACT)
-========================================================= */
-
+/* MESSAGE TEXT (COMPACT BUT READABLE) */
 .message-text{
-
-  font-size:13.5px;
-
-  line-height:1.5;
-
+  font-size:13px;
+  line-height:1.45;
   color:#0f172a;
-
   word-break:break-word;
-
-  margin:0;
 }
 
-/* =========================================================
-   META (TIGHT + CLEAN)
-========================================================= */
-
+/* META (TIGHT INLINE STYLE) */
 .message-meta{
-
-  font-size:10px;
-
-  color:#94a3b8;
-
-  margin-top:2px;
-}
-
-/* =========================================================
-   ACTIONS (MINIMAL BUTTON ROW)
-========================================================= */
-
-.message-actions{
-
-  display:flex;
-
-  gap:6px;
-
-  margin-top:8px;
-}
-
-/* buttons become compact chips */
-.message-actions button{
-
-  flex:1;
-
-  min-width:auto;
-
-  padding:8px 10px;
-
   font-size:11px;
+  color:#94a3b8;
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
 
-  font-weight:600;
+/* ACTIONS (SMALL FOOTER BUTTON ROW) */
+.message-actions{
+  display:flex;
+  gap:6px;
+  margin-top:4px;
+}
 
-  margin:0;
-
+/* BUTTONS INSIDE CARD */
+.message-actions button{
+  flex:1;
+  padding:7px 8px;
+  font-size:11px;
+  font-weight:700;
   border-radius:8px;
+  border:1px solid #e2e8f0;
+  background:#f8fafc;
+  color:#111827;
+}
+
+.message-actions button:hover{
+  background:#eef2f7;
+}
+
+/* REMOVE EXTRA SPACING ISSUES */
+.message-card *{
+  margin:0;
 }
 
 /* =========================================================
