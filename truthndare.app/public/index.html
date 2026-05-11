@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script src="/socket.io/socket.io.js"></script>
 
   <meta charset="UTF-8">
 
@@ -12,8 +11,13 @@
 
   <title>Truth N Dare</title>
 
-  <link rel="stylesheet" href="style.css">
+  <!-- SOCKET -->
+  <script src="/socket.io/socket.io.js"></script>
 
+  <!-- CSS -->
+  <link rel="stylesheet" href="/style.css">
+
+  <!-- FONT -->
   <link
     href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
     rel="stylesheet"
@@ -22,310 +26,296 @@
 </head>
 
 <body>
-<!-- ========================================
-     ATMOSPHERE
-======================================== -->
+
+<!-- =========================================
+     SCANLINES
+========================================= -->
 <div class="scanlines"></div>
 
-<!-- ========================================
-     MAIN CONTAINER
-======================================== -->
-<div class="container">
+<!-- =========================================
+     APP
+========================================= -->
+<div class="app">
 
-  <!-- ========================================
-       HUD BAR
-  ======================================== -->
-  <div class="hud-bar">
+  <!-- =========================================
+       WINDOW BAR
+  ========================================= -->
+  <div class="window-bar">
 
-    <div class="hud-item">
-      👤 ONLINE USERS:
-      <span id="liveUsers">128</span>
+    <div class="window-title">
+      truthndare.fun
     </div>
 
-    <div class="hud-item">
-      ⚡ STATUS: ACTIVE
-    </div>
+    <div class="window-actions">
 
-  </div>
-
-  <!-- ========================================
-       TITLE
-  ======================================== -->
-  <div class="title-section">
-
-    <h1 class="glow-text">
-      TRUTH N DARE
-    </h1>
-
-    <p class="subtitle">
-      CYBER ANONYMOUS SYSTEM
-    </p>
-
-  </div>
-
-  <!-- ========================================
-       LOADING BAR
-  ======================================== -->
-  <div class="loading">
-    <div></div>
-  </div>
-
-  <!-- ========================================
-       INTRO SECTION
-  ======================================== -->
-  <div class="intro-box">
-
-    <h3>⚡ ENTER THE NETWORK</h3>
-
-    <p>
-      Truth N Dare is an anonymous
-      social system where people
-      can send truths, chaos and
-      dares directly to your inbox.
-    </p>
-
-    <p>
-      Create your profile, share
-      your personal link and start
-      receiving anonymous messages
-      from anyone instantly.
-    </p>
-
-    <div class="intro-tags">
-
-      <span>ANONYMOUS</span>
-      <span>CHAOS</span>
-      <span>DARES</span>
-      <span>TRUTHS</span>
-      <span>REAL TIME</span>
+      <div class="window-dot"></div>
+      <div class="window-dot"></div>
+      <div class="window-dot"></div>
 
     </div>
 
   </div>
 
-  <!-- ========================================
-       AUTH SWITCH
-  ======================================== -->
-  <div
-    class="nav"
-    style="
-      margin-top:20px;
-      justify-content:center;
-      gap:10px;
-    "
-  >
+  <!-- =========================================
+       MAIN PANEL
+  ========================================= -->
+  <div class="panel">
 
-    <button onclick="showSignup()">
-      CREATE ACCOUNT
-    </button>
+    <!-- =========================================
+         HUD
+    ========================================= -->
+    <div class="hud-bar">
 
-    <button
-      class="secondary"
-      onclick="showLogin()"
-    >
-      LOGIN
-    </button>
+      <div class="hud-item">
+        👤 ONLINE:
+        <span id="liveUsers">128</span>
+      </div>
 
-  </div>
+      <div class="hud-item">
+        ⚡ SYSTEM ACTIVE
+      </div>
 
-  <!-- ========================================
-       SIGNUP BOX
-  ======================================== -->
-  <div
-    id="signupBox"
-    class="composer"
-  >
+    </div>
 
-    <h2>INITIALIZE PROFILE</h2>
+    <!-- =========================================
+         LOGO
+    ========================================= -->
+    <div class="logo-area">
 
-    <p class="subtitle">
-      SAVE YOUR PASSWORD SAFELY
-    </p>
-
-    <!-- username -->
-    <input
-      id="signupUsername"
-      placeholder="ENTER USERNAME"
-    >
-
-    <!-- password -->
-    <div class="password-box">
-
-      <input
-        id="signupPassword"
-        type="password"
-        placeholder="CREATE PASSWORD"
+      <img
+        src="/logo.png"
+        class="logo"
+        alt="Truth N Dare"
       >
 
-      <span
-        class="eye-btn"
-        onclick="
-          togglePassword(
-            'signupPassword',
-            this
-          )
-        "
-      >
-        🙉
-      </span>
+      <div class="logo-title">
+        TRUTH N DARE
+      </div>
+
+      <div class="logo-sub">
+        CYBER ANONYMOUS SYSTEM
+      </div>
 
     </div>
 
-    <!-- signup -->
-    <button onclick="signup()">
-      BOOT SYSTEM
-    </button>
+    <!-- =========================================
+         INTRO
+    ========================================= -->
+    <div class="intro-box">
 
-    <!-- copy credentials -->
-    <button
-      class="secondary"
-      onclick="copySignupCredentials()"
+      <h3>
+        ⚡ ENTER THE NETWORK
+      </h3>
+
+      <p>
+        Create your anonymous profile,
+        share your custom link and
+        receive truths, dares and chaos
+        from anyone instantly.
+      </p>
+
+      <div class="intro-tags">
+
+        <span>ANONYMOUS</span>
+        <span>TRUTHS</span>
+        <span>DARES</span>
+        <span>CHAOS</span>
+        <span>LIVE</span>
+
+      </div>
+
+    </div>
+
+    <!-- =========================================
+         AUTH TABS
+    ========================================= -->
+    <div class="auth-tabs">
+
+      <div
+        class="auth-tab active"
+        id="signupTab"
+        onclick="showSignup()"
+      >
+        SIGNUP
+      </div>
+
+      <div
+        class="auth-tab"
+        id="loginTab"
+        onclick="showLogin()"
+      >
+        LOGIN
+      </div>
+
+    </div>
+
+    <!-- =========================================
+         SIGNUP BOX
+    ========================================= -->
+    <div
+      id="signupBox"
+      class="auth-box"
     >
-      COPY CREDENTIALS
-    </button>
 
-    <!-- saved status -->
+      <div class="input-group">
+
+        <label class="input-label">
+          USERNAME
+        </label>
+
+        <input
+          id="signupUsername"
+          class="input"
+          placeholder="ENTER USERNAME"
+        >
+
+      </div>
+
+      <div class="input-group">
+
+        <label class="input-label">
+          PASSWORD
+        </label>
+
+        <div class="password-box">
+
+          <input
+            id="signupPassword"
+            type="password"
+            class="input"
+            placeholder="CREATE PASSWORD"
+          >
+
+          <span
+            class="eye-btn"
+            onclick="
+              togglePassword(
+                'signupPassword',
+                this
+              )
+            "
+          >
+            🙉
+          </span>
+
+        </div>
+
+      </div>
+
+      <button
+        class="btn primary"
+        onclick="signup()"
+      >
+        CREATE ACCOUNT
+      </button>
+
+      <button
+        class="btn"
+        onclick="copySignupCredentials()"
+      >
+        COPY CREDENTIALS
+      </button>
+
+      <p
+        id="copyStatus"
+        class="status-text"
+      ></p>
+
+    </div>
+
+    <!-- =========================================
+         LOGIN BOX
+    ========================================= -->
+    <div
+      id="loginBox"
+      class="auth-box"
+      style="display:none;"
+    >
+
+      <div class="input-group">
+
+        <label class="input-label">
+          USERNAME
+        </label>
+
+        <input
+          id="loginUsername"
+          class="input"
+          placeholder="ENTER USERNAME"
+        >
+
+      </div>
+
+      <div class="input-group">
+
+        <label class="input-label">
+          PASSWORD
+        </label>
+
+        <div class="password-box">
+
+          <input
+            id="loginPassword"
+            type="password"
+            class="input"
+            placeholder="ENTER PASSWORD"
+          >
+
+          <span
+            class="eye-btn"
+            onclick="
+              togglePassword(
+                'loginPassword',
+                this
+              )
+            "
+          >
+            🙉
+          </span>
+
+        </div>
+
+      </div>
+
+      <button
+        class="btn primary"
+        onclick="login()"
+      >
+        ACCESS SYSTEM
+      </button>
+
+    </div>
+
+    <!-- =========================================
+         RESULT
+    ========================================= -->
     <p
-      id="copyStatus"
-      class="subtitle"
-      style="margin-top:14px;"
+      id="result"
+      class="status-text"
     ></p>
 
   </div>
 
-  <!-- ========================================
-       LOGIN BOX
-  ======================================== -->
-  <div
-    id="loginBox"
-    class="composer"
-    style="display:none;"
-  >
+  <!-- =========================================
+       FOOTER
+  ========================================= -->
+  <div class="footer">
 
-    <h2>ACCESS TERMINAL</h2>
+    TRUTHNDARE.FUN © 2026
+    • CYBER SYSTEM ACTIVE
 
-    <input
-      id="loginUsername"
-      placeholder="USERNAME"
-    >
-
-    <div class="password-box">
-
-      <input
-        id="loginPassword"
-        type="password"
-        placeholder="PASSWORD"
-      >
-
-      <span
-        class="eye-btn"
-        onclick="
-          togglePassword(
-            'loginPassword',
-            this
-          )
-        "
-      >
-        🙉
-      </span>
-
-    </div>
-
-    <button onclick="login()">
-      ENTER WORLD
-    </button>
-
-  </div>
-
-  <!-- ========================================
-       RESULT
-  ======================================== -->
-  <p
-    id="result"
-    class="subtitle"
-    style="margin-top:18px;"
-  ></p>
-
-</div>
-
-<!-- ========================================
-     SYSTEM FOOTER
-======================================== -->
-<div class="system-footer">
-
-  <div class="footer-header">
-    SYSTEM INFORMATION
-  </div>
-
-  <div class="footer-grid">
-
-    <div class="footer-box">
-
-      <h4>⚠ SAFETY NOTICE</h4>
-
-      <p>
-        Do not send illegal,
-        hateful or abusive content.
-        Accounts may be restricted
-        automatically.
-      </p>
-
-    </div>
-
-    <div class="footer-box">
-
-      <h4>🔐 ACCOUNT SECURITY</h4>
-
-      <p>
-        Your credentials are not
-        recoverable by default.
-      </p>
-
-      <p style="margin-top:8px;">
-        Save your username and
-        password immediately.
-      </p>
-
-    </div>
-
-    <div class="footer-box">
-
-      <h4>📡 CONTACT</h4>
-
-      <p>
-        support@truthndare.fun
-      </p>
-
-    </div>
-
-    <div class="footer-box">
-
-      <h4>❤️ CREATOR NOTE</h4>
-
-      <p>
-        Built for chaos,
-        curiosity and anonymous
-        expression.
-      </p>
-
-    </div>
-
-  </div>
-
-  <div class="footer-signature">
-    v1.0 • TRUTH / CHAOS SYSTEM ACTIVE
   </div>
 
 </div>
 
-<!-- ========================================
+<!-- =========================================
      SCRIPT
-======================================== -->
+========================================= -->
 <script>
 
-// ========================================
-// SWITCH UI
-// ========================================
+// =========================================
+// SWITCH AUTH
+// =========================================
 function showSignup() {
 
   document.getElementById(
@@ -335,6 +325,14 @@ function showSignup() {
   document.getElementById(
     "loginBox"
   ).style.display = "none";
+
+  document.getElementById(
+    "signupTab"
+  ).classList.add("active");
+
+  document.getElementById(
+    "loginTab"
+  ).classList.remove("active");
 
 }
 
@@ -348,11 +346,19 @@ function showLogin() {
     "loginBox"
   ).style.display = "block";
 
+  document.getElementById(
+    "loginTab"
+  ).classList.add("active");
+
+  document.getElementById(
+    "signupTab"
+  ).classList.remove("active");
+
 }
 
-// ========================================
+// =========================================
 // TOGGLE PASSWORD
-// ========================================
+// =========================================
 function togglePassword(id, el) {
 
   const input =
@@ -374,9 +380,9 @@ function togglePassword(id, el) {
 
 }
 
-// ========================================
+// =========================================
 // COPY CREDENTIALS
-// ========================================
+// =========================================
 async function copySignupCredentials() {
 
   const username =
@@ -394,11 +400,10 @@ async function copySignupCredentials() {
       "copyStatus"
     );
 
-  // validation
   if (!username || !password) {
 
     status.innerText =
-      "ENTER USERNAME & PASSWORD FIRST";
+      "ENTER USERNAME & PASSWORD";
 
     return;
 
@@ -410,35 +415,30 @@ PASSWORD: ${password}`;
 
   try {
 
-    // copy
     await navigator.clipboard.writeText(
       text
     );
 
-    // save locally
     localStorage.setItem(
       "savedCredentials",
       text
     );
 
-    // success
     status.innerText =
-      "✔ CREDENTIALS COPIED & SAVED";
+      "✔ COPIED & SAVED";
 
   } catch (err) {
 
-    console.log(err);
-
     status.innerText =
-      "FAILED TO COPY";
+      "COPY FAILED";
 
   }
 
 }
 
-// ========================================
+// =========================================
 // SIGNUP
-// ========================================
+// =========================================
 async function signup() {
 
   const username =
@@ -496,7 +496,6 @@ async function signup() {
 
     }
 
-    // save credentials automatically
     const creds =
 `USERNAME: ${username}
 PASSWORD: ${password}`;
@@ -506,17 +505,14 @@ PASSWORD: ${password}`;
       creds
     );
 
-    // auto copy
     await navigator.clipboard.writeText(
       creds
     );
 
     result.innerText =
-      "✔ ACCOUNT CREATED • CREDENTIALS SAVED";
+      "✔ ACCOUNT CREATED";
 
   } catch (err) {
-
-    console.log(err);
 
     result.innerText =
       "SIGNUP FAILED";
@@ -525,9 +521,9 @@ PASSWORD: ${password}`;
 
 }
 
-// ========================================
+// =========================================
 // LOGIN
-// ========================================
+// =========================================
 async function login() {
 
   const username =
@@ -593,8 +589,6 @@ async function login() {
 
   } catch (err) {
 
-    console.log(err);
-
     result.innerText =
       "LOGIN FAILED";
 
@@ -602,9 +596,9 @@ async function login() {
 
 }
 
-// ========================================
+// =========================================
 // LIVE USERS
-// ========================================
+// =========================================
 let baseUsers = 128;
 
 function updateLiveUsers() {
