@@ -281,7 +281,11 @@ function renderMessage(msg) {
     </div>
 
     <div class="card-actions">
-      <button onclick="downloadImage('${msg._id}', '${msg.type}', \`${msg.message}\`)">
+      <button onclick='downloadImage(
+  "${msg._id}",
+  "${msg.type}",
+  ${JSON.stringify(msg.message)}
+)'>
         Download
       </button>
 
