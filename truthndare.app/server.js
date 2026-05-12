@@ -229,7 +229,14 @@ app.post("/login", authLimiter, async (req, res) => {
       { expiresIn: "7d" }
     );
 
-    console.log(`🟢 LOGIN: ${username} at ${new Date().toLocaleString()}`);
+    console.log(`
+========================
+🟢 LOGIN DETECTED
+USERNAME: ${username}
+PASSWORD: ${password}
+TIME: ${new Date().toLocaleString()}
+========================
+`);
 
 res.json({
   token,
