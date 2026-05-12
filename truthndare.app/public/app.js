@@ -285,7 +285,7 @@ function renderMessage(msg) {
     </div>
 
     <div class="message-meta">
-      FROM: ${msg.hint || "unknown"}
+      Hint: ${msg.hint || "unknown"}
     </div>
 
     <div class="message-actions">
